@@ -3,6 +3,7 @@ ChangeLog file for cmsc
 
 Changes in 15.0_20
 ------------------
+* Moved to github
 * Fix stat/fstat
 * Updated StrawberryPerl to 5.14.2.1-32-bit
 

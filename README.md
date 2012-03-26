@@ -1,8 +1,9 @@
 Custom Microsoft Compiler Toolkit Compilation
 ---------------------------------------------
 
-Based on the VC from DDK 7.1.0          (cl 15.00.30729.207)
-Note: VS2008's cl is 15.00.21022.08, so this seems like the
+Based on the VC from DDK 7.1.0 (cl 15.00.30729.207)
+
+VS2008's cl is 15.00.21022.08, so this seems like the
 same compiler generation.
 
 ### Directory layout:
