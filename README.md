@@ -1,11 +1,11 @@
 Custom Microsoft Compiler Toolkit Compilation
-=============================================
+---------------------------------------------
 
 Based on the VC from DDK 7.1.0          (cl 15.00.30729.207)
 Note: VS2008's cl is 15.00.21022.08, so this seems like the
 same compiler generation.
 
-Directory layout:
+### Directory layout:
 
      <Top Directory>
         +--bin
@@ -24,10 +24,9 @@ Directory layout:
             +--i386
             +--ia64
 
-See tools\README.txt for dependencies and versions
+See `tools\README.txt` for dependencies and versions
 
-Invoking
---------
+### Invoking
 
 Open command promt in project target and call
 
@@ -40,20 +39,19 @@ Open command promt in project target and call
 
 This will set up required paths for binaries, include and
 lib files.
-It will also set EXTRA_LIBS environment variable
-with the value "msvcrt_compat.lib msvcrt_compat.obj"
+It will also set `EXTRA_LIBS` environment variable
+with the value `msvcrt_compat.lib msvcrt_compat.obj`
 
-IMPORTANT:
----------
+### Important
+
 Make sure those two files are linked to every .dll
 or .exe produced by this toolkit. The easiest is to add
-$(EXTRA_LIBS) to link task in Makefile.
+`$(EXTRA_LIBS)` to link task in Makefile.
 
-WARNING:
---------
+### Warning
 
 Toolkit cannot be used for producing DEBUG builds
 because there is no system msvcrtd.dll.
-Trying to compile with the /MDd compiler option
+Trying to compile with the `/MDd` compiler option
 will produce unusable builds, because of missing stubs.
 For debugging purposes use the compiler that comes with Visual Studio.
