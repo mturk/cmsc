@@ -1,0 +1,14 @@
+/***
+*binmode.c - set global file mode to binary
+*
+*       Copyright (c) 1989-2001, Microsoft Corporation. All rights reserved.
+*
+*Purpose:
+*       Sets the global file mode flag to binary.  Linking with this file
+*       sets all files to be opened in binary mode.
+*
+*******************************************************************************/
+
+#include <fcntl.h>
+/* set default file mode */
+int _fmode = _O_BINARY;

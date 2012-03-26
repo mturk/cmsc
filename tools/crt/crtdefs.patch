@@ -1,0 +1,34 @@
+--- include/crt/crtdefs.h.org	2010-02-08 19:18:56.000000000 +0100
++++ include/crt/crtdefs.h	2011-01-29 09:29:13.511210600 +0100
+@@ -329,8 +329,10 @@
+ #endif
+ 
+ #ifndef _CRT_SECURE_FORCE_DEPRECATE
++#if !defined(_CRT_SECURE_NO_DEPRECATE)
+ #define _CRT_SECURE_NO_DEPRECATE
+ #endif
++#endif
+ 
+ /* Define _CRT_INSECURE_DEPRECATE */
+ #ifndef _CRT_INSECURE_DEPRECATE
+@@ -441,8 +443,10 @@
+ #endif  /* !defined (RC_INVOKED) */
+ 
+ #ifndef _CRT_NONSTDC_FORCE_DEPRECATE
++#if !defined(_CRT_NONSTDC_NO_DEPRECATE)
+ #define _CRT_NONSTDC_NO_DEPRECATE
+ #endif
++#endif
+ 
+ /* Define _CRT_NONSTDC_DEPRECATE */
+ #if !defined(_CRT_NONSTDC_DEPRECATE)
+@@ -505,7 +509,9 @@
+ #define _TIME64_T_DEFINED
+ 
+ #ifndef _WIN64
++#if !defined(_USE_32BIT_TIME_T)
+ #define _USE_32BIT_TIME_T
++#endif
+ #endif 
+ 
+ #ifdef _USE_32BIT_TIME_T

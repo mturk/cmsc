@@ -1,0 +1,7 @@
+EXPORTS
+    __wgetmainargs=msvcrt.__wgetmainargs
+    __getmainargs=msvcrt.__getmainargs
+    _getpid=msvcrt._getpid
+    _environ=msvcrt._environ
+    _wenviron=msvcrt._wenviron
+
