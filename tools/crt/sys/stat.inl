@@ -12,6 +12,48 @@
 #ifndef _INC_STAT_INL
 #define _INC_STAT_INL
 
+static __inline int __cdecl _fstat32(int _Desc, struct _stat32 *_Stat)
+{
+    struct _stati64 st;
+    int ret = _fstati64(_Desc, &st);
+    if (ret == -1) {
+        memset(_Stat, 0 ,sizeof(struct _stat32));
+        return -1;
+    }
+    _Stat->st_dev = st.st_dev;
+    _Stat->st_ino = st.st_ino;
+    _Stat->st_mode = st.st_mode;
+    _Stat->st_nlink = st.st_nlink;
+    _Stat->st_uid = st.st_uid;
+    _Stat->st_gid = st.st_gid;
+    _Stat->st_rdev = st.st_rdev;
+    _Stat->st_size = (_off_t)st.st_size;
+    _Stat->st_atime = st.st_atime;
+    _Stat->st_mtime = st.st_mtime;
+    _Stat->st_ctime = st.st_ctime;
+    return ret;
+}
+static __inline int __cdecl _stat32(const char *_Filename, struct _stat32 *_Stat)
+{
+    struct _stati64 st;
+    int ret = _stati64(_Filename, &st);
+    if (ret == -1) {
+        memset(_Stat, 0, sizeof(struct _stat32));
+        return -1;
+    }
+    _Stat->st_dev = st.st_dev;
+    _Stat->st_ino = st.st_ino;
+    _Stat->st_mode = st.st_mode;
+    _Stat->st_nlink = st.st_nlink;
+    _Stat->st_uid = st.st_uid;
+    _Stat->st_gid = st.st_gid;
+    _Stat->st_rdev = st.st_rdev;
+    _Stat->st_size = (_off_t)st.st_size;
+    _Stat->st_atime = st.st_atime;
+    _Stat->st_mtime = st.st_mtime;
+    _Stat->st_ctime = st.st_ctime;
+    return ret;
+}
 
 #ifdef _USE_32BIT_TIME_T
 static __inline int __cdecl fstat(int _Desc, struct stat *_Stat)
