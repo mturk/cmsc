@@ -88,7 +88,7 @@ static __inline int __cdecl stat(const char *_Filename, struct stat *_Stat)
 #else
 static __inline int __cdecl fstat(int _Desc, struct stat *_Stat)
 {
-    struct _stat64 st;
+    struct __stat64 st;
     int ret = _fstat64(_Desc, &st);
     if (ret == -1) {
         memset(_Stat, 0 ,sizeof(struct stat));
@@ -112,7 +112,7 @@ static __inline int __cdecl fstat(int _Desc, struct stat *_Stat)
 }
 static __inline int __cdecl stat(const char *_Filename, struct stat *_Stat)
 {
-    struct _stat64 st;
+    struct __stat64 st;
     int ret = _stat64(_Filename, &st);
     if (ret == -1) {
         memset(_Stat, 0, sizeof(struct stat));
