@@ -8,6 +8,7 @@
 #endif
 
 #include <crtdefs.h>
+#include <memory.h>
 
 #ifndef _INC_STAT_INL
 #define _INC_STAT_INL
