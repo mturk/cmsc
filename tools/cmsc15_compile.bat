@@ -171,6 +171,7 @@ patch -fp0 -i ..\tools\crt\delayimp.patch
 rem Cleanup
 rm -rf include\gl >NUL
 %FCOPYF% ..\tools\crt\sys\stat.* include\crt\sys\ >NUL
+%XCOPYD% /S ..\tools\mfc include\mfc\
 
 rem Copy Binaries
 %XCOPYD% "%WINDDK%\bin\x86" bin\
