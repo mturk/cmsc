@@ -106,9 +106,9 @@ static __inline int __cdecl fstat(int _Desc, struct stat *_Stat)
     _Stat->st_gid = st.st_gid;
     _Stat->st_rdev = st.st_rdev;
     _Stat->st_size = (_off_t)st.st_size;
-    _Stat->st_atime = st.st_atime;
-    _Stat->st_mtime = st.st_mtime;
-    _Stat->st_ctime = st.st_ctime;
+    _Stat->st_atime = (time_t)st.st_atime;
+    _Stat->st_mtime = (time_t)st.st_mtime;
+    _Stat->st_ctime = (time_t)st.st_ctime;
     return ret;
 }
 static __inline int __cdecl stat(const char *_Filename, struct stat *_Stat)
@@ -130,9 +130,9 @@ static __inline int __cdecl stat(const char *_Filename, struct stat *_Stat)
     _Stat->st_gid = st.st_gid;
     _Stat->st_rdev = st.st_rdev;
     _Stat->st_size = (_off_t)st.st_size;
-    _Stat->st_atime = st.st_atime;
-    _Stat->st_mtime = st.st_mtime;
-    _Stat->st_ctime = st.st_ctime;
+    _Stat->st_atime = (time_t)st.st_atime;
+    _Stat->st_mtime = (time_t)st.st_mtime;
+    _Stat->st_ctime = (time_t)st.st_ctime;
     return ret;
 }
 #endif /* _USE_32BIT_TIME_T */
