@@ -1,6 +1,6 @@
 @echo off
 rem
-rem Copyright (c) 2011 The MyoMake Project <http://www.myomake.org>
+rem Copyright (c) 2012 The MyoMake Project <http://www.myomake.org>
 rem
 rem Licensed under the Apache License, Version 2.0 (the "License");
 rem you may not use this file except in compliance with the License.
@@ -168,6 +168,7 @@ rem DDK Specific Files
 rem Path crtdefs.h and delayimp.h
 patch -fp0 -i ..\tools\crt\crtdefs.patch
 patch -fp0 -i ..\tools\crt\delayimp.patch
+echo "/* EMPTY */" > include\intrin.h
 rem Cleanup
 rm -rf include\gl >NUL
 %FCOPYF% ..\tools\crt\sys\stat.* include\crt\sys\ >NUL

@@ -1,6 +1,12 @@
 ChangeLog file for cmsc
 =======================
 
+Changes in 15.0_24
+------------------
+* Add empty intrin.h
+* Support for mingw32
+* Added nsinstall
+
 Changes in 15.0_20
 ------------------
 * Moved to github

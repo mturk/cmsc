@@ -25,12 +25,14 @@ Files pulled from sed-4.2.1-dep
 
 
 
-i386/nasm.exe       2.10.0  http://www.nasm.us/pub/nasm/releasebuilds/
+i386/nasm.exe       2.10.01 http://www.nasm.us/pub/nasm/releasebuilds/
      nasmw.exe              copy of nasm.exe
      depends.*      2.2.6   http://dependencywalker.com/
 amd64/depends.*     2.2.6   http://dependencywalker.com/
 ia64/depends.*      2.2.6   http://dependencywalker.com/
 
+i386/nsinstall.exe  1.6     http://ftp.mozilla.org/pub/mozilla.org/mozilla/libraries/win32/
+amd64/nsinstall.exe         MozillaBuildSetup-1.6.exe
 
 Creating CMSC distribution
 --------------------------

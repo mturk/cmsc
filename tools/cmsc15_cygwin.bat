@@ -1,7 +1,10 @@
 @echo off
 @setlocal
 rem
-rem Copyright (c) 2011 The MyoMake Project <http://www.myomake.org>
+rem WARNING: This script has some problems with latest setup.exe
+rem          It seems that cmdline interface to setup.exe is broken.
+rem
+rem Copyright (c) 2012 The MyoMake Project <http://www.myomake.org>
 rem
 rem Licensed under the Apache License, Version 2.0 (the "License");
 rem you may not use this file except in compliance with the License.

@@ -1,7 +1,7 @@
 @echo off
 @setlocal
 rem
-rem Copyright (c) 2011 The MyoMake Project <http://www.myomake.org>
+rem Copyright (c) 2012 The MyoMake Project <http://www.myomake.org>
 rem
 rem Licensed under the Apache License, Version 2.0 (the "License");
 rem you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ rem
 rem Prerequisites...
 set "PATH=%~dp0;%PATH%"
 rem
-set DVER=15.0_23
+set DVER=15.0_24
 set DNAM=windows-x86_x64_ia64
 pushd ..
 echo Custom Microsoft Compiler Toolkit Compilation >VERSION.txt
