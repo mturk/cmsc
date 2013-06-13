@@ -20,13 +20,13 @@ rem
 rem Prerequisites...
 set "PATH=%~dp0;%PATH%"
 rem
-set PVER=5.14.2.1-32bit
-if exist strawberry-perl-%PVER%.zip goto HasPerlDist
-wget http://strawberry-perl.googlecode.com/files/strawberry-perl-%PVER%.zip
+set PVER=5.16.3.1
+if exist strawberry-perl-%PVER%-32bit.zip goto HasPerlDist
+wget http://strawberryperl.com/download/%PVER%/strawberry-perl-%PVER%-32bit.zip
 rem
 if exist strawberry-perl-%PVER%.zip goto HasPerlDist
 echo.
-echo Failed to download strawberry-perl-%PVER%.zip
+echo Failed to download strawberry-perl-%PVER%-32bit.zip
 exit /B 1
 :HasPerlDist
 echo Perl   : %PVER%  >>compile.log
@@ -36,7 +36,7 @@ rm -rf perl c 2>NUL
 rm -f relocation.pl.bat 2>NUL
 rm -f strawberry-merge-module.reloc.txt 2>NUL
 rem Uncopress
-7za x tools\strawberry-perl-%PVER%.zip perl c relocation.pl.bat strawberry-merge-module.reloc.txt
+7za x tools\strawberry-perl-%PVER%-32bit.zip perl c relocation.pl.bat strawberry-merge-module.reloc.txt
 copy /Y perl\bin\perl.exe perl\bin\perlw.exe 2>NUL
 xcopy c\bin\*.dll perl\bin /I /Y /Q
 rm -rf c 2>NUL
