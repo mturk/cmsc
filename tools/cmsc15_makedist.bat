@@ -20,7 +20,7 @@ rem
 rem Prerequisites...
 set "PATH=%~dp0;%PATH%"
 rem
-set DVER=15.0_24
+set DVER=15.0_25
 set DNAM=windows-x86_x64_ia64
 pushd ..
 echo Custom Microsoft Compiler Toolkit Compilation >VERSION.txt
