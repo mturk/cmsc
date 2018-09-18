@@ -1,6 +1,11 @@
 ChangeLog file for cmsc
 =======================
 
+Changes in 15.0_27
+------------------
+* Update dependencies
+* Use wlh as default target
+
 Changes in 15.0_25
 ------------------
 * Update dependencies

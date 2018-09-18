@@ -18,7 +18,7 @@ rem
 rem Directory Layout creator for Microsoft Compiler Toolkit
 rem
 rem
-set PVER=5.12.3.0
+set PVER=5.28.0.1
 if exist relocation.pl.bat goto HasPerlReloc
 if exist perl\bin\perl.exe echo Perl already relocated!
 goto CRTRedist
