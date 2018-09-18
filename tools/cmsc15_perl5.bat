@@ -20,7 +20,7 @@ rem
 rem Prerequisites...
 set "PATH=%~dp0;%PATH%"
 rem
-set PVER=5.16.3.1
+set PVER=5.28.0.1
 if exist strawberry-perl-%PVER%-32bit.zip goto HasPerlDist
 wget http://strawberryperl.com/download/%PVER%/strawberry-perl-%PVER%-32bit.zip
 rem

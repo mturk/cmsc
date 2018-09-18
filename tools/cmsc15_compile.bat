@@ -29,7 +29,7 @@ set "MSC90=%ProgramFiles32%\Microsoft Visual Studio 9.0"
 set "MSC10=%ProgramFiles32%\Microsoft Visual Studio 10.0"
 rem
 set CVER=msvc
-set X86T=wnet
+set X86T=wlh
 set XCOPYD=xcopy /K /I /Y
 set FCOPYF=copy /Y
 set WIN2K3SDK=0
@@ -139,12 +139,12 @@ if "%WIN2K3SDK%" == "1" (
 %XCOPYD% "%WINDDK%\lib\mfc\i386" lib\i386\
 %XCOPYD% "%WINDDK%\lib\atl\i386" lib\i386\
 
-%XCOPYD% "%WINDDK%\lib\wnet\amd64" lib\amd64\
+%XCOPYD% "%WINDDK%\lib\%X86T%\amd64" lib\amd64\
 %XCOPYD% "%WINDDK%\lib\crt\amd64" lib\amd64\
 %XCOPYD% "%WINDDK%\lib\mfc\amd64" lib\amd64\
 %XCOPYD% "%WINDDK%\lib\atl\amd64" lib\amd64\
 
-%XCOPYD% "%WINDDK%\lib\wnet\ia64" lib\ia64\
+%XCOPYD% "%WINDDK%\lib\%X86T%\ia64" lib\ia64\
 %XCOPYD% "%WINDDK%\lib\crt\ia64" lib\ia64\
 %XCOPYD% "%WINDDK%\lib\mfc\ia64" lib\ia64\
 %XCOPYD% "%WINDDK%\lib\atl\ia64" lib\ia64\

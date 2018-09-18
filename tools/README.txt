@@ -1,10 +1,10 @@
 Tools used in this distribution
 ===============================
 
-wget.exe        1.11.4  http://users.ugent.be/~bpuype/wget/
+wget.exe        1.19.4  http://users.ugent.be/~bpuype/wget/
                         http://xoomer.virgilio.it/hherold/
 upx.exe         3.0.9   http://upx.sourceforge.net/
-7za.exe         9.20    http://www.7-zip.org/
+7za.exe         18.05   http://www.7-zip.org/
 
 Files pulled coreutils-5.3.0
     cp.                 http://gnuwin32.sourceforge.net/
@@ -25,7 +25,7 @@ Files pulled from sed-4.2.1-dep
 
 
 
-i386/nasm.exe       2.10.07 http://www.nasm.us/pub/nasm/releasebuilds/
+i386/nasm.exe       2.13    http://www.nasm.us/pub/nasm/releasebuilds/
      nasmw.exe              copy of nasm.exe
      depends.*      2.2.6   http://dependencywalker.com/
 amd64/depends.*     2.2.6   http://dependencywalker.com/
