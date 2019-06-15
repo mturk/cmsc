@@ -31,7 +31,6 @@ set CFLAGS=/nologo /c /MD
 rem Delete old versions
 del /Q %LIB%\i386\%THUNK%.* 2>NUL
 del /Q %LIB%\amd64\%THUNK%.* 2>NUL
-del /Q %LIB%\ia64\%THUNK%.* 2>NUL
 rem
 set PATH=%VSBaseDir%\bin\i386;%BinPath%
 lib /NOLOGO /NODEFAULTLIB /DEF:%THUNK%.def /MACHINE:X86 /NAME:msvcrt.dll /OUT:%LIB%\i386\%THUNK%.lib
@@ -54,24 +53,11 @@ cl %CFLAGS% crt\noenv.c /Fo%LIB%\amd64\noenv.obj
 cl %CFLAGS% crt\setargv.c /Fo%LIB%\amd64\setargv.obj
 cl %CFLAGS% crt\wsetargv.c /Fo%LIB%\amd64\wsetargv.obj
 rem
-set PATH=%VSBaseDir%\bin\ia64;%BinPath%
-lib /NOLOGO /NODEFAULTLIB /DEF:%THUNK%.def /MACHINE:IA64 /NAME:msvcrt.dll /OUT:%LIB%\ia64\%THUNK%.lib
-cl %CFLAGS% crt\binmode.c /Fo%LIB%\ia64\binmode.obj
-cl %CFLAGS% crt\commode.c /Fo%LIB%\ia64\commode.obj
-cl %CFLAGS% crt\newmode.c /Fo%LIB%\ia64\newmode.obj
-cl %CFLAGS% crt\noarg.c /Fo%LIB%\ia64\noarg.obj
-cl %CFLAGS% crt\noenv.c /Fo%LIB%\ia64\noenv.obj
-cl %CFLAGS% crt\setargv.c /Fo%LIB%\ia64\setargv.obj
-cl %CFLAGS% crt\wsetargv.c /Fo%LIB%\ia64\wsetargv.obj
-rem
 rem Delete export files
 del /Q %LIB%\amd64\%THUNK%.exp
 del /Q %LIB%\i386\%THUNK%.exp
-del /Q %LIB%\ia64\%THUNK%.exp
-if exist %LIB%\i386\msvcrt_win2003.obj copy /Y %LIB%\i386\msvcrt_win2003.obj %LIB%\i386\%THUNK%.obj
-if exist %LIB%\i386\msvcrt_winxp.obj copy /Y %LIB%\i386\msvcrt_winxp.obj %LIB%\i386\%THUNK%.obj
+copy /Y  %LIB%\i386\msvcrt_win2003.obj %LIB%\i386\%THUNK%.obj
 copy /Y %LIB%\amd64\msvcrt_win2003.obj %LIB%\amd64\%THUNK%.obj
-copy /Y %LIB%\ia64\msvcrt_win2003.obj %LIB%\ia64\%THUNK%.obj
 
 rem
 goto ProgramExit

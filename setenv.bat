@@ -39,9 +39,6 @@ if /I "%PBuildCpu%" == "/amd64"   goto TargetX64
 if /I "%PBuildCpu%" == "/emt64"   goto TargetX64
 if /I "%PBuildCpu%" == "/x86_64"  goto TargetX64
 if /I "%PBuildCpu%" == "/64"      goto TargetX64
-if /I "%PBuildCpu%" == "/i64"     goto TargetI64
-if /I "%PBuildCpu%" == "/ia64"    goto TargetI64
-if /I "%PBuildCpu%" == "/itanium" goto TargetI64
 goto Usage
 rem
 :TargetX86
@@ -49,9 +46,6 @@ set BUILD_CPU=i386
 goto SetupDirs
 :TargetX64
 set BUILD_CPU=amd64
-goto SetupDirs
-:TargetI64
-set BUILD_CPU=ia64
 goto SetupDirs
 rem
 rem Additional targets
@@ -74,11 +68,10 @@ set TERM=dumb
 goto SetEnvExit
 :Usage
 echo.
-echo Usage: setenv.bat ^< /x86 ^| /x64 ^| /i64 ^>
+echo Usage: setenv.bat ^< /x86 ^| /x64 ^>
 echo.
 echo        /x86 ^| /i386   - Create 32-bit X86 applications
 echo        /x64 ^| /amd64  - Create 64-bit AMD64/EMT64 applications
-echo        /i64 ^| /ia64   - Create 64-bit IA64 applications
 echo.
 goto SetEnvExit
 :Failed

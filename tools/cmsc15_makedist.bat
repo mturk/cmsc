@@ -20,20 +20,21 @@ rem
 rem Prerequisites...
 set "PATH=%~dp0;%PATH%"
 rem
-set DVER=15.0_27
-set DNAM=windows-x86_x64_ia64
-pushd ..
-echo Custom Microsoft Compiler Toolkit Compilation >VERSION.txt
-echo. >>VERSION.txt
-echo Version: %DVER% >>VERSION.txt
-type tools\compile.log >>VERSION.txt
+set MVER=28
+set DVER=15.0_%MVER%
+set CVER=cmsc%MVER%
+set DNAM=windows-x86_x64
+pushd ..\..
+echo Custom Microsoft Compiler Toolkit Compilation >%CVER%\VERSION.txt
+echo. >>%CVER%\VERSION.txt
+echo Version: %DVER% >>%CVER%\VERSION.txt
+type %CVER%\tools\compile.log >>%CVER%\VERSION.txt
 rem Remove previous stuff
 rm -rf cmsc-*-%DNAM%.* 2>NUL
 rem Create distribution .zip
-7za a cmsc-%DVER%-%DNAM%.zip msvc perl tools\amd64 tools\i386 tools\ia64 *.bat *.txt -xr!.svn
-md5sum -b cmsc-%DVER%-%DNAM%.zip >cmsc-%DVER%-%DNAM%.zip.md5
+7za a cmsc-%DVER%-%DNAM%.zip %CVER%\msvc %CVER%\perl %CVER%\tools\amd64 %CVER%\tools\i386 %CVER%\*.bat %CVER%\*.txt -xr!.git
 sha1sum -b cmsc-%DVER%-%DNAM%.zip >cmsc-%DVER%-%DNAM%.zip.sha1
-rm VERSION.txt
+rm %CVER%\VERSION.txt
 popd
 echo.
 echo Finished.

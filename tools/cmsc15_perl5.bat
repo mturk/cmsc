@@ -20,7 +20,7 @@ rem
 rem Prerequisites...
 set "PATH=%~dp0;%PATH%"
 rem
-set PVER=5.28.0.1
+set PVER=5.30.0.1
 if exist strawberry-perl-%PVER%-32bit.zip goto HasPerlDist
 wget http://strawberryperl.com/download/%PVER%/strawberry-perl-%PVER%-32bit.zip
 rem
@@ -36,15 +36,19 @@ rm -rf perl c 2>NUL
 rm -f relocation.pl.bat 2>NUL
 rm -f strawberry-merge-module.reloc.txt 2>NUL
 rem Uncopress
-7za x tools\strawberry-perl-%PVER%-32bit.zip perl c relocation.pl.bat strawberry-merge-module.reloc.txt
+7za x tools\strawberry-perl-%PVER%-32bit.zip perl c win32 relocation.pl.bat relocation.txt README.txt
 copy /Y perl\bin\perl.exe perl\bin\perlw.exe 2>NUL
 xcopy c\bin\*.dll perl\bin /I /Y /Q
 rm -rf c 2>NUL
 if not "%~1" == "/i" goto PrepareDone
+echo Relocating perl installation
 call relocation.pl.bat
 rm -f relocation.pl.bat 2>NUL
-rm -f strawberry-merge-module.reloc.txt 2>NUL
+rm -f relocation.txt 2>NUL
+rm -f README.txt 2>NUL
+rm -rf win32 2>NUL
 :PrepareDone
+
 popd
 echo.
 echo Finished.

@@ -29,7 +29,7 @@ set "MSC90=%ProgramFiles32%\Microsoft Visual Studio 9.0"
 set "MSC10=%ProgramFiles32%\Microsoft Visual Studio 10.0"
 rem
 set CVER=msvc
-set X86T=wlh
+set X86T=win7
 set XCOPYD=xcopy /K /I /Y
 set FCOPYF=copy /Y
 set WIN2K3SDK=0
@@ -50,13 +50,11 @@ mkdir bin
 mkdir bin\1033
 mkdir bin\amd64
 mkdir bin\i386
-mkdir bin\ia64
 rem
 rem Library
 mkdir lib
 mkdir lib\amd64
 mkdir lib\i386
-mkdir lib\ia64
 rem
 rem Includes
 mkdir include
@@ -127,12 +125,10 @@ if "%WIN2K3SDK%" == "1" (
 %XCOPYD% "%PSDK6%\include" include\
 %XCOPYD% "%PSDK6%\lib" lib\i386\
 %XCOPYD% "%PSDK6%\lib\amd64" lib\amd64\
-%XCOPYD% "%PSDK6%\lib\ia64" lib\ia64\
 ) else (
 %XCOPYD% "%WINSDK%\include" include\
 %XCOPYD% "%WINSDK%\lib" lib\i386\
 %XCOPYD% "%WINSDK%\lib\x64" lib\amd64\
-%XCOPYD% "%WINSDK%\lib\ia64" lib\ia64\
 )
 %XCOPYD% "%WINDDK%\lib\%X86T%\i386" lib\i386\
 %XCOPYD% "%WINDDK%\lib\crt\i386" lib\i386\
@@ -143,11 +139,6 @@ if "%WIN2K3SDK%" == "1" (
 %XCOPYD% "%WINDDK%\lib\crt\amd64" lib\amd64\
 %XCOPYD% "%WINDDK%\lib\mfc\amd64" lib\amd64\
 %XCOPYD% "%WINDDK%\lib\atl\amd64" lib\amd64\
-
-%XCOPYD% "%WINDDK%\lib\%X86T%\ia64" lib\ia64\
-%XCOPYD% "%WINDDK%\lib\crt\ia64" lib\ia64\
-%XCOPYD% "%WINDDK%\lib\mfc\ia64" lib\ia64\
-%XCOPYD% "%WINDDK%\lib\atl\ia64" lib\ia64\
 
 rem DDK Specific Files
 %XCOPYD% /S "%WINDDK%\inc\crt" include\crt\
@@ -179,7 +170,6 @@ rem Copy Binaries
 %XCOPYD% "%WINDDK%\bin\x86\1033" bin\
 %XCOPYD% /S "%WINDDK%\bin\x86\x86" bin\i386\
 %XCOPYD% /S "%WINDDK%\bin\x86\amd64" bin\amd64\
-%XCOPYD% /S "%WINDDK%\bin\x86\ia64" bin\ia64\
 %FCOPYF% "%WINDDK%\bin\x86\amd64\ml64.exe" bin\amd64\ml.exe >NUL
 %FCOPYF% "%WINSDK%\bin\mt.exe" bin\ >NUL
 %FCOPYF% "%WINSDK%\bin\guidgen.exe" bin\guidgen.exe >NUL
@@ -188,7 +178,6 @@ rem Copy Binaries
 
 %FCOPYF% "%WINMSC%\VC\bin\lib.exe" bin\i386\ >NUL
 %FCOPYF% "%WINMSC%\VC\bin\x86_amd64\lib.exe" bin\amd64\ >NUL
-%FCOPYF% "%WINMSC%\VC\bin\x86_ia64\lib.exe" bin\ia64\ >NUL
 rem Copy CRT redistributables
 if exist "%SDK71%\Redist\VC\vcredist_x86.exe" (
     mkdir bin\redist\vc10

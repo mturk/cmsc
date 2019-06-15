@@ -1,6 +1,12 @@
 ChangeLog file for cmsc
 =======================
 
+Changes in 15.0_28
+------------------
+* Update dependencies
+* Use win7 as default target
+* Drop Itanium platform
+
 Changes in 15.0_27
 ------------------
 * Update dependencies
