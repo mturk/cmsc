@@ -23,23 +23,19 @@ set "ProgramFiles64=%SystemDrive%\Program Files"
 if not exist "%ProgramFiles32%\Windows NT" set "ProgramFiles32=%ProgramFiles%"
 set "DDK71=c:\WinDDK\7600.16385.1"
 set "PSDK6=%ProgramFiles64%\Microsoft Platform SDK for Windows Server 2003 R2"
-set "SDK70=%ProgramFiles64%\Microsoft SDKs\Windows\v7.0"
 set "SDK71=%ProgramFiles64%\Microsoft SDKs\Windows\v7.1"
-set "MSC90=%ProgramFiles32%\Microsoft Visual Studio 9.0"
 set "MSC10=%ProgramFiles32%\Microsoft Visual Studio 10.0"
 rem
 set CVER=msvc
 set X86T=win7
 set XCOPYD=xcopy /K /I /Y
 set FCOPYF=copy /Y
-set WIN2K3SDK=0
 rem
 pushd ..
 rem Remove previous stuff
 rm -rf %CVER% 2>NUL
 if not "%~1" == "" (
     if /i "%~1" == "clean" goto End
-    if /i "%~1" == "sdk6" set WIN2K3SDK=1
     shift
 )
 if not "%~1" == ""  set "X86T=%~1"
@@ -71,24 +67,9 @@ if not exist "%WINDDK%\bin" (
     echo Windows Driver Kit version 7.1.0 installation directory
     goto End
 )
-if "%WIN2K3SDK%" == "0" goto SkipSdk6Test
-if not exist "%PSDK6%\bin" (
-    echo.
-    echo Cannot find "%PSDK6%" directory.
-    echo Set this variable to point to the
-    echo Windows Server 2003 R2 Platform SDK installation directory
-    goto End
-)
-:SkipSdk6Test
 
-if exist "%SDK71%\bin" (
-    set "WINSDK=%SDK71%"
-    set "WINMSC=%MSC10%"
-) else (
-    set "WINSDK=%SDK70%"
-    set "WINMSC=%MSC90%"
-)
-
+set "WINSDK=%SDK71%"
+set "WINMSC=%MSC10%"
 if not exist "%WINSDK%\bin" (
     echo.
     echo Cannot find "%WINSDK%" directory.
@@ -120,16 +101,10 @@ echo WinSDK : %WINSDK:c:\Program Files\Microsoft SDKs\Windows\=% >>..\tools\comp
 echo MSC    : %WINMSC:c:\Program Files\=% >>..\tools\compile.log
 echo Copying files ...
 rem
-rem Platform SDK includes and libraries
-if "%WIN2K3SDK%" == "1" (
-%XCOPYD% "%PSDK6%\include" include\
-%XCOPYD% "%PSDK6%\lib" lib\i386\
-%XCOPYD% "%PSDK6%\lib\amd64" lib\amd64\
-) else (
 %XCOPYD% "%WINSDK%\include" include\
 %XCOPYD% "%WINSDK%\lib" lib\i386\
 %XCOPYD% "%WINSDK%\lib\x64" lib\amd64\
-)
+
 %XCOPYD% "%WINDDK%\lib\%X86T%\i386" lib\i386\
 %XCOPYD% "%WINDDK%\lib\crt\i386" lib\i386\
 %XCOPYD% "%WINDDK%\lib\mfc\i386" lib\i386\
@@ -179,12 +154,6 @@ rem Copy Binaries
 
 %FCOPYF% "%WINMSC%\VC\bin\lib.exe" bin\i386\ >NUL
 %FCOPYF% "%WINMSC%\VC\bin\x86_amd64\lib.exe" bin\amd64\ >NUL
-rem Copy CRT redistributables
-if exist "%SDK71%\Redist\VC\vcredist_x86.exe" (
-    mkdir bin\redist\vc10
-    %XCOPYD% "%SDK71%\Redist\VC" bin\redist\vc10
-)
-
 %FCOPYF% "%WINMSC%\VC\include\time.inl" include\crt\ >NUL
 %FCOPYF% "%WINMSC%\VC\include\wtime.inl" include\crt\ >NUL
 

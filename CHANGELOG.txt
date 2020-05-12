@@ -6,6 +6,8 @@ Changes in 15.0_28
 * Update dependencies
 * Use win7 as default target
 * Drop Itanium platform
+* Cleanup unused tools
+* Switch to portable Perl
 
 Changes in 15.0_27
 ------------------
