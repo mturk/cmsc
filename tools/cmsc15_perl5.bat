@@ -23,7 +23,7 @@ rem
 set PVER=5.30.2.1
 set PZIP=strawberry-perl-%PVER%-32bit-portable.zip 
 if exist %PZIP% goto HasPerlDist
-wget http://strawberryperl.com/download/%PVER%/%PZIP%
+wget -q --no-config http://strawberryperl.com/download/%PVER%/%PZIP%
 rem
 if exist %PZIP% goto HasPerlDist
 echo.
@@ -35,7 +35,7 @@ pushd ..
 rem Remove previous stuff
 rm -rf perl c 2>NUL
 rem Uncopress
-7za x tools\%PZIP% perl c
+7za x tools\%PZIP% perl c\bin
 copy /Y perl\bin\perl.exe perl\bin\perlw.exe 2>NUL
 xcopy c\bin\*.dll perl\bin /I /Y /Q
 rm -rf c 2>NUL
