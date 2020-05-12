@@ -24,17 +24,23 @@ set MVER=28
 set DVER=15.0_%MVER%
 set CVER=cmsc%MVER%
 set DNAM=windows-x86_x64
-pushd ..\..
+pushd ..
+mkdir %CVER%
 echo Custom Microsoft Compiler Toolkit Compilation >%CVER%\VERSION.txt
 echo. >>%CVER%\VERSION.txt
 echo Version: %DVER% >>%CVER%\VERSION.txt
-type %CVER%\tools\compile.log >>%CVER%\VERSION.txt
-rem Remove previous stuff
-rm -rf cmsc-*-%DNAM%.* 2>NUL
+type tools\compile.log >>%CVER%\VERSION.txt
+
+move /Y msvc %CVER%\
+move /Y perl %CVER%\
+xcopy /K /I /Y tools\i386 %CVER%\tools\i386
+xcopy /K /I /Y tools\amd64 %CVER%\tools\amd64
+copy /Y setenv.bat + README.md + CHANGELOG.txt %CVER%\
+
 rem Create distribution .zip
-7za a cmsc-%DVER%-%DNAM%.zip %CVER%\msvc %CVER%\perl %CVER%\tools\amd64 %CVER%\tools\i386 %CVER%\*.bat %CVER%\*.txt -xr!.git
+7za a cmsc-%DVER%-%DNAM%.zip %CVER% -xr!.git
 sha1sum -b cmsc-%DVER%-%DNAM%.zip >cmsc-%DVER%-%DNAM%.zip.sha1
-rm %CVER%\VERSION.txt
+
 popd
 echo.
 echo Finished.
