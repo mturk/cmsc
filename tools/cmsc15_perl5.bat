@@ -20,34 +20,25 @@ rem
 rem Prerequisites...
 set "PATH=%~dp0;%PATH%"
 rem
-set PVER=5.30.0.1
-if exist strawberry-perl-%PVER%-32bit.zip goto HasPerlDist
-wget http://strawberryperl.com/download/%PVER%/strawberry-perl-%PVER%-32bit.zip
+set PVER=5.30.2.1
+set PZIP=strawberry-perl-%PVER%-32bit-portable.zip 
+if exist %PZIP% goto HasPerlDist
+wget http://strawberryperl.com/download/%PVER%/%PZIP%
 rem
-if exist strawberry-perl-%PVER%.zip goto HasPerlDist
+if exist %PZIP% goto HasPerlDist
 echo.
-echo Failed to download strawberry-perl-%PVER%-32bit.zip
+echo Failed to download %PZIP%
 exit /B 1
 :HasPerlDist
 echo Perl   : %PVER%  >>compile.log
 pushd ..
 rem Remove previous stuff
 rm -rf perl c 2>NUL
-rm -f relocation.pl.bat 2>NUL
-rm -f strawberry-merge-module.reloc.txt 2>NUL
 rem Uncopress
-7za x tools\strawberry-perl-%PVER%-32bit.zip perl c win32 relocation.pl.bat relocation.txt README.txt
+7za x tools\%PZIP% perl c
 copy /Y perl\bin\perl.exe perl\bin\perlw.exe 2>NUL
 xcopy c\bin\*.dll perl\bin /I /Y /Q
 rm -rf c 2>NUL
-if not "%~1" == "/i" goto PrepareDone
-echo Relocating perl installation
-call relocation.pl.bat
-rm -f relocation.pl.bat 2>NUL
-rm -f relocation.txt 2>NUL
-rm -f README.txt 2>NUL
-rm -rf win32 2>NUL
-:PrepareDone
 
 popd
 echo.

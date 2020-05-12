@@ -13,7 +13,6 @@ same compiler generation.
         |   +--1033
         |   +--amd64
         |   +--i386
-        |   +--ia64
         +--include
         |   +--atl
         |   +--crt
@@ -23,7 +22,6 @@ same compiler generation.
         +--lib
             +--amd64
             +--i386
-            +--ia64
 
 See `tools\README.txt` for dependencies and versions
 
@@ -36,7 +34,6 @@ Open command promt in project target and call
      Where <cpu> can be:
      /x86 | /i386 for Windows32
      /x64 | /amd64 | /emt64 | /x86_64 For Windows64
-     /i64 | /ia64 for Windows64 on Itanium
 
 This will set up required paths for binaries, include and
 lib files.

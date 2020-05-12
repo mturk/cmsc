@@ -159,6 +159,7 @@ rem DDK Specific Files
 rem Path crtdefs.h and delayimp.h
 patch -fp0 -i ..\tools\crt\crtdefs.patch
 patch -fp0 -i ..\tools\crt\delayimp.patch
+patch -fp0 -i ..\tools\crt\errno.patch
 echo "/* EMPTY */" > include\intrin.h
 rem Cleanup
 rm -rf include\gl >NUL
@@ -183,6 +184,9 @@ if exist "%SDK71%\Redist\VC\vcredist_x86.exe" (
     mkdir bin\redist\vc10
     %XCOPYD% "%SDK71%\Redist\VC" bin\redist\vc10
 )
+
+%FCOPYF% "%WINMSC%\VC\include\time.inl" include\crt\ >NUL
+%FCOPYF% "%WINMSC%\VC\include\wtime.inl" include\crt\ >NUL
 
 if not exist "%PSDK6%\include\atl" goto CopyFinished
 %XCOPYD% /S "%PSDK6%\include\atl" include\atl30\

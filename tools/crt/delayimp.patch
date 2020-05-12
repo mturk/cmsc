@@ -1,5 +1,5 @@
---- include/crt/delayimp.h.org	2010-02-08 19:19:00.000000000 +0100
-+++ include/crt/delayimp.h	2011-01-29 09:52:44.967368900 +0100
+--- include/crt/delayimp.h
++++ include/crt/delayimp.h
 @@ -202,23 +202,19 @@
  //
  ExternC

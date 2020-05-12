@@ -1,5 +1,5 @@
---- include/crt/crtdefs.h.org	2010-02-08 19:18:56.000000000 +0100
-+++ include/crt/crtdefs.h	2011-01-29 09:29:13.511210600 +0100
+--- include/crt/crtdefs.h
++++ include/crt/crtdefs.h
 @@ -329,8 +329,10 @@
  #endif
  
