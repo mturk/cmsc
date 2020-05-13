@@ -8,6 +8,8 @@ Changes in 15.0_28
 * Drop Itanium platform
 * Cleanup unused tools
 * Switch to portable Perl
+* Use x86 instead i386
+* Use x64 instead amd64
 
 Changes in 15.0_27
 ------------------

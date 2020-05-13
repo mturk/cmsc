@@ -44,13 +44,13 @@ pushd %CVER%
 rem Binaries
 mkdir bin
 mkdir bin\1033
-mkdir bin\amd64
-mkdir bin\i386
+mkdir bin\x64
+mkdir bin\x86
 rem
 rem Library
 mkdir lib
-mkdir lib\amd64
-mkdir lib\i386
+mkdir lib\x64
+mkdir lib\x86
 rem
 rem Includes
 mkdir include
@@ -102,18 +102,18 @@ echo MSC    : %WINMSC:c:\Program Files\=% >>..\tools\compile.log
 echo Copying files ...
 rem
 %XCOPYD% "%WINSDK%\include" include\
-%XCOPYD% "%WINSDK%\lib" lib\i386\
-%XCOPYD% "%WINSDK%\lib\x64" lib\amd64\
+%XCOPYD% "%WINSDK%\lib" lib\x86\
+%XCOPYD% "%WINSDK%\lib\x64" lib\x64\
 
-%XCOPYD% "%WINDDK%\lib\%X86T%\i386" lib\i386\
-%XCOPYD% "%WINDDK%\lib\crt\i386" lib\i386\
-%XCOPYD% "%WINDDK%\lib\mfc\i386" lib\i386\
-%XCOPYD% "%WINDDK%\lib\atl\i386" lib\i386\
+%XCOPYD% "%WINDDK%\lib\%X86T%\i386" lib\x86\
+%XCOPYD% "%WINDDK%\lib\crt\i386" lib\x86\
+%XCOPYD% "%WINDDK%\lib\mfc\i386" lib\x86\
+%XCOPYD% "%WINDDK%\lib\atl\i386" lib\x86\
 
-%XCOPYD% "%WINDDK%\lib\%X86T%\amd64" lib\amd64\
-%XCOPYD% "%WINDDK%\lib\crt\amd64" lib\amd64\
-%XCOPYD% "%WINDDK%\lib\mfc\amd64" lib\amd64\
-%XCOPYD% "%WINDDK%\lib\atl\amd64" lib\amd64\
+%XCOPYD% "%WINDDK%\lib\%X86T%\amd64" lib\x64\
+%XCOPYD% "%WINDDK%\lib\crt\amd64" lib\x64\
+%XCOPYD% "%WINDDK%\lib\mfc\amd64" lib\x64\
+%XCOPYD% "%WINDDK%\lib\atl\amd64" lib\x64\
 
 rem DDK Specific Files
 %XCOPYD% /S "%WINDDK%\inc\crt" include\crt\
@@ -144,16 +144,16 @@ rm -rf include\gl >NUL
 rem Copy Binaries
 %XCOPYD% "%WINDDK%\bin\x86" bin\
 %XCOPYD% "%WINDDK%\bin\x86\1033" bin\
-%XCOPYD% /S "%WINDDK%\bin\x86\x86" bin\i386\
-%XCOPYD% /S "%WINDDK%\bin\x86\amd64" bin\amd64\
-%FCOPYF% "%WINDDK%\bin\x86\amd64\ml64.exe" bin\amd64\ml.exe >NUL
+%XCOPYD% /S "%WINDDK%\bin\x86\x86" bin\x86\
+%XCOPYD% /S "%WINDDK%\bin\x86\amd64" bin\x64\
+%FCOPYF% "%WINDDK%\bin\x86\amd64\ml64.exe" bin\x64\ml.exe >NUL
 %FCOPYF% "%WINSDK%\bin\mt.exe" bin\ >NUL
 %FCOPYF% "%WINSDK%\bin\guidgen.exe" bin\guidgen.exe >NUL
 %FCOPYF% "%WINSDK%\bin\rebase.exe" bin\rebase.exe >NUL
-%FCOPYF% bin\ml.exe bin\i386\ml.exe >NUL
+%FCOPYF% bin\ml.exe bin\x86\ml.exe >NUL
 
-%FCOPYF% "%WINMSC%\VC\bin\lib.exe" bin\i386\ >NUL
-%FCOPYF% "%WINMSC%\VC\bin\x86_amd64\lib.exe" bin\amd64\ >NUL
+%FCOPYF% "%WINMSC%\VC\bin\lib.exe" bin\x86\ >NUL
+%FCOPYF% "%WINMSC%\VC\bin\x86_amd64\lib.exe" bin\x64\ >NUL
 %FCOPYF% "%WINMSC%\VC\include\time.inl" include\crt\ >NUL
 %FCOPYF% "%WINMSC%\VC\include\wtime.inl" include\crt\ >NUL
 

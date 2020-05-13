@@ -42,10 +42,10 @@ if /I "%PBuildCpu%" == "/64"      goto TargetX64
 goto Usage
 rem
 :TargetX86
-set BUILD_CPU=i386
+set BUILD_CPU=x86
 goto SetupDirs
 :TargetX64
-set BUILD_CPU=amd64
+set BUILD_CPU=x64
 goto SetupDirs
 rem
 rem Additional targets
@@ -53,14 +53,19 @@ rem
 :SetupDirs
 echo.
 echo Seting build environment for %BUILD_CPU%
-set "VSPath=%VSBaseDir%\bin\%BUILD_CPU%;%VSBaseDir%\bin"
-if not exist "%VSRootDir%\perl\bin\perl.exe" goto SetupCygwin
-set "VSPath=%VSPath%;%VSRootDir%\perl\bin"
-:SetupCygwin
+set "VSPath=%VSBaseDir%\bin\%BUILD_CPU%;%VSBaseDir%\bin;%VSRootDir%\tools\%BUILD_CPU%"
+set "VXPath=%VSRootDir%\tools"
+if not exist "%VSRootDir%\perl\bin\perl.exe" goto SetupCygwin64
+set "VXPath=%VXPath%;%VSRootDir%\perl\bin"
+:SetupCygwin64
+if not exist "%SystemDrive%\cygwin64\bin\bash.exe" goto SetupCygwin32
+set "VXPath=%VXPath%;%SystemDrive%\cygwin64\bin"
+goto SetupEnvars
+:SetupCygwin32
 if not exist "%SystemDrive%\cygwin\bin\bash.exe" goto SetupEnvars
-set "VSPath=%VSPath%;%SystemDrive%\cygwin\bin"
+set "VXPath=%VXPath%;%SystemDrive%\cygwin\bin"
 :SetupEnvars
-set "PATH=%VSPath%;%VSRootDir%\tools;%VSRootDir%\tools\%BUILD_CPU%;%PATH%"
+set "PATH=%VSPath%;%VXPath%;%PATH%"
 set "LIB=%VSBaseDir%\lib\%BUILD_CPU%"
 set "INCLUDE=%VsBaseDir%\include\crt;%VsBaseDir%\include;%VsBaseDir%\include\mfc;%VsBaseDir%\include\atl"
 set "EXTRA_LIBS=msvcrt_compat.lib msvcrt_compat.obj"
@@ -80,6 +85,8 @@ echo SetEnv Failed!
 echo.
 echo Cannot find Microsoft Compiler toolkit inside "%VSBaseDir%"!
 :SetEnvExit
+set VSRootDir=
 set VSBaseDir=
 set VSPath=
+set VXPath=
 set PBuildCpu=

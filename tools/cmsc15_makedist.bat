@@ -33,8 +33,8 @@ type tools\compile.log >>%CVER%\VERSION.txt
 
 move /Y msvc %CVER%\
 move /Y perl %CVER%\
-xcopy /K /I /Y tools\i386 %CVER%\tools\i386
-xcopy /K /I /Y tools\amd64 %CVER%\tools\amd64
+xcopy /K /I /Y tools\x86 %CVER%\tools\x86
+xcopy /K /I /Y tools\x64 %CVER%\tools\x64
 copy /Y setenv.bat + README.md + CHANGELOG.txt %CVER%\
 
 rem Create distribution .zip

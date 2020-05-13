@@ -11,8 +11,8 @@ same compiler generation.
      <Top Directory>
         +--bin
         |   +--1033
-        |   +--amd64
-        |   +--i386
+        |   +--x64
+        |   +--x86
         +--include
         |   +--atl
         |   +--crt
@@ -20,8 +20,8 @@ same compiler generation.
         |   +--gl
         |   +--mfc
         +--lib
-            +--amd64
-            +--i386
+            +--x64
+            +--x86
 
 See `tools\README.txt` for dependencies and versions
 
