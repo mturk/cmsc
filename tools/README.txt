@@ -8,9 +8,9 @@ Files pulled coreutils-5.3.0
     http://gnuwin32.sourceforge.net/
     rm.exe
     sha1sum.exe
-	diff.exe        2.8.7-1
-	patch.exe       2.5.9-7
-	libiconv2.dll
+    diff.exe        2.8.7-1
+    patch.exe       2.5.9-7
+    libiconv2.dll
     libintl3.dll
 
 
@@ -19,8 +19,8 @@ i386/nasm.exe       2.14.02 http://www.nasm.us/pub/nasm/releasebuilds/
      nasmw.exe              copy of nasm.exe
 
 Files pulled from https://ftp.mozilla.org/pub/mozilla/libraries/win32
-				  MozillaBuildSetup-3.3.exe
-nsinstall.exe
+                  MozillaBuildSetup-3.3.exe
+    nsinstall.exe
 
 
 Creating CMSC distribution
@@ -39,7 +39,7 @@ downloadable from Microsoft MSDN site.
 
 * Windows Software Development Kit for Windows 7
   Make complete install inside default directory.
-  C:\Program Files\Microsoft SDKs\Windows\v7.0\
+  C:\Program Files\Microsoft SDKs\Windows\v7.1\
   It will also install a subset of Visual Studio 2008 (9.0) at
   C:\Program Files\Microsoft Visual Studio 9.0
 
@@ -80,22 +80,6 @@ Will download Strawbery Perl from
 http://strawberryperl.com/releases.html
 and uncompress in <cmsc root>\perl
 
-Cygwin
-~~~~
-
-
- c:\> cms15_cygwin.bat
-
-Will download Cygwin setup from http://cygwin.com
-and download packages in <cmsc root>\tools\cygwin
-Download mirror used is
-http://ftp.heanet.ie/pub/cygwin/
-Modify batch file is other mirror is desired.
-
-Additional packages downloaded are
-bison byacc cpio curl flex git make p7zip patch
-python subversion unzip wget w3m and zip
-
 Creating distribution archive
 -----------------------------
 
@@ -104,23 +88,21 @@ Open Command promt and change directory to
 
  c:\> cmsc_makedist.bat
 
-This will create cmsc-<version>-windows32-i386.zip archive
+This will create cmsc-<version>-windows-x86_x64zip archive
 as well as md5 and sha1 digest.
 
 
 Intalling Tollkit on target computer
 ------------------------------------
 
-Create a directory inside drive root that contains no
+The safest way is to unzip the archive file directy
+on system drive.
+
+You can create a directory inside drive root that contains no
 spaces and unzip the archive file in that directory.
 
-Open Command promt and change directory to
-that directory and then ivoke
 
- <cmsc root>\> postinstall.bat
 
-This will relocate perl hard-coded paths to that new location
-and install cygwin subset if present.
 
 All in one
 ----------
@@ -130,5 +112,4 @@ Here is listed how a typical distribution is made:
  c:\> cd cmsc15\tools
  c:\> cmsc_compile.bat
  c:\> cmsc_perl5.bat
- c:\> cmsc_cygwin.bat [optional]
  c:\> cmsc_makedist.bat
