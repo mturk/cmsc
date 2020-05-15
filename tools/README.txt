@@ -6,7 +6,6 @@ wget.exe        1.19.4  https://eternallybored.org/misc/wget/
 
 Files pulled coreutils-5.3.0 
     http://gnuwin32.sourceforge.net/
-    rm.exe
     sha1sum.exe
     diff.exe        2.8.7-1
     patch.exe       2.5.9-7

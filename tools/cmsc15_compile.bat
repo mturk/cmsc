@@ -33,7 +33,7 @@ set FCOPYF=copy /Y
 rem
 pushd ..
 rem Remove previous stuff
-rm -rf %CVER% 2>NUL
+RD /S /Q %CVER% 2>NUL
 if not "%~1" == "" (
     if /i "%~1" == "clean" goto End
     shift
@@ -137,7 +137,7 @@ patch -fp0 -i ..\tools\crt\delayimp.patch
 patch -fp0 -i ..\tools\crt\errno.patch
 echo "/* EMPTY */" > include\intrin.h
 rem Cleanup
-rm -rf include\gl >NUL
+RD /S /Q  include\gl 2>NUL
 %FCOPYF% ..\tools\crt\sys\stat.* include\crt\sys\ >NUL
 %XCOPYD% /S ..\tools\mfc include\mfc\
 

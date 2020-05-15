@@ -35,9 +35,8 @@ move /Y msvc %CVER%\
 move /Y perl %CVER%\
 xcopy /K /I /Y tools\x86 %CVER%\tools\x86
 xcopy /K /I /Y tools\x64 %CVER%\tools\x64
-copy /Y setenv.bat %CVER%\
-copy /Y README.md %CVER%\
-copy /Y CHANGELOG.txt %CVER%\
+for %%i in (nasm nsinstall) do  copy /Y tools\%%i.exe  %CVER%\tools\
+for %%i in (setenv.bat README.md CHANGELOG.txt) do copy /Y %%i  %CVER%\
 
 rem Create distribution .zip
 7za a cmsc-%DVER%-%DNAM%.zip %CVER% -xr!.git

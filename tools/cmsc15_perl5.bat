@@ -33,12 +33,13 @@ exit /B 1
 echo Perl   : %PVER%  >>compile.log
 pushd ..
 rem Remove previous stuff
-rm -rf perl c 2>NUL
+RD /S /Q perl 2>NUL
+RD /S /Q c 2>NUL
 rem Uncopress
 7za x tools\%PZIP% perl c\bin
-copy /Y perl\bin\perl.exe perl\bin\perlw.exe 2>NUL
-xcopy c\bin\*.dll perl\bin /I /Y /Q
-rm -rf c 2>NUL
+@copy /Y /B perl\bin\perl.exe perl\bin\perlw.exe
+xcopy c\bin\*.dll perl\bin /I /Y /Q 2>NUL
+RD /S /Q c 2>NUL
 
 popd
 echo.
