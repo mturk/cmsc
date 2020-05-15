@@ -15,8 +15,7 @@ Files pulled coreutils-5.3.0
 
 
 
-i386/nasm.exe       2.14.02 http://www.nasm.us/pub/nasm/releasebuilds/
-     nasmw.exe              copy of nasm.exe
+nasm.exe       	2.14.02 	http://www.nasm.us/pub/nasm/releasebuilds/
 
 Files pulled from https://ftp.mozilla.org/pub/mozilla/libraries/win32
                   MozillaBuildSetup-3.3.exe
