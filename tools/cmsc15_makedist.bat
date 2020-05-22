@@ -1,8 +1,6 @@
 @echo off
 @setlocal
 rem
-rem Copyright (c) 2012 The MyoMake Project <http://www.myomake.org>
-rem
 rem Licensed under the Apache License, Version 2.0 (the "License");
 rem you may not use this file except in compliance with the License.
 rem You may obtain a copy of the License at
@@ -33,9 +31,7 @@ type tools\compile.log >>%CVER%\VERSION.txt
 
 move /Y msvc %CVER%\
 move /Y perl %CVER%\
-xcopy /K /I /Y tools\x86 %CVER%\tools\x86
-xcopy /K /I /Y tools\x64 %CVER%\tools\x64
-for %%i in (nasm nsinstall) do  copy /Y tools\%%i.exe  %CVER%\tools\
+for %%i in (nasm nsinstall cygwpexec) do  copy /Y tools\%%i.exe  %CVER%\tools\
 for %%i in (setenv.bat README.md CHANGELOG.txt) do copy /Y %%i  %CVER%\
 
 rem Create distribution .zip

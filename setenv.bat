@@ -1,7 +1,5 @@
 @echo off
 rem
-rem Copyright (c) 2011 The MyoMake Project <http://www.myomake.org>
-rem
 rem Licensed under the Apache License, Version 2.0 (the "License");
 rem you may not use this file except in compliance with the License.
 rem You may obtain a copy of the License at
@@ -20,7 +18,14 @@ pushd %~dp0
 set "VSRootDir=%cd%"
 popd
 set "VSBaseDir=%VSRootDir%\msvc"
-if not exist "%VSBaseDir%\bin\nmake.exe" goto Failed
+if not exist "%VSBaseDir%\bin\nmake.exe" (
+    echo.
+    echo Cannot find msvc tools.
+    echo Make sure the %VSRootDir% points to 
+    echo correct cmsc installation
+    exit /B 1
+)
+
 rem
 rem Check arguments
 rem
@@ -33,12 +38,8 @@ if "%PBuildCpu%" == "" (
 if /I "%PBuildCpu%" == "/x86"     goto TargetX86
 if /I "%PBuildCpu%" == "/i386"    goto TargetX86
 if /I "%PBuildCpu%" == "/i686"    goto TargetX86
-if /I "%PBuildCpu%" == "/32"      goto TargetX86
 if /I "%PBuildCpu%" == "/x64"     goto TargetX64
 if /I "%PBuildCpu%" == "/amd64"   goto TargetX64
-if /I "%PBuildCpu%" == "/emt64"   goto TargetX64
-if /I "%PBuildCpu%" == "/x86_64"  goto TargetX64
-if /I "%PBuildCpu%" == "/64"      goto TargetX64
 goto Usage
 rem
 :TargetX86
@@ -53,24 +54,22 @@ rem
 :SetupDirs
 echo.
 echo Seting build environment for %BUILD_CPU%
-set "VSPath=%VSBaseDir%\bin\%BUILD_CPU%;%VSBaseDir%\bin;%VSRootDir%\tools\%BUILD_CPU%"
-set "VXPath=%VSRootDir%\tools"
-if not exist "%VSRootDir%\perl\bin\perl.exe" goto SetupCygwin64
-set "VXPath=%VXPath%;%VSRootDir%\perl\bin"
-:SetupCygwin64
-if not exist "%SystemDrive%\cygwin64\bin\bash.exe" goto SetupCygwin32
-set "VXPath=%VXPath%;%SystemDrive%\cygwin64\bin"
-goto SetupEnvars
-:SetupCygwin32
-if not exist "%SystemDrive%\cygwin\bin\bash.exe" goto SetupEnvars
-set "VXPath=%VXPath%;%SystemDrive%\cygwin\bin"
-:SetupEnvars
-set "PATH=%VSPath%;%VXPath%;%PATH%"
+set "VSPath=%VSBaseDir%\bin\%BUILD_CPU%;%VSBaseDir%\bin;%VSRootDir%\tools"
+if not exist "%VSRootDir%\perl\bin\perl.exe" (
+    echo.
+    echo Cannot find perl.exe.
+    echo Make sure the %VSRootDir% points to 
+    echo correct cmsc installation
+    exit /B 1
+)
+
+set "PATH=%VSPath%;%PATH%"
 set "LIB=%VSBaseDir%\lib\%BUILD_CPU%"
 set "INCLUDE=%VsBaseDir%\include\crt;%VsBaseDir%\include;%VsBaseDir%\include\mfc;%VsBaseDir%\include\atl"
 set "EXTRA_LIBS=msvcrt_compat.lib msvcrt_compat.obj"
 set TERM=dumb
 goto SetEnvExit
+
 :Usage
 echo.
 echo Usage: setenv.bat ^< /x86 ^| /x64 ^>
@@ -78,15 +77,11 @@ echo.
 echo        /x86 ^| /i386   - Create 32-bit X86 applications
 echo        /x64 ^| /amd64  - Create 64-bit AMD64/EMT64 applications
 echo.
-goto SetEnvExit
-:Failed
-echo.
-echo SetEnv Failed!
-echo.
-echo Cannot find Microsoft Compiler toolkit inside "%VSBaseDir%"!
+exit /B 1
 :SetEnvExit
 set VSRootDir=
 set VSBaseDir=
 set VSPath=
 set VXPath=
 set PBuildCpu=
+exit /B 0
