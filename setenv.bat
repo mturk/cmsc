@@ -57,7 +57,6 @@ set BUILD_CPU=x86
 goto SetupDirs
 :TargetX64
 set BUILD_CPU=x64
-goto SetupDirs
 rem
 rem Additional targets
 rem
@@ -65,12 +64,12 @@ rem
 echo.
 echo Seting build environment for %BUILD_CPU%
 set "VSPath=%VSBaseDir%\bin\%BUILD_CPU%;%VSBaseDir%\bin;%VSRootDir%\tools"
-set "VSPath=%VSPath%;%VSRootDir%\%VsPerl%\perl\bin;%VSRootDir%\%VsPerl%\c\bin"
+set "VSPath=%VSPath%;%VSRootDir%\%VsPerl%\c\bin;%VSRootDir%\%VsPerl%\perl\site\bin;%VSRootDir%\%VsPerl%\perl\bin"
 set "PATH=%VSPath%;%PATH%"
 set "LIB=%VSBaseDir%\lib\%BUILD_CPU%"
 set "INCLUDE=%VsBaseDir%\include\crt;%VsBaseDir%\include;%VsBaseDir%\include\mfc;%VsBaseDir%\include\atl"
 set "EXTRA_LIBS=msvcrt_compat.lib msvcrt_compat.obj"
-set TERM=dumb
+set "TERM=dumb"
 goto SetEnvExit
 :Usage
 echo.

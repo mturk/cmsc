@@ -33,7 +33,7 @@ Open command promt in project target and call
 
      Where <cpu> can be:
      /x86 | /i386 for Windows32
-     /x64 | /amd64 | /emt64 | /x86_64 For Windows64
+     /x64 | /amd64 for Windows64
 
 This will set up required paths for binaries, include and
 lib files.

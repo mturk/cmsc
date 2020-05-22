@@ -7,9 +7,12 @@ Changes in 15.0_28
 * Use win7 as default target
 * Drop Itanium platform
 * Cleanup unused tools
-* Switch to portable Perl
 * Use x86 instead i386
 * Use x64 instead amd64
+* Use cygwpexec instead cygspawn
+  cygspawn was in collision with prior
+  project on github.
+* Use SHA-512 hashing
 
 Changes in 15.0_27
 ------------------

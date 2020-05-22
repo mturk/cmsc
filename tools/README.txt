@@ -3,14 +3,13 @@ Tools used in this distribution
 
 wget.exe        1.19.4  https://eternallybored.org/misc/wget/
 7za.exe         19.00   http://www.7-zip.org/
-
-
-nasm.exe        2.14.02     http://www.nasm.us/pub/nasm/releasebuilds/
+patch.exe       2.5.9   http://gnuwin32.sourceforge.net
+nasm.exe        2.14.02 http://www.nasm.us/pub/nasm/releasebuilds/
 
 nsinstall.exe   from https://ftp.mozilla.org/pub/mozilla/libraries/win32
                      MozillaBuildSetup-3.3.exe
 
-
+cygwpexec.exe   2.0.1    https://github.com/mturk/cygwpexec
 
 Creating CMSC distribution
 --------------------------
@@ -44,7 +43,7 @@ Compiling distribution
 Open Command promt and change directory to
 <cmsc root>\tools and then invoke
 
-  c:> cmsc_compile.bat
+  c:> cmsc15_compile.bat
 
 This will create required directories and copy files
 from prerequisites to a new layout.
@@ -63,7 +62,7 @@ Perl
 ~~~~
 
 
- c:> cms15_perl5.bat
+ c:> cmsc15_perl5.bat
 
 Will download Strawbery Perl from
 http://strawberryperl.com/releases.html
@@ -75,7 +74,7 @@ Creating distribution archive
 Open Command promt and change directory to
 <cmsc root>\tools and then invoke
 
- c:\> cmsc_makedist.bat
+ c:\> cmsc15_makedist.bat
 
 This will create cmsc-<version>-windows-x86_x64zip archive
 as well as md5 and sha1 digest.
@@ -98,7 +97,7 @@ All in one
 
 Here is listed how a typical distribution is made:
 
- c:\> cd cmsc15\tools
- c:\> cmsc_compile.bat
- c:\> cmsc_perl5.bat
- c:\> cmsc_makedist.bat
+ c:\> cd cmsc\tools
+ c:\> cmsc15_compile.bat
+ c:\> cmsc15_perl5.bat
+ c:\> cmsc15_makedist.bat
