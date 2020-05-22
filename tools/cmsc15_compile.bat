@@ -16,8 +16,11 @@ rem Directory Layout creator for Microsoft Compiler Toolkit
 rem
 rem Prerequisites...
 set "PATH=%~dp0;%PATH%"
+pushd %~dp0
+set "VSToolsDir=%cd%"
+popd
 set "ProgramFiles32=%ProgramFiles(x86)%"
-set "ProgramFiles64=%SystemDrive%\Program Files"
+set "ProgramFiles64=%ProgramFiles%"
 if not exist "%ProgramFiles32%\Windows NT" set "ProgramFiles32=%ProgramFiles%"
 set "DDK71=c:\WinDDK\7600.16385.1"
 set "PSDK6=%ProgramFiles64%\Microsoft Platform SDK for Windows Server 2003 R2"
@@ -28,7 +31,6 @@ set CVER=dist\msvc
 set X86T=win7
 set XCOPYD=xcopy /K /I /Y
 set FCOPYF=copy /Y
-set VSToolsDir=%cd%
 rem
 pushd ..
 rem Remove previous stuff

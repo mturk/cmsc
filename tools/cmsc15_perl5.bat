@@ -17,6 +17,9 @@ rem Dowloads Strawberry Perl
 rem
 rem Prerequisites...
 set "PATH=%~dp0;%PATH%"
+pushd %~dp0
+set "VSToolsDir=%cd%"
+popd
 rem
 call ..\versions.bat
 set PZIP=strawberry-perl-%PerlVer%-32bit.zip
@@ -35,7 +38,7 @@ RD /S /Q perl-%PerlVer% 2>NUL
 MD perl-%PerlVer%
 rem Uncopress
 pushd perl-%PerlVer%
-7za x ..\..\tools\%PZIP%
+7za x %VSToolsDir%\%PZIP%
 @copy /Y /B perl\bin\perl.exe perl\bin\perlw.exe
 @del /F /Q c\bin\*.exe
 

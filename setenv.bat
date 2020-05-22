@@ -88,4 +88,3 @@ set VSPerl=
 set PBuildCpu=
 set PerlVer=
 set CmscVer=
-exit /B 0

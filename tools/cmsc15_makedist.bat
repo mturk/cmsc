@@ -41,7 +41,7 @@ rem Create distribution .zip
 del /F /Q cmsc-%DVER%-%DNAM%.* 2>NUL
 7za a cmsc-%DVER%-%DNAM%.zip %CVER%
 set "PATH=%CVER%\perl-%PerlVer%\perl\bin;%PATH"
-call shasum.bat -a 512 cmsc-%DVER%-%DNAM%.zip > cmsc-%DVER%-%DNAM%.zip.sha512
+call shasum.bat -a 512 cmsc-%DVER%-%DNAM%.zip > cmsc-%DVER%-%DNAM%.sha512
 
 popd
 echo.
