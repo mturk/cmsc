@@ -18,27 +18,28 @@ rem
 rem Prerequisites...
 set "PATH=%~dp0;%PATH%"
 rem
-set PVER=5.30.2.1
-set PZIP=strawberry-perl-%PVER%-32bit-portable.zip 
+call ..\versions.bat
+set PZIP=strawberry-perl-%PerlVer%-32bit.zip
 if exist %PZIP% goto HasPerlDist
-wget -q --no-config http://strawberryperl.com/download/%PVER%/%PZIP%
+wget -q --no-config http://strawberryperl.com/download/%PerlVer%/%PZIP%
 rem
 if exist %PZIP% goto HasPerlDist
 echo.
 echo Failed to download %PZIP%
 exit /B 1
 :HasPerlDist
-echo Perl   : %PVER%  >>compile.log
-pushd ..
+echo Perl   : %PerlVer%  >>compile.log
+pushd ..\dist
 rem Remove previous stuff
-RD /S /Q perl 2>NUL
-RD /S /Q c 2>NUL
+RD /S /Q perl-%PerlVer% 2>NUL
+MD perl-%PerlVer%
 rem Uncopress
-7za x tools\%PZIP% perl c\bin
+pushd perl-%PerlVer%
+7za x ..\..\tools\%PZIP%
 @copy /Y /B perl\bin\perl.exe perl\bin\perlw.exe
-xcopy c\bin\*.dll perl\bin /I /Y /Q 2>NUL
-RD /S /Q c 2>NUL
+@del /F /Q c\bin\*.exe
 
+popd
 popd
 echo.
 echo Finished.

@@ -17,6 +17,8 @@ rem
 pushd %~dp0
 set "VSRootDir=%cd%"
 popd
+call %VSRootDir%\versions.bat
+set VsPerl=perl-%PerlVer%
 set "VSBaseDir=%VSRootDir%\msvc"
 if not exist "%VSBaseDir%\bin\nmake.exe" (
     echo.
@@ -55,14 +57,15 @@ rem
 echo.
 echo Seting build environment for %BUILD_CPU%
 set "VSPath=%VSBaseDir%\bin\%BUILD_CPU%;%VSBaseDir%\bin;%VSRootDir%\tools"
-if not exist "%VSRootDir%\perl\bin\perl.exe" (
+if not exist "%VSRootDir%\%VsPerl%\perl\bin\perl.exe" (
     echo.
     echo Cannot find perl.exe.
     echo Make sure the %VSRootDir% points to 
     echo correct cmsc installation
     exit /B 1
 )
-
+rem Set perl path
+set "VSPath=%VSPath%;%VSRootDir%\%VsPerl%\perl\bin;%VSRootDir%\%VsPerl%\c\bin"
 set "PATH=%VSPath%;%PATH%"
 set "LIB=%VSBaseDir%\lib\%BUILD_CPU%"
 set "INCLUDE=%VsBaseDir%\include\crt;%VsBaseDir%\include;%VsBaseDir%\include\mfc;%VsBaseDir%\include\atl"
@@ -82,6 +85,6 @@ exit /B 1
 set VSRootDir=
 set VSBaseDir=
 set VSPath=
-set VXPath=
+set VSPerl=
 set PBuildCpu=
 exit /B 0

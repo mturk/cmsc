@@ -17,28 +17,32 @@ rem Creates and signs distribution zip file
 rem
 rem Prerequisites...
 set "PATH=%~dp0;%PATH%"
+call ..\versions.bat
 rem
-set MVER=28
-set DVER=15.0_%MVER%
-set CVER=cmsc%MVER%
+set DVER=15.0_%CmscVer%
+set CVER=C:\cmsc%CmscVer%
 set DNAM=windows-x86_x64
+RD /S /Q %CVER% 2>NUL
 pushd ..
-mkdir %CVER%
-echo Custom Microsoft Compiler Toolkit Compilation >%CVER%\VERSION.txt
-echo. >>%CVER%\VERSION.txt
-echo Version: %DVER% >>%CVER%\VERSION.txt
-type tools\compile.log >>%CVER%\VERSION.txt
 
-move /Y msvc %CVER%\
-move /Y perl %CVER%\
-for %%i in (nasm nsinstall cygwpexec) do  copy /Y tools\%%i.exe  %CVER%\tools\
-for %%i in (setenv.bat README.md CHANGELOG.txt) do copy /Y %%i  %CVER%\
+echo Custom Microsoft Compiler Toolkit Compilation >dist\VERSION.txt
+echo. >>dist\VERSION.txt
+echo Version: %DVER% >>dist\VERSION.txt
+type tools\compile.log >>dist\VERSION.txt
+mkdir dist\tools
+for %%i in (nasm nsinstall cygwpexec) do  copy /Y tools\%%i.exe  dist\tools\
+for %%i in (setenv.bat versions.bat README.md CHANGELOG.txt) do copy /Y %%i  dist\
 
+move /Y dist %CVER%
+pushd %CVER%\perl-%PerlVer%
+call relocation.pl.bat
+popd
 rem Create distribution .zip
-7za a cmsc-%DVER%-%DNAM%.zip %CVER% -xr!.git
-sha1sum -b cmsc-%DVER%-%DNAM%.zip >cmsc-%DVER%-%DNAM%.zip.sha1
+del /F /Q cmsc-%DVER%-%DNAM%.* 2>NUL
+7za a cmsc-%DVER%-%DNAM%.zip %CVER%
+set "PATH=%CVER%\perl-%PerlVer%\perl\bin;%PATH"
+call shasum.bat -a 512 cmsc-%DVER%-%DNAM%.zip > cmsc-%DVER%-%DNAM%.zip.sha512
 
 popd
 echo.
 echo Finished.
-:End

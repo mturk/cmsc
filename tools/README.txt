@@ -4,20 +4,12 @@ Tools used in this distribution
 wget.exe        1.19.4  https://eternallybored.org/misc/wget/
 7za.exe         19.00   http://www.7-zip.org/
 
-Files pulled coreutils-5.3.0 
-    http://gnuwin32.sourceforge.net/
-    sha1sum.exe
-    patch.exe       2.5.9-7
-    libiconv2.dll
-    libintl3.dll
 
+nasm.exe        2.14.02     http://www.nasm.us/pub/nasm/releasebuilds/
 
+nsinstall.exe   from https://ftp.mozilla.org/pub/mozilla/libraries/win32
+                     MozillaBuildSetup-3.3.exe
 
-nasm.exe       	2.14.02 	http://www.nasm.us/pub/nasm/releasebuilds/
-
-Files pulled from https://ftp.mozilla.org/pub/mozilla/libraries/win32
-                  MozillaBuildSetup-3.3.exe
-    nsinstall.exe
 
 
 Creating CMSC distribution

@@ -17,7 +17,7 @@ rem
 @echo off
 setlocal
 pushd %~dp0..
-set VSBaseDir=%cd%\msvc
+set VSBaseDir=%cd%\dist\msvc
 popd
 if not exist "%VSBaseDir%\bin\x86\lib.exe" goto Failed
 rem

@@ -24,14 +24,15 @@ set "PSDK6=%ProgramFiles64%\Microsoft Platform SDK for Windows Server 2003 R2"
 set "SDK71=%ProgramFiles64%\Microsoft SDKs\Windows\v7.1"
 set "MSC10=%ProgramFiles32%\Microsoft Visual Studio 10.0"
 rem
-set CVER=msvc
+set CVER=dist\msvc
 set X86T=win7
 set XCOPYD=xcopy /K /I /Y
 set FCOPYF=copy /Y
+set VSToolsDir=%cd%
 rem
 pushd ..
 rem Remove previous stuff
-RD /S /Q %CVER% 2>NUL
+RD /S /Q dist 2>NUL
 if not "%~1" == "" (
     if /i "%~1" == "clean" goto End
     shift
@@ -92,11 +93,11 @@ if not exist "%PSDK6%\include\atl" (
     echo ATL 3.0 support will be disabled
 )
 
-echo Built  : %DATE% - %TIME% >..\tools\compile.log
-echo Target : %X86T%  >>..\tools\compile.log
-echo WinDDK : %WINDDK:c:\WinDDK\=% >>..\tools\compile.log
-echo WinSDK : %WINSDK:c:\Program Files\Microsoft SDKs\Windows\=% >>..\tools\compile.log
-echo MSC    : %WINMSC:c:\Program Files\=% >>..\tools\compile.log
+echo Built  : %DATE% - %TIME% >%VSToolsDir%\compile.log
+echo Target : %X86T%  >>%VSToolsDir%\compile.log
+echo WinDDK : %WINDDK:c:\WinDDK\=% >>%VSToolsDir%\compile.log
+echo WinSDK : %WINSDK:c:\Program Files\Microsoft SDKs\Windows\=% >>%VSToolsDir%\compile.log
+echo MSC    : %WINMSC:c:\Program Files\=% >>%VSToolsDir%\compile.log
 echo Copying files ...
 rem
 %XCOPYD% "%WINSDK%\include" include\
@@ -130,14 +131,14 @@ rem DDK Specific Files
 %FCOPYF% "%WINDDK%\inc\api\delayimp.h" include\crt\ >NUL
 %FCOPYF% include\crt\ctype.h include\crt\wctype.h >NUL
 rem Path crtdefs.h and delayimp.h
-patch -fp0 -i ..\tools\crt\crtdefs.patch
-patch -fp0 -i ..\tools\crt\delayimp.patch
-patch -fp0 -i ..\tools\crt\errno.patch
+patch -fp0 -i %VSToolsDir%\crt\crtdefs.patch
+patch -fp0 -i %VSToolsDir%\crt\delayimp.patch
+patch -fp0 -i %VSToolsDir%\crt\errno.patch
 echo "/* EMPTY */" > include\intrin.h
 rem Cleanup
 RD /S /Q  include\gl 2>NUL
-%FCOPYF% ..\tools\crt\sys\stat.* include\crt\sys\ >NUL
-%XCOPYD% /S ..\tools\mfc include\mfc\
+%FCOPYF% %VSToolsDir%\crt\sys\stat.* include\crt\sys\ >NUL
+%XCOPYD% /S %VSToolsDir%\mfc include\mfc\
 
 rem Copy Binaries
 %XCOPYD% "%WINDDK%\bin\x86" bin\
@@ -163,14 +164,5 @@ popd
 popd
 call msvcrt_compat.bat
 echo.
-:ParseCmd
-if "%~1" == "" goto Finished
-set "CMDOPT=%~1"
-shift
-echo Calling %CMDOPT%
-if /i "%CMDOPT%" == "cygwin" call cmsc15_cygwin.bat
-if /i "%CMDOPT%" == "perl" call cmsc15_perl5.bat
-goto ParseCmd
-:Finished
 echo Finished.
 :End
