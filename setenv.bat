@@ -18,16 +18,24 @@ pushd %~dp0
 set "VSRootDir=%cd%"
 popd
 call %VSRootDir%\versions.bat
-set VsPerl=perl-%PerlVer%
+set "VsPerl=perl-%PerlVer%"
 set "VSBaseDir=%VSRootDir%\msvc"
+rem
 if not exist "%VSBaseDir%\bin\nmake.exe" (
     echo.
     echo Cannot find msvc tools.
-    echo Make sure the %VSRootDir% points to 
+    echo Make sure the %VSRootDir% points to
     echo correct cmsc installation
     exit /B 1
 )
-
+rem
+if not exist "%VSRootDir%\%VsPerl%\perl\bin\perl.exe" (
+    echo.
+    echo Cannot find perl  in %VsPerl%
+    echo Make sure the %VSRootDir% points to
+    echo correct cmsc installation
+    exit /B 1
+)
 rem
 rem Check arguments
 rem
@@ -57,14 +65,6 @@ rem
 echo.
 echo Seting build environment for %BUILD_CPU%
 set "VSPath=%VSBaseDir%\bin\%BUILD_CPU%;%VSBaseDir%\bin;%VSRootDir%\tools"
-if not exist "%VSRootDir%\%VsPerl%\perl\bin\perl.exe" (
-    echo.
-    echo Cannot find perl.exe.
-    echo Make sure the %VSRootDir% points to 
-    echo correct cmsc installation
-    exit /B 1
-)
-rem Set perl path
 set "VSPath=%VSPath%;%VSRootDir%\%VsPerl%\perl\bin;%VSRootDir%\%VsPerl%\c\bin"
 set "PATH=%VSPath%;%PATH%"
 set "LIB=%VSBaseDir%\lib\%BUILD_CPU%"
@@ -72,7 +72,6 @@ set "INCLUDE=%VsBaseDir%\include\crt;%VsBaseDir%\include;%VsBaseDir%\include\mfc
 set "EXTRA_LIBS=msvcrt_compat.lib msvcrt_compat.obj"
 set TERM=dumb
 goto SetEnvExit
-
 :Usage
 echo.
 echo Usage: setenv.bat ^< /x86 ^| /x64 ^>
@@ -87,4 +86,6 @@ set VSBaseDir=
 set VSPath=
 set VSPerl=
 set PBuildCpu=
+set PerlVer=
+set CmscVer=
 exit /B 0
