@@ -1,5 +1,5 @@
 @echo off
-@setlocal
+setlocal
 rem
 rem Licensed under the Apache License, Version 2.0 (the "License");
 rem you may not use this file except in compliance with the License.
@@ -22,26 +22,26 @@ set "VSToolsDir=%cd%"
 popd
 rem
 call ..\versions.bat
-set PZIP=strawberry-perl-%PerlVer%-32bit.zip
-if exist %PZIP% goto HasPerlDist
-wget -q --no-config http://strawberryperl.com/download/%PerlVer%/%PZIP%
+set PerlArch=strawberry-perl-%PerlVer%-32bit.zip
+if exist %PerlArch% goto HasPerlDist
+wget -q --no-config http://strawberryperl.com/download/%PerlVer%/%PerlArch%
 rem
-if exist %PZIP% goto HasPerlDist
+if exist %PerlArch% goto HasPerlDist
 echo.
-echo Failed to download %PZIP%
+echo Failed to download %PerlArch%
 exit /B 1
 :HasPerlDist
 echo Perl   : %PerlVer%  >>compile.log
 pushd ..\dist
 rem Remove previous stuff
-RD /S /Q perl-%PerlVer% 2>NUL
-MD perl-%PerlVer%
+rd /S /Q perl-%PerlVer% 2>NUL
+md perl-%PerlVer%
 rem Uncopress
 pushd perl-%PerlVer%
-7za x %VSToolsDir%\%PZIP%
-@copy /Y /B perl\bin\perl.exe perl\bin\perlw.exe
-@del /F /Q c\bin\*.exe
-
+7za x %VSToolsDir%\%PerlArch%
+copy /Y /B perl\bin\perl.exe perl\bin\perlw.exe
+xcopy /Y /Q /I c\bin\*.dll perl\bin
+rem
 popd
 popd
 echo.

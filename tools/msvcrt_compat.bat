@@ -19,18 +19,17 @@ setlocal
 pushd %~dp0..
 set VSBaseDir=%cd%\dist\msvc
 popd
-if not exist "%VSBaseDir%\bin\x86\lib.exe" goto Failed
 rem
-set THUNK=msvcrt_compat
-set BinPath=%VSBaseDir%\bin;%PATH%
-set LIB=%VsBaseDir%\lib
-set INCLUDE=%VsBaseDir%\include\crt
-set CFLAGS=/nologo /c /MD 
+set "THUNK=msvcrt_compat"
+set "BinPath=%VSBaseDir%\bin;%PATH%"
+set "LIB=%VsBaseDir%\lib"
+set "INCLUDE=%VsBaseDir%\include\crt"
+set "CFLAGS=/nologo /c /MD"
 rem Delete old versions
 del /Q %LIB%\x86\%THUNK%.* 2>NUL
 del /Q %LIB%\x64\%THUNK%.* 2>NUL
 rem
-set PATH=%VSBaseDir%\bin\x86;%BinPath%
+set "PATH=%VSBaseDir%\bin\x86;%BinPath%"
 lib /NOLOGO /NODEFAULTLIB /DEF:%THUNK%.def /MACHINE:X86 /NAME:msvcrt.dll /OUT:%LIB%\x86\%THUNK%.lib
 cl %CFLAGS% crt\fp10.c /Fo%LIB%\x86\fp10.obj
 cl %CFLAGS% crt\binmode.c /Fo%LIB%\x86\binmode.obj
@@ -41,7 +40,7 @@ cl %CFLAGS% crt\noenv.c /Fo%LIB%\x86\noenv.obj
 cl %CFLAGS% crt\setargv.c /Fo%LIB%\x86\setargv.obj
 cl %CFLAGS% crt\wsetargv.c /Fo%LIB%\x86\wsetargv.obj
 rem
-set PATH=%VSBaseDir%\bin\x64;%BinPath%
+set "PATH=%VSBaseDir%\bin\x64;%BinPath%"
 lib /NOLOGO /NODEFAULTLIB /DEF:%THUNK%.def /MACHINE:X64 /NAME:msvcrt.dll /OUT:%LIB%\x64\%THUNK%.lib
 cl %CFLAGS% crt\binmode.c /Fo%LIB%\x64\binmode.obj
 cl %CFLAGS% crt\commode.c /Fo%LIB%\x64\commode.obj
@@ -54,15 +53,7 @@ rem
 rem Delete export files
 del /Q %LIB%\x64\%THUNK%.exp
 del /Q %LIB%\x86\%THUNK%.exp
-copy /Y  %LIB%\x86\msvcrt_win2003.obj %LIB%\x86\%THUNK%.obj
+copy /Y %LIB%\x86\msvcrt_win2003.obj %LIB%\x86\%THUNK%.obj
 copy /Y %LIB%\x64\msvcrt_win2003.obj %LIB%\x64\%THUNK%.obj
-
 rem
-goto ProgramExit
-:Failed
-echo.
-echo Creating compat library failed!
-echo.
-echo Cannot find Microsoft Compiler toolkit inside "%VSBaseDir%"!
-:ProgramExit
 exit /B 0

@@ -1,5 +1,5 @@
 @echo off
-@setlocal
+setlocal
 rem
 rem Licensed under the Apache License, Version 2.0 (the "License");
 rem you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ rem
 set DVER=15.0_%CmscVer%
 set CVER=C:\cmsc%CmscVer%
 set DNAM=windows-x86_x64
-RD /S /Q %CVER% 2>NUL
+rd /S /Q %CVER% 2>NUL
 pushd ..
 
 echo Custom Microsoft Compiler Toolkit Compilation >dist\VERSION.txt

@@ -6,10 +6,10 @@ wget.exe        1.19.4  https://eternallybored.org/misc/wget/
 patch.exe       2.5.9   http://gnuwin32.sourceforge.net
 nasm.exe        2.14.02 http://www.nasm.us/pub/nasm/releasebuilds/
 
-nsinstall.exe   from https://ftp.mozilla.org/pub/mozilla/libraries/win32
-                     MozillaBuildSetup-3.3.exe
+nsinstall.exe   from    https://ftp.mozilla.org/pub/mozilla/libraries/win32
+                        MozillaBuildSetup-3.3.exe
 
-cygwpexec.exe   2.0.1    https://github.com/mturk/cygwpexec
+cygwpexec.exe   2.0.1   https://github.com/mturk/cygwpexec
 
 Creating CMSC distribution
 --------------------------
@@ -76,8 +76,8 @@ Open Command promt and change directory to
 
  c:\> cmsc15_makedist.bat
 
-This will create cmsc-<version>-windows-x86_x64zip archive
-as well as md5 and sha1 digest.
+This will create cmsc-<version>-windows-x86_x64.zip archive
+as well as sha-512 digest.
 
 
 Intalling Tollkit on target computer
@@ -95,8 +95,9 @@ spaces and unzip the archive file in that directory.
 All in one
 ----------
 
-Here is listed how a typical distribution is made:
+Typical distribution:
 
+ c:\> git clone ... 
  c:\> cd cmsc\tools
  c:\> cmsc15_compile.bat
  c:\> cmsc15_perl5.bat

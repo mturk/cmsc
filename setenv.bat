@@ -18,7 +18,7 @@ pushd %~dp0
 set "VSRootDir=%cd%"
 popd
 call %VSRootDir%\versions.bat
-set "VsPerl=perl-%PerlVer%"
+set "VSPerl=perl-%PerlVer%"
 set "VSBaseDir=%VSRootDir%\msvc"
 rem
 if not exist "%VSBaseDir%\bin\nmake.exe" (
@@ -29,9 +29,9 @@ if not exist "%VSBaseDir%\bin\nmake.exe" (
     exit /B 1
 )
 rem
-if not exist "%VSRootDir%\%VsPerl%\perl\bin\perl.exe" (
+if not exist "%VSRootDir%\%VSPerl%\perl\bin\perl.exe" (
     echo.
-    echo Cannot find perl  in %VsPerl%
+    echo Cannot find perl  in %VSPerl%
     echo Make sure the %VSRootDir% points to
     echo correct cmsc installation
     exit /B 1
@@ -47,31 +47,8 @@ if "%PBuildCpu%" == "" (
 )
 if /I "%PBuildCpu%" == "/x86"     goto TargetX86
 if /I "%PBuildCpu%" == "/i386"    goto TargetX86
-if /I "%PBuildCpu%" == "/i686"    goto TargetX86
 if /I "%PBuildCpu%" == "/x64"     goto TargetX64
 if /I "%PBuildCpu%" == "/amd64"   goto TargetX64
-goto Usage
-rem
-:TargetX86
-set BUILD_CPU=x86
-goto SetupDirs
-:TargetX64
-set BUILD_CPU=x64
-rem
-rem Additional targets
-rem
-:SetupDirs
-echo.
-echo Seting build environment for %BUILD_CPU%
-set "VSPath=%VSBaseDir%\bin\%BUILD_CPU%;%VSBaseDir%\bin;%VSRootDir%\tools"
-set "VSPath=%VSPath%;%VSRootDir%\%VsPerl%\c\bin;%VSRootDir%\%VsPerl%\perl\site\bin;%VSRootDir%\%VsPerl%\perl\bin"
-set "PATH=%VSPath%;%PATH%"
-set "LIB=%VSBaseDir%\lib\%BUILD_CPU%"
-set "INCLUDE=%VsBaseDir%\include\crt;%VsBaseDir%\include;%VsBaseDir%\include\mfc;%VsBaseDir%\include\atl"
-set "EXTRA_LIBS=msvcrt_compat.lib msvcrt_compat.obj"
-set "TERM=dumb"
-goto SetEnvExit
-:Usage
 echo.
 echo Usage: setenv.bat ^< /x86 ^| /x64 ^>
 echo.
@@ -79,7 +56,27 @@ echo        /x86 ^| /i386   - Create 32-bit X86 applications
 echo        /x64 ^| /amd64  - Create 64-bit AMD64/EMT64 applications
 echo.
 exit /B 1
-:SetEnvExit
+rem
+:TargetX86
+set BUILD_CPU=x86
+goto SetupEnvars
+:TargetX64
+set BUILD_CPU=x64
+rem
+rem Additional targets
+rem
+:SetupEnvars
+echo.
+echo Seting build environment for %BUILD_CPU%
+set "BASIC_PATH=%SystemRoot%\System32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SystemRoot%\System32\WindowsPowerShell\v1.0"
+set "VSPath=%VSBaseDir%\bin\%BUILD_CPU%;%VSBaseDir%\bin;%VSRootDir%\tools"
+set "VSPath=%VSPath%;%VSRootDir%\%VSPerl%\perl\site\bin;%VSRootDir%\%VSPerl%\perl\bin"
+set "PATH=%VSPath%;%PATH%"
+set "LIB=%VSBaseDir%\lib\%BUILD_CPU%"
+set "INCLUDE=%VsBaseDir%\include\crt;%VsBaseDir%\include;%VsBaseDir%\include\mfc;%VsBaseDir%\include\atl"
+set "EXTRA_LIBS=msvcrt_compat.lib msvcrt_compat.obj"
+set "TERM=dumb"
+rem
 set VSRootDir=
 set VSBaseDir=
 set VSPath=
