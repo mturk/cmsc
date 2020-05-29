@@ -36,6 +36,10 @@ for %%i in (setenv.bat versions.bat README.md CHANGELOG.txt) do copy /Y %%i  dis
 move /Y dist %CVER%
 pushd %CVER%\perl-%PerlVer%
 call relocation.pl.bat
+rem Remove extra stuff
+rd /S /Q c 2>NUL
+rd /S /Q win32 2>NUL
+del /F /Q *.bat 2>NUL
 popd
 rem Create distribution .zip
 del /F /Q cmsc-%DVER%-%DNAM%.* 2>NUL
