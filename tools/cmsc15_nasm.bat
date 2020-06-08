@@ -13,7 +13,7 @@ rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 rem See the License for the specific language governing permissions and
 rem limitations under the License.
 rem
-rem Dowloads Strawberry Perl
+rem Dowloads Netwide assembler
 rem
 rem Prerequisites...
 set "PATH=%~dp0;%PATH%"
@@ -22,29 +22,25 @@ set "VSToolsDir=%cd%"
 popd
 rem
 call ..\versions.bat
-set "PerlArch=strawberry-perl-%PerlVer%-%CmscSys%bit.zip"
-if not exist "%PerlArch%" (
-	wget -q --no-config http://strawberryperl.com/download/%PerlVer%/%PerlArch%
+set "NasmArch=nasm-%NasmVer%-win%CmscSys%.zip"
+if not exist "%NasmArch%" (
+	wget -q --no-config https://www.nasm.us/pub/nasm/releasebuilds/%NasmVer%/win%CmscSys%/%NasmArch%
 )
 rem
-if not exist "%PerlArch%" (
+if not exist "%NasmArch%" (
 	echo.
-	echo Failed to download %PerlArch%
+	echo Failed to download %NasmArch%
 	exit /B 1
 
 )
-echo Perl   : %PerlVer%-%CmscSys%bit  >>compile.log
+echo Nasm   : %NasmVer%-win%CmscSys%  >>compile.log
 pushd ..\dist
 rem Remove previous stuff
-rd /S /Q perl 2>NUL
-md perl
+rd /S /Q nasm 2>NUL
 rem Uncopress
-pushd perl
-7za x -bd %VSToolsDir%\%PerlArch%
-copy /Y /B perl\bin\perl.exe perl\bin\perlw.exe >NUL
-xcopy /I /Y /Q c\bin\*.dll perl\bin >NUL
+7za x -bd %VSToolsDir%\%NasmArch%
 rem
-popd
+move /Y nasm-%NasmVer% nasm
 popd
 echo.
 echo Finished.

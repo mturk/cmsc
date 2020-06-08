@@ -3,13 +3,14 @@ ChangeLog file for cmsc
 
 Changes in 15.0_28
 ------------------
+* Download nasm instead having the binaries here
 * Update dependencies
 * Use win7 as default target
 * Drop Itanium platform
 * Cleanup unused tools
 * Use x86 instead i386
 * Use x64 instead amd64
-* Use cygwpexec instead cygspawn
+* Use posix2wx instead cygspawn
   cygspawn was in collision with prior
   project on github.
 * Use SHA-512 hashing

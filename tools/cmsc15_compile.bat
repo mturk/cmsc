@@ -1,4 +1,5 @@
 @echo off
+setlocal
 rem
 rem Licensed under the Apache License, Version 2.0 (the "License");
 rem you may not use this file except in compliance with the License.
@@ -19,66 +20,52 @@ set "PATH=%~dp0;%PATH%"
 pushd %~dp0
 set "VSToolsDir=%cd%"
 popd
+call ..\versions.bat
 set "ProgramFiles32=%ProgramFiles(x86)%"
 set "ProgramFiles64=%ProgramFiles%"
 if not exist "%ProgramFiles32%\Windows NT" set "ProgramFiles32=%ProgramFiles%"
-set "DDK71=c:\WinDDK\7600.16385.1"
-set "PSDK6=%ProgramFiles64%\Microsoft Platform SDK for Windows Server 2003 R2"
-set "SDK71=%ProgramFiles64%\Microsoft SDKs\Windows\v7.1"
-set "MSC10=%ProgramFiles32%\Microsoft Visual Studio 10.0"
+set "WINDDK=c:\WinDDK\7600.16385.1"
+set "WPSDK6=%ProgramFiles64%\Microsoft Platform SDK for Windows Server 2003 R2"
+set "WINSDK=%ProgramFiles64%\Microsoft SDKs\Windows\v7.1"
+set "WINMSC=%ProgramFiles32%\Microsoft Visual Studio 10.0"
 rem
-set CVER=dist\msvc
-set X86T=win7
-set XCOPYD=xcopy /K /I /Y
+set MSCVCD=dist\msvc
+set XCOPYD=xcopy /I /Y /Q
 set FCOPYF=copy /Y
 rem
 pushd ..
 rem Remove previous stuff
-RD /S /Q dist 2>NUL
-if not "%~1" == "" (
-    if /i "%~1" == "clean" goto End
-    shift
-)
-if not "%~1" == ""  set "X86T=%~1"
-mkdir %CVER%
-pushd %CVER%
+rd /S /Q dist 2>NUL
+if /i "%~1" == "/clean" goto End
+mkdir %MSCVCD%
+pushd %MSCVCD%
 rem Binaries
-mkdir bin
-mkdir bin\1033
 mkdir bin\x64
 mkdir bin\x86
 rem
 rem Library
-mkdir lib
 mkdir lib\x64
 mkdir lib\x86
 rem
 rem Includes
-mkdir include
 mkdir include\atl
 mkdir include\crt
-mkdir include\gl
 mkdir include\mfc
 
-set "WINDDK=%DDK71%"
 if not exist "%WINDDK%\bin" (
     echo.
     echo Cannot find "%WINDDK%" directory.
     echo Set this variable to point to the
     echo Windows Driver Kit version 7.1.0 installation directory
-    goto End
+    exit /B 1
 )
 
-set "WINSDK=%SDK71%"
-set "WINMSC=%MSC10%"
 if not exist "%WINSDK%\bin" (
     echo.
     echo Cannot find "%WINSDK%" directory.
     echo Set this variable to point to the
     echo Windows Software Development Kit installation directory.
-    echo "%SDK71%\bin"
-    dir "%SDK71%\bin"
-    goto End
+    exit /B 1
 )
 
 if not exist "%WINMSC%\VC\bin" (
@@ -86,41 +73,35 @@ if not exist "%WINMSC%\VC\bin" (
     echo Cannot find "%WINMSC%" directory.
     echo Set this variable to point to the
     echo Microsoft Visual Studio installation directory
-    goto End
-)
-
-if not exist "%PSDK6%\include\atl" (
-    echo.
-    echo Cannot find "%PSDK6%" directory.
-    echo ATL 3.0 support will be disabled
+    exit /B 1
 )
 
 echo Built  : %DATE% - %TIME% >%VSToolsDir%\compile.log
-echo Target : %X86T%  >>%VSToolsDir%\compile.log
+echo Target : %CmscOsv%  >>%VSToolsDir%\compile.log
 echo WinDDK : %WINDDK:c:\WinDDK\=% >>%VSToolsDir%\compile.log
 echo WinSDK : %WINSDK:c:\Program Files\Microsoft SDKs\Windows\=% >>%VSToolsDir%\compile.log
 echo MSC    : %WINMSC:c:\Program Files\=% >>%VSToolsDir%\compile.log
 echo Copying files ...
 rem
-%XCOPYD% "%WINSDK%\include" include\
-%XCOPYD% "%WINSDK%\lib" lib\x86\
-%XCOPYD% "%WINSDK%\lib\x64" lib\x64\
+%XCOPYD% "%WINSDK%\include" include\ >NUL
+%XCOPYD% "%WINSDK%\lib" lib\x86\ >NUL
+%XCOPYD% "%WINSDK%\lib\x64" lib\x64\ >NUL
 
-%XCOPYD% "%WINDDK%\lib\%X86T%\i386" lib\x86\
-%XCOPYD% "%WINDDK%\lib\crt\i386" lib\x86\
-%XCOPYD% "%WINDDK%\lib\mfc\i386" lib\x86\
-%XCOPYD% "%WINDDK%\lib\atl\i386" lib\x86\
+%XCOPYD% "%WINDDK%\lib\%CmscOsv%\i386" lib\x86\ >NUL
+%XCOPYD% "%WINDDK%\lib\crt\i386" lib\x86\ >NUL
+%XCOPYD% "%WINDDK%\lib\mfc\i386" lib\x86\ >NUL
+%XCOPYD% "%WINDDK%\lib\atl\i386" lib\x86\ >NUL
 
-%XCOPYD% "%WINDDK%\lib\%X86T%\amd64" lib\x64\
-%XCOPYD% "%WINDDK%\lib\crt\amd64" lib\x64\
-%XCOPYD% "%WINDDK%\lib\mfc\amd64" lib\x64\
-%XCOPYD% "%WINDDK%\lib\atl\amd64" lib\x64\
+%XCOPYD% "%WINDDK%\lib\%CmscOsv%\amd64" lib\x64\ >NUL
+%XCOPYD% "%WINDDK%\lib\crt\amd64" lib\x64\ >NUL
+%XCOPYD% "%WINDDK%\lib\mfc\amd64" lib\x64\ >NUL
+%XCOPYD% "%WINDDK%\lib\atl\amd64" lib\x64\ >NUL
 
 rem DDK Specific Files
-%XCOPYD% /S "%WINDDK%\inc\crt" include\crt\
-%XCOPYD% /S "%WINDDK%\inc\api\crt\stl60" include\crt\
-%XCOPYD% /S "%WINDDK%\inc\atl71" include\atl\
-%XCOPYD% /S "%WINDDK%\inc\mfc42" include\mfc\
+%XCOPYD% /S "%WINDDK%\inc\crt" include\crt\ >NUL
+%XCOPYD% /S "%WINDDK%\inc\api\crt\stl60" include\crt\ >NUL
+%XCOPYD% /S "%WINDDK%\inc\atl71" include\atl\ >NUL
+%XCOPYD% /S "%WINDDK%\inc\mfc42" include\mfc\ >NUL
 %FCOPYF% "%WINDDK%\inc\api\driverspecs.h" include\crt\ >NUL
 %FCOPYF% "%WINDDK%\inc\api\sdv_driverspecs.h" include\crt\ >NUL
 %FCOPYF% "%WINDDK%\inc\api\sal.h" include\crt\ >NUL
@@ -137,31 +118,34 @@ patch -fp0 -i %VSToolsDir%\crt\crtdefs.patch
 patch -fp0 -i %VSToolsDir%\crt\delayimp.patch
 patch -fp0 -i %VSToolsDir%\crt\errno.patch
 echo "/* EMPTY */" > include\intrin.h
-rem Cleanup
-RD /S /Q  include\gl 2>NUL
-%FCOPYF% %VSToolsDir%\crt\sys\stat.* include\crt\sys\ >NUL
-%XCOPYD% /S %VSToolsDir%\mfc include\mfc\
+%XCOPYD% %VSToolsDir%\crt\sys\stat.* include\crt\sys\ >NUL
+%XCOPYD% /S %VSToolsDir%\mfc include\mfc\ >NUL
 
 rem Copy Binaries
-%XCOPYD% "%WINDDK%\bin\x86" bin\
-%XCOPYD% "%WINDDK%\bin\x86\1033" bin\
-%XCOPYD% /S "%WINDDK%\bin\x86\x86" bin\x86\
-%XCOPYD% /S "%WINDDK%\bin\x86\amd64" bin\x64\
-%FCOPYF% "%WINDDK%\bin\x86\amd64\ml64.exe" bin\x64\ml.exe >NUL
+%XCOPYD% "%WINDDK%\bin\x86" bin\ >NUL
+%XCOPYD% "%WINDDK%\bin\x86\1033" bin\ >NUL
+%XCOPYD% /S "%WINDDK%\bin\x86\x86" bin\x86\ >NUL
+%XCOPYD% /S "%WINDDK%\bin\x86\amd64" bin\x64\ >NUL
+%FCOPYF% "%WINDDK%\bin\x86\amd64\ml64.exe" bin\x64\ >NUL
 %FCOPYF% "%WINSDK%\bin\mt.exe" bin\ >NUL
-%FCOPYF% "%WINSDK%\bin\guidgen.exe" bin\guidgen.exe >NUL
-%FCOPYF% "%WINSDK%\bin\rebase.exe" bin\rebase.exe >NUL
+%FCOPYF% "%WINSDK%\bin\guidgen.exe" bin\ >NUL
+%FCOPYF% "%WINSDK%\bin\rebase.exe" bin\ >NUL
 %FCOPYF% bin\ml.exe bin\x86\ml.exe >NUL
 
 %FCOPYF% "%WINMSC%\VC\bin\lib.exe" bin\x86\ >NUL
 %FCOPYF% "%WINMSC%\VC\bin\x86_amd64\lib.exe" bin\x64\ >NUL
 %FCOPYF% "%WINMSC%\VC\include\time.inl" include\crt\ >NUL
 %FCOPYF% "%WINMSC%\VC\include\wtime.inl" include\crt\ >NUL
-
-if not exist "%PSDK6%\include\atl" goto CopyFinished
-%XCOPYD% /S "%PSDK6%\include\atl" include\atl30\
-:CopyFinished
-
+rem
+if not exist "%WPSDK6%\include\atl" (
+    echo.
+    echo Cannot find "%WPSDK6%" directory.
+    echo ATL 3.0 support will be disabled
+)
+rem
+%XCOPYD% /S "%WPSDK6%\include\atl" include\atl30\ >NUL
+rem
+rem
 popd
 popd
 call msvcrt_compat.bat

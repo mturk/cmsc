@@ -4,12 +4,10 @@ Tools used in this distribution
 wget.exe        1.19.4  https://eternallybored.org/misc/wget/
 7za.exe         19.00   http://www.7-zip.org/
 patch.exe       2.5.9   http://gnuwin32.sourceforge.net
-nasm.exe        2.14.02 http://www.nasm.us/pub/nasm/releasebuilds/
-
 nsinstall.exe   from    https://ftp.mozilla.org/pub/mozilla/libraries/win32
                         MozillaBuildSetup-3.3.exe
 
-cygwpexec.exe   2.0.1   https://github.com/mturk/cygwpexec
+posix2wx.exe    2.0.1   https://github.com/mturk/posix2wx
 
 Creating CMSC distribution
 --------------------------
@@ -68,6 +66,16 @@ Will download Strawbery Perl from
 http://strawberryperl.com/releases.html
 and uncompress in <cmsc root>\perl
 
+Nasm
+~~~~
+
+
+ c:> cmsc15_nasm.bat
+
+Will download Netwide assembler from
+https://www.nasm.us/pub/nasm/releasebuilds
+and uncompress in <cmsc root>\tools
+
 Creating distribution archive
 -----------------------------
 
@@ -97,8 +105,9 @@ All in one
 
 Typical distribution:
 
- c:\> git clone ... 
+ c:\> git clone ...
  c:\> cd cmsc\tools
  c:\> cmsc15_compile.bat
  c:\> cmsc15_perl5.bat
+ c:\> cmsc15_nasm.bat
  c:\> cmsc15_makedist.bat

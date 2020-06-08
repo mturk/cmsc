@@ -14,5 +14,9 @@ rem limitations under the License.
 rem
 rem Setup environment for Microsoft Compiler Toolkit
 rem
-set PerlVer=5.30.2.1
-set CmscVer=28
+set "CmscVer=15.0_28"
+set "CmscSys=64"
+set "CmscOsv=win7"
+set "PerlVer=5.30.2.1"
+set "NasmVer=2.14.02"
+set "WINVER=0x0601"
