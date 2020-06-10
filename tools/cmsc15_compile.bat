@@ -149,6 +149,8 @@ rem
 popd
 popd
 call msvcrt_compat.bat
+del /F /Q posix2wx.exe 2>NUL
+wget -q --no-config https://github.com/mturk/posix2wx/releases/download/%Posix2wxVer%/posix2wx.exe
 echo.
 echo Finished.
 :End

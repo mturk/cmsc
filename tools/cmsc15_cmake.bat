@@ -13,7 +13,7 @@ rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 rem See the License for the specific language governing permissions and
 rem limitations under the License.
 rem
-rem Dowloads Strawberry Perl
+rem Dowloads Cmake
 rem
 rem Prerequisites...
 set "PATH=%~dp0;%PATH%"
@@ -22,28 +22,29 @@ set "VSToolsDir=%cd%"
 popd
 rem
 call ..\versions.bat
-set "PerlArch=strawberry-perl-%PerlVer%-%CmscSys%bit.zip"
-if not exist "%PerlArch%" (
-	wget -q --no-config http://strawberryperl.com/download/%PerlVer%/%PerlArch%
+rem
+set "CmakeName=cmake-%CmakeVer%-win%CmscSys%-x%CmscSys%"
+set "CmakeArch=%CmakeName%.zip"
+if not exist "%CmakeArch%" (
+	wget -q --no-config https://github.com/Kitware/CMake/releases/download/v%CmakeVer%/%CmakeArch%
 )
 rem
-if not exist "%PerlArch%" (
+if not exist "%CmakeArch%" (
 	echo.
-	echo Failed to download %PerlArch%
+	echo Failed to download %CmakeArch%
 	exit /B 1
 
 )
-echo Perl   : %PerlVer%-%CmscSys%bit  >>compile.log
-pushd ..\dist
+echo Cmake   : %CmakeName%  >>compile.log
+pushd ..
+mkdir dist 2>NUL
+pushd dist
 rem Remove previous stuff
-rd /S /Q perl 2>NUL
-md perl
+rd /S /Q cmake 2>NUL
 rem Uncopress
-pushd perl
-7za x -bd %VSToolsDir%\%PerlArch%
-copy /Y /B perl\bin\perl.exe perl\bin\perlw.exe >NUL
-rem xcopy /I /Y /Q c\bin\*.dll perl\bin >NUL
+7za x -bd %VSToolsDir%\%CmakeArch%
 rem
+move /Y %CmakeName% cmake
 popd
 popd
 echo.

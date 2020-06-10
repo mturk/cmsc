@@ -84,3 +84,5 @@ set PerlVer=
 set CmscVer=
 set CmscOsv=
 set CmscSys=
+set CmakeVer=
+set Posix2wxVer=

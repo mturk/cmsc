@@ -7,7 +7,7 @@ patch.exe       2.5.9   http://gnuwin32.sourceforge.net
 nsinstall.exe   from    https://ftp.mozilla.org/pub/mozilla/libraries/win32
                         MozillaBuildSetup-3.3.exe
 
-posix2wx.exe    2.0.1   https://github.com/mturk/posix2wx
+posix2wx.exe    2.0.1   https://github.com/mturk/posix2wx/releases/download/2.0.1/posix2wx.exe
 
 Creating CMSC distribution
 --------------------------
@@ -76,6 +76,17 @@ Will download Netwide assembler from
 https://www.nasm.us/pub/nasm/releasebuilds
 and uncompress in <cmsc root>\tools
 
+
+Cmake
+~~~~~
+
+
+ c:> cmsc15_c,ake.bat
+
+Will download cmake from
+ https://github.com/Kitware/CMake/releases
+and uncompress in <cmsc root>\cmake
+
 Creating distribution archive
 -----------------------------
 
@@ -108,6 +119,7 @@ Typical distribution:
  c:\> git clone ...
  c:\> cd cmsc\tools
  c:\> cmsc15_compile.bat
+ c:\> cmsc15_cmake.bat
  c:\> cmsc15_perl5.bat
  c:\> cmsc15_nasm.bat
  c:\> cmsc15_makedist.bat

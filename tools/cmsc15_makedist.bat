@@ -38,8 +38,8 @@ move /Y dist %CmscDist%
 pushd %CmscDist%\perl
 call relocation.pl.bat --quiet
 rem Remove extra stuff
-rd /S /Q c 2>NUL
-rd /S /Q win32 2>NUL
+rem rd /S /Q c 2>NUL
+rem rd /S /Q win32 2>NUL
 del /F /Q update_env.pl.bat 2>NUL
 popd
 rem Create distribution .zip
