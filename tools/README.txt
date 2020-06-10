@@ -4,9 +4,6 @@ Tools used in this distribution
 wget.exe        1.19.4  https://eternallybored.org/misc/wget/
 7za.exe         19.00   http://www.7-zip.org/
 patch.exe       2.5.9   http://gnuwin32.sourceforge.net
-nsinstall.exe   from    https://ftp.mozilla.org/pub/mozilla/libraries/win32
-                        MozillaBuildSetup-3.3.exe
-
 posix2wx.exe    2.0.1   https://github.com/mturk/posix2wx/releases/download/2.0.1/posix2wx.exe
 
 Creating CMSC distribution

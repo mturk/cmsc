@@ -3,6 +3,7 @@ ChangeLog file for cmsc
 
 Changes in 15.0_28
 ------------------
+* Add cmake toolkit
 * Download nasm instead having the binaries here
 * Update dependencies
 * Use win7 as default target
@@ -11,8 +12,7 @@ Changes in 15.0_28
 * Use x86 instead i386
 * Use x64 instead amd64
 * Use posix2wx instead cygspawn
-  cygspawn was in collision with prior
-  project on github.
+  cygspawn was in collision with existing project on github.
 * Use SHA-512 hashing
 
 Changes in 15.0_27

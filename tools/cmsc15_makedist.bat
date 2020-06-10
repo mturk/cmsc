@@ -28,7 +28,7 @@ echo. >>dist\VERSION.txt
 echo Version: %CmscVer% >>dist\VERSION.txt
 type tools\compile.log >>dist\VERSION.txt
 mkdir dist\tools 2>NUL
-for %%i in (nsinstall posix2wx) do  copy /Y tools\%%i.exe dist\tools\
+for %%i in (posix2wx 7za) do  copy /Y tools\%%i.exe dist\tools\
 for %%i in (setenv.bat versions.bat README.md CHANGELOG.txt) do copy /Y %%i dist\
 rem
 echo Creating Distibution ....
