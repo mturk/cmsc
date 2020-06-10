@@ -120,7 +120,6 @@ patch -fp0 -i %VSToolsDir%\crt\errno.patch
 echo "/* EMPTY */" > include\intrin.h
 %XCOPYD% %VSToolsDir%\crt\sys\stat.* include\crt\sys\ >NUL
 %XCOPYD% /S %VSToolsDir%\mfc include\mfc\ >NUL
-
 rem Copy Binaries
 %XCOPYD% "%WINDDK%\bin\x86" bin\ >NUL
 %XCOPYD% "%WINDDK%\bin\x86\1033" bin\ >NUL
@@ -133,9 +132,12 @@ rem Copy Binaries
 %FCOPYF% bin\ml.exe bin\x86\ml.exe >NUL
 
 %FCOPYF% "%WINMSC%\VC\bin\lib.exe" bin\x86\ >NUL
-%FCOPYF% "%WINMSC%\VC\bin\x86_amd64\lib.exe" bin\x64\ >NUL
+%FCOPYF% "%WINMSC%\VC\bin\amd64\lib.exe" bin\x64\ >NUL
 %FCOPYF% "%WINMSC%\VC\include\time.inl" include\crt\ >NUL
 %FCOPYF% "%WINMSC%\VC\include\wtime.inl" include\crt\ >NUL
+rem Copy CRT redistributables
+%XCOPYD% "%WINMSC%\VC\redist\x86\Microsoft.VC100.CRT" bin\x86\ >NUL
+%XCOPYD% "%WINMSC%\VC\redist\x64\Microsoft.VC100.CRT" bin\x64\ >NUL
 rem
 if not exist "%WPSDK6%\include\atl" (
     echo.
