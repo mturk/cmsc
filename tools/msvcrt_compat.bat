@@ -23,7 +23,7 @@ set "THUNK=msvcrt_compat"
 set "BinPath=%VSBaseDir%\bin;%PATH%"
 set "INCLUDE=%VsBaseDir%\include\crt"
 set "CLCOMPC=cl /nologo -c -EHs -EHc -GR- -GF -GS -Ox -Os -MD -D_WIN32_WINNT=%WINVER% -DWINVER=%WINVER% -DWIN32_LEAN_AND_MEAN=1 -DNDEBUG"
-echo "Copmiling for x86"
+echo Compiling thunk code for x86
 rem
 set "PATH=%VSBaseDir%\bin\x86;%BinPath%"
 set "LIBD=%VsBaseDir%\lib\x86"
@@ -42,7 +42,7 @@ copy /Y %LIBD%\msvcrt_win2003.obj %LIBD%\%THUNK%.obj
 rem
 rem Setup x64 target
 rem
-echo "Copmiling for x64"
+echo Compiling thunk code for x64
 set "CLCOMPC=%CLCOMPC% -DWIN64 -D_WIN64"
 set "PATH=%VSBaseDir%\bin\x64;%BinPath%"
 set "LIBD=%VsBaseDir%\lib\x64"
