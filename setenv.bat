@@ -15,40 +15,31 @@ rem
 rem Setup environment for Microsoft Compiler Toolkit
 rem
 pushd %~dp0
-set "VSRootDir=%cd%"
+set "CmscRootDir=%cd%"
 popd
-call %VSRootDir%\versions.bat
-set "VSMsvcDir=%VSRootDir%\msvc"
-set "VSPerlDir=%VSRootDir%\perl"
+call %CmscRootDir%\versions.bat
+set "CmscVcDir=%CmscRootDir%\msvc"
 rem
-if not exist "%VSMsvcDir%\bin\nmake.exe" (
+if not exist "%CmscVcDir%\bin\nmake.exe" (
     echo.
     echo Cannot find msvc tools.
-    echo Make sure the %VSRootDir% points to
+    echo Make sure the %CmscRootDir% points to
     echo correct cmsc installation
-    exit /B 1
-)
-rem
-if not exist "%VSPerlDir%\perl\bin\perl.exe" (
-    echo.
-    echo Cannot find perl in %VSPerlDir%
-    echo Make sure the %VSPerlDir% points to
-    echo correct perl installation
     exit /B 1
 )
 rem
 rem Check arguments
 rem
-set "PBuildCpu=%~1"
+set "TargetParam=%~1"
 shift
-if "%PBuildCpu%" == "" (
+if "%TargetParam%" == "" (
   echo "No platform parameter provided. Using %PROCESSOR_ARCHITECTURE%"
-  set "PBuildCpu=/%PROCESSOR_ARCHITECTURE%"
+  set "TargetParam=/%PROCESSOR_ARCHITECTURE%"
 )
-if /I "%PBuildCpu%" == "/x86"     goto TargetX86
-if /I "%PBuildCpu%" == "/i386"    goto TargetX86
-if /I "%PBuildCpu%" == "/x64"     goto TargetX64
-if /I "%PBuildCpu%" == "/amd64"   goto TargetX64
+if /I "%TargetParam%" == "/x86"     goto TargetX86
+if /I "%TargetParam%" == "/i386"    goto TargetX86
+if /I "%TargetParam%" == "/x64"     goto TargetX64
+if /I "%TargetParam%" == "/amd64"   goto TargetX64
 echo.
 echo Usage: setenv.bat ^< /x86 ^| /x64 ^>
 echo.
@@ -68,17 +59,16 @@ rem
 :SetupEnvars
 echo.
 echo Seting build environment for %BUILD_CPU%
-set "CMSC_PATH=%VSMsvcDir%\bin\%BUILD_CPU%;%VSMsvcDir%\bin;%VSRootDir%\tools;%VSRootDir%\nasm;%VSPerlDir%\perl\bin"
+set "CMSC_PATH=%CmscVcDir%\bin\%BUILD_CPU%;%CmscVcDir%\bin;%CmscRootDir%\tools;%CmscRootDir%\nasm;%CmscRootDir%\perl\perl\bin;%CmscRootDir%\cmake\bin"
 set "PATH=%CMSC_PATH%;%PATH%"
-set "LIB=%VSMsvcDir%\lib\%BUILD_CPU%"
-set "INCLUDE=%VSMsvcDir%\include\crt;%VSMsvcDir%\include;%VSMsvcDir%\include\mfc;%VSMsvcDir%\include\atl"
+set "LIB=%CmscVcDir%\lib\%BUILD_CPU%"
+set "INCLUDE=%CmscVcDir%\include\crt;%CmscVcDir%\include;%CmscVcDir%\include\mfc;%CmscVcDir%\include\atl"
 set "EXTRA_LIBS=msvcrt_compat.lib msvcrt_compat.obj"
 set "TERM=dumb"
 rem
-set VSRootDir=
-set VSMsvcDir=
-set VSPerlDir=
-set PBuildCpu=
+set CmscRootDir=
+set CmscVcDir=
+set TargetParam=
 set NasmVer=
 set PerlVer=
 set CmscVer=
