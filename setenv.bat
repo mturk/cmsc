@@ -20,7 +20,7 @@ popd
 call %CmscRootDir%\versions.bat
 set "CmscVcDir=%CmscRootDir%\msvc"
 rem
-if not exist "%CmscVcDir%\tools\posix2wx.exe" (
+if not exist "%CmscVcDir%\bin\build.exe" (
     echo.
     echo Cannot find build tools.
     echo Make sure the %CmscRootDir% points to
