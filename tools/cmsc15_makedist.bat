@@ -17,35 +17,39 @@ rem Creates and signs distribution zip file
 rem
 rem Prerequisites...
 set "PATH=%~dp0;%PATH%"
+pushd %~dp0
+set "VSToolsDir=%cd%"
+popd
 call ..\versions.bat
 rem
-set "CmscDist=C:\cmsc-%CmscVer%"
+set "CmscDist=%SystemDrive%\cmsc-%CmscVer%"
 set "CmscArch=%CmscOsv%-x86_x64"
 pushd ..
 rem
 echo Custom Microsoft Compiler Toolkit Compilation >dist\VERSION.txt
 echo. >>dist\VERSION.txt
 echo Version: %CmscVer% >>dist\VERSION.txt
-type tools\compile.log >>dist\VERSION.txt
-mkdir dist\tools 2>NUL
-for %%i in (posix2wx 7za) do  copy /Y tools\%%i.exe dist\tools\
+type %VSToolsDir%\compile.log >>dist\VERSION.txt
+md dist\tools 2>NUL
+for %%i in (posix2wx 7za) do copy /Y %VSToolsDir%\%%i.exe dist\tools\
 for %%i in (setenv.bat versions.bat README.md CHANGELOG.txt) do copy /Y %%i dist\
 rem
 echo Creating Distibution ....
 rem
 rd /S /Q %CmscDist% 2>NUL
 move /Y dist %CmscDist%
-pushd %CmscDist%\perl
-call relocation.pl.bat --quiet
-rem Remove extra stuff
-rem rd /S /Q c 2>NUL
-rem rd /S /Q win32 2>NUL
-del /F /Q update_env.pl.bat 2>NUL
-popd
+rem
+rem Uncomment if non portable perl is used
+rem
+rem pushd %CmscDist%\perl
+rem call relocation.pl.bat --quiet
+rem del /F /Q update_env.pl.bat 2>NUL
+rem popd
+rem
 rem Create distribution .zip
-del /F /Q cmsc-%CmscVer%-%CmscArch%.* 2>NUL
+del /F /Q cmsc-* 2>NUL
 7za a -bd cmsc-%CmscVer%-%CmscArch%.zip %CmscDist%
-set "PATH=%CmscDist%\perl\perl\bin;%PATH"
+set "PATH=%CmscDist%\perl\perl\bin;%PATH%"
 call shasum.bat -a 512 cmsc-%CmscVer%-%CmscArch%.zip > cmsc-%CmscVer%-%CmscArch%.sha512
 rem
 popd

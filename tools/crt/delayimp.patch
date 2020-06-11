@@ -1,5 +1,5 @@
---- include/crt/delayimp.h
-+++ include/crt/delayimp.h
+--- include/delayimp.h
++++ include/delayimp.h
 @@ -202,23 +202,19 @@
  //
  ExternC

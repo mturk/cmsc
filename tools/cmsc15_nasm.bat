@@ -24,7 +24,7 @@ rem
 call ..\versions.bat
 set "NasmArch=nasm-%NasmVer%-win%CmscSys%.zip"
 if not exist "%NasmArch%" (
-	curl -qksL -o %NasmArch% https://www.nasm.us/pub/nasm/releasebuilds/%NasmVer%/win%CmscSys%/%NasmArch%
+	curl -qkL --retry 5 -o %NasmArch% https://www.nasm.us/pub/nasm/releasebuilds/%NasmVer%/win%CmscSys%/%NasmArch%
 )
 rem
 if not exist "%NasmArch%" (

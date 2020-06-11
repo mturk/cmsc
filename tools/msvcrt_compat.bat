@@ -20,7 +20,7 @@ set "VSBaseDir=%cd%\dist\msvc"
 popd
 rem
 set "THUNK=msvcrt_compat"
-set "INCLUDE=%VsBaseDir%\include\crt"
+set "INCLUDE=%VsBaseDir%\include\crt;%VsBaseDir%\include"
 set "CLCC=cl /nologo -c -EHs -EHc -GR- -GF -GS -Ox -Os -MD -D_WIN32_WINNT=%WINVER% -DWINVER=%WINVER% -DWIN32_LEAN_AND_MEAN=1 -DNDEBUG"
 echo Compiling thunk code for x86
 rem

@@ -3,6 +3,8 @@ ChangeLog file for cmsc
 
 Changes in 15.0_28
 ------------------
+* Use 64bit-portable perl since it doesn't require
+  calling rellocation.bat after post install.
 * Use curl instead old wget
 * Add cmake toolkit
 * Download nasm instead having the binaries here

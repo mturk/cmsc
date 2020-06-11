@@ -7,17 +7,19 @@ VS2008's cl is 15.00.21022.08, so this seems like the
 same compiler generation.
 
 ### Directory layout:
-
-     <Top Directory>
+<Top Directory>
+    |
+    +--msvc
         +--bin
-        |   +--1033
         |   +--x64
+        |   |   +--1033
         |   +--x86
+        |   |   +--1033
         +--include
         |   +--atl
+        |   +--atl30
         |   +--crt
         |   |   +--sys
-        |   +--gl
         |   +--mfc
         +--lib
             +--x64
@@ -32,8 +34,8 @@ Open command promt in project target and call
      c:> \<cmsc root>\setenv.bat /<cpu>
 
      Where <cpu> can be:
-     /x86 | /i386 for Windows32
-     /x64 | /amd64 for Windows64
+     /x86 for 32-bit Windows
+     /x64 for 64-bit Windows
 
 This will set up required paths for binaries, include and
 lib files.

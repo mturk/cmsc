@@ -22,11 +22,11 @@ set "VSToolsDir=%cd%"
 popd
 rem
 call ..\versions.bat
-set "PerlArch=strawberry-perl-%PerlVer%-%CmscSys%bit.zip"
+set "PerlArch=strawberry-perl-%PerlVer%-%CmscSys%bit-portable.zip"
 if not exist "%PerlArch%" (
 	echo.
 	echo Downloading %PerlArch% ... this can take a while.
-	curl -qksL -o %PerlArch% http://strawberryperl.com/download/%PerlVer%/%PerlArch%
+	curl -qkL --retry 5 -o %PerlArch% http://strawberryperl.com/download/%PerlVer%/%PerlArch%
 )
 rem
 if not exist "%PerlArch%" (
@@ -43,7 +43,6 @@ rem Uncopress
 pushd perl
 7za x -bd %VSToolsDir%\%PerlArch%
 copy /Y /B perl\bin\perl.exe perl\bin\perlw.exe >NUL
-rem xcopy /I /Y /Q c\bin\*.dll perl\bin >NUL
 rem
 popd
 popd

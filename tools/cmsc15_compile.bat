@@ -82,12 +82,10 @@ rem
 %XCOPYD% /S "%WINDDK%\inc\api\crt\stl60" include\crt\ >NUL
 %XCOPYD% /S "%WINDDK%\inc\atl71" include\atl\ >NUL
 %XCOPYD% /S "%WINDDK%\inc\mfc42" include\mfc\ >NUL
-%FCOPYF% "%WINDDK%\inc\api\delayimp.h" include\crt\ >NUL
-%FCOPYF% "%WINDDK%\inc\api\driverspecs.h" include\crt\ >NUL
-%FCOPYF% "%WINDDK%\inc\api\sdv_driverspecs.h" include\crt\ >NUL
+%FCOPYF% "%WINDDK%\inc\api\delayimp.h" include\ >NUL
+%FCOPYF% "%WINDDK%\inc\api\driverspecs.h" include\ >NUL
+%FCOPYF% "%WINDDK%\inc\api\sdv_driverspecs.h" include\ >NUL
 %FCOPYF% "%WINDDK%\inc\api\sal.h" include\crt\ >NUL
-%FCOPYF% "%WINDDK%\inc\api\sal_supp.h" include\crt\ >NUL
-%XCOPYD% "%WINDDK%\inc\api\SpecString*.h" include\crt\ >NUL
 %FCOPYF% include\crt\ctype.h include\crt\wctype.h >NUL
 rem Path crtdefs.h and delayimp.h
 patch -fp0 -i %VSToolsDir%\crt\crtdefs.patch
@@ -100,7 +98,9 @@ rem Copy Binaries
 %XCOPYD% /S "%WINDDK%\bin\x86\x86" bin\x86\ >NUL
 %XCOPYD% /S "%WINDDK%\bin\x86\amd64" bin\x64\ >NUL
 for %%i in (mt guidgen rebase) do copy /Y "%WINSDK%\bin\%%i.exe" bin\ >NUL
-for %%i in (ml nmake) do del bin\%%i.exe >NUL
+del bin\nmake.exe >NUL
+move /Y bin\ml.exe bin\x86\ml.exe >NUL
+%FCOPYF% bin\x64\ml64.exe bin\x64\ml.exe >NUL
 rem
 %XCOPYD% /S "%VSToolsDir%\bin" bin\ >NUL
 rem
@@ -114,8 +114,8 @@ popd
 popd
 call msvcrt_compat.bat
 set "DF=posix2wx.exe"
-rem del /F /Q %DF% 2>NUL
-curl -qksL -o %DF% https://github.com/mturk/posix2wx/releases/download/%Posix2wxVer%/%DF%
+del /F /Q %DF% 2>NUL
+curl -qkL --retry 5 -o %DF% https://github.com/mturk/posix2wx/releases/download/%Posix2wxVer%/%DF%
 echo.
 echo Finished.
 :End

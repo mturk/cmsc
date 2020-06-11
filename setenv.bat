@@ -20,9 +20,9 @@ popd
 call %CmscRootDir%\versions.bat
 set "CmscVcDir=%CmscRootDir%\msvc"
 rem
-if not exist "%CmscVcDir%\bin\nmake.exe" (
+if not exist "%CmscVcDir%\tools\posix2wx.exe" (
     echo.
-    echo Cannot find msvc tools.
+    echo Cannot find build tools.
     echo Make sure the %CmscRootDir% points to
     echo correct cmsc installation
     exit /B 1
@@ -36,23 +36,15 @@ if "%TargetParam%" == "" (
   echo "No platform parameter provided. Using %PROCESSOR_ARCHITECTURE%"
   set "TargetParam=/%PROCESSOR_ARCHITECTURE%"
 )
-if /I "%TargetParam%" == "/x86"     goto TargetX86
-if /I "%TargetParam%" == "/i386"    goto TargetX86
-if /I "%TargetParam%" == "/x64"     goto TargetX64
-if /I "%TargetParam%" == "/amd64"   goto TargetX64
-echo.
-echo Usage: setenv.bat ^< /x86 ^| /x64 ^>
-echo.
-echo        /x86 ^| /i386   - Create 32-bit X86 applications
-echo        /x64 ^| /amd64  - Create 64-bit AMD64/EMT64 applications
-echo.
-exit /B 1
+if /I "%TargetParam%" == "/x86"  goto TargetX86
+if /I "%TargetParam%" == "/i386" goto TargetX86
 rem
+rem Default target is 64-bit Windows
+rem
+set BUILD_CPU=x64
+goto SetupEnvars
 :TargetX86
 set BUILD_CPU=x86
-goto SetupEnvars
-:TargetX64
-set BUILD_CPU=x64
 rem
 rem Additional targets
 rem
