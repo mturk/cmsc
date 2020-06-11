@@ -97,6 +97,7 @@ rem Copy Binaries
 %XCOPYD% "%WINDDK%\bin\x86\1033" bin\ >NUL
 %XCOPYD% /S "%WINDDK%\bin\x86\x86" bin\x86\ >NUL
 %XCOPYD% /S "%WINDDK%\bin\x86\amd64" bin\x64\ >NUL
+%FCOPYF% "%WINDDK%\tools\Other\i386\msdis160.dll" bin\msdis160.dll >NUL
 for %%i in (mt guidgen rebase) do copy /Y "%WINSDK%\bin\%%i.exe" bin\ >NUL
 del bin\nmake.exe >NUL
 move /Y bin\ml.exe bin\x86\ml.exe >NUL
