@@ -26,18 +26,19 @@ rem
 set "CmakeName=cmake-%CmakeVer%-win%CmscSys%-x%CmscSys%"
 set "CmakeArch=%CmakeName%.zip"
 if not exist "%CmakeArch%" (
-	wget -q --no-config https://github.com/Kitware/CMake/releases/download/v%CmakeVer%/%CmakeArch%
+	echo.
+	echo Downloading %CmakeArch% ...
+	curl -qksL -o %CmakeArch% https://github.com/Kitware/CMake/releases/download/v%CmakeVer%/%CmakeArch%
 )
 rem
 if not exist "%CmakeArch%" (
 	echo.
 	echo Failed to download %CmakeArch%
 	exit /B 1
-
 )
 echo Cmake   : %CmakeName%  >>compile.log
 pushd ..
-mkdir dist 2>NUL
+md dist 2>NUL
 pushd dist
 rem Remove previous stuff
 rd /S /Q cmake 2>NUL

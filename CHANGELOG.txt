@@ -3,6 +3,7 @@ ChangeLog file for cmsc
 
 Changes in 15.0_28
 ------------------
+* Use curl instead old wget
 * Add cmake toolkit
 * Download nasm instead having the binaries here
 * Update dependencies

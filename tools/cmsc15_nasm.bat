@@ -24,14 +24,13 @@ rem
 call ..\versions.bat
 set "NasmArch=nasm-%NasmVer%-win%CmscSys%.zip"
 if not exist "%NasmArch%" (
-	wget -q --no-config https://www.nasm.us/pub/nasm/releasebuilds/%NasmVer%/win%CmscSys%/%NasmArch%
+	curl -qksL -o %NasmArch% https://www.nasm.us/pub/nasm/releasebuilds/%NasmVer%/win%CmscSys%/%NasmArch%
 )
 rem
 if not exist "%NasmArch%" (
 	echo.
 	echo Failed to download %NasmArch%
 	exit /B 1
-
 )
 echo Nasm   : %NasmVer%-win%CmscSys%  >>compile.log
 pushd ..\dist

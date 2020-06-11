@@ -24,14 +24,15 @@ rem
 call ..\versions.bat
 set "PerlArch=strawberry-perl-%PerlVer%-%CmscSys%bit.zip"
 if not exist "%PerlArch%" (
-	wget -q --no-config http://strawberryperl.com/download/%PerlVer%/%PerlArch%
+	echo.
+	echo Downloading %PerlArch% ... this can take a while.
+	curl -qksL -o %PerlArch% http://strawberryperl.com/download/%PerlVer%/%PerlArch%
 )
 rem
 if not exist "%PerlArch%" (
 	echo.
 	echo Failed to download %PerlArch%
 	exit /B 1
-
 )
 echo Perl   : %PerlVer%-%CmscSys%bit  >>compile.log
 pushd ..\dist
