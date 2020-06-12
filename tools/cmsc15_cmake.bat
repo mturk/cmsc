@@ -26,15 +26,15 @@ rem
 set "CmakeName=cmake-%CmakeVer%-win%CmscSys%-x%CmscSys%"
 set "CmakeArch=%CmakeName%.zip"
 if not exist "%CmakeArch%" (
-	echo.
-	echo Downloading %CmakeArch% ...
-	curl -qkL --retry 5 -o %CmakeArch% https://github.com/Kitware/CMake/releases/download/v%CmakeVer%/%CmakeArch%
+    echo.
+    echo Downloading %CmakeArch% ...
+    curl -qkL --retry 5 -o %CmakeArch% https://github.com/Kitware/CMake/releases/download/v%CmakeVer%/%CmakeArch%
 )
 rem
 if not exist "%CmakeArch%" (
-	echo.
-	echo Failed to download %CmakeArch%
-	exit /B 1
+    echo.
+    echo Failed to download %CmakeArch%
+    exit /B 1
 )
 echo Cmake  : %CmakeName% >>compile.log
 pushd ..

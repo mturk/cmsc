@@ -31,14 +31,16 @@ See `tools\README.txt` for dependencies and versions
 
 Open command promt in project target and call
 
-     c:> \<cmsc root>\setenv.bat /<cpu>
+     c:> \<cmsc root>\setenv.bat <cpu>
 
      Where <cpu> can be:
-     /x86 for 32-bit Windows
-     /x64 for 64-bit Windows
+     x64 or amd64 for 64-bit Windows
+     x86 or i386  for 32-bit Windows
+
+     If no atguments procided it defaults to x64
 
 This will set up required paths for binaries, include and
-lib files.
+lib files. Note that default value is x64.
 It will also set `EXTRA_LIBS` environment variable
 with the value `msvcrt_compat.lib msvcrt_compat.obj`
 

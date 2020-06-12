@@ -25,15 +25,15 @@ call cmsc15_versions.bat
 set "PerlName=strawberry-perl-%PerlVer%-%CmscSys%bit-portable"
 set "PerlArch=%PerlName%.zip"
 if not exist "%PerlArch%" (
-	echo.
-	echo Downloading %PerlArch% ... this can take a while.
-	curl -qkL --retry 5 -o %PerlArch% http://strawberryperl.com/download/%PerlVer%/%PerlArch%
+    echo.
+    echo Downloading %PerlArch% ... this can take a while.
+    curl -qkL --retry 5 -o %PerlArch% http://strawberryperl.com/download/%PerlVer%/%PerlArch%
 )
 rem
 if not exist "%PerlArch%" (
-	echo.
-	echo Failed to download %PerlArch%
-	exit /B 1
+    echo.
+    echo Failed to download %PerlArch%
+    exit /B 1
 )
 echo Perl   : %PerlName% >>compile.log
 pushd ..\dist
