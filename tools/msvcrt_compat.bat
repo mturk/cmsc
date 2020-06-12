@@ -24,7 +24,7 @@ set "INCLUDE=%VsBaseDir%\include\crt;%VsBaseDir%\include"
 set "CLCC=cl /nologo -c -EHs -EHc -GR- -GF -GS -Ox -Os -MD -D_WIN32_WINNT=%WINVER% -DWINVER=%WINVER% -DWIN32_LEAN_AND_MEAN=1 -DNDEBUG"
 echo Compiling thunk code for x86
 rem
-set "PATH=%VSBaseDir%\bin\x86;%PATH%"
+set "PATH=%VSBaseDir%\bin\x86;%VSBaseDir%\bin;%PATH%"
 set "LIBD=%VsBaseDir%\lib\x86"
 lib /NOLOGO /NODEFAULTLIB /DEF:%THUNK%.def /MACHINE:X86 /NAME:msvcrt.dll /OUT:%LIBD%\%THUNK%.lib
 %CLCC% crt\fp10.c /Fo%LIBD%\fp10.obj
@@ -43,7 +43,7 @@ rem Setup x64 target
 rem
 echo Compiling thunk code for x64
 set "CLCC=%CLCC% -DWIN64 -D_WIN64"
-set "PATH=%VSBaseDir%\bin\x64;%PATH%"
+set "PATH=%VSBaseDir%\bin\x64;%VSBaseDir%\bin;%PATH%"
 set "LIBD=%VsBaseDir%\lib\x64"
 lib /NOLOGO /NODEFAULTLIB /DEF:%THUNK%.def /MACHINE:X64 /NAME:msvcrt.dll /OUT:%LIBD%\%THUNK%.lib
 %CLCC% crt\binmode.c /Fo%LIBD%\binmode.obj

@@ -22,7 +22,8 @@ set "VSToolsDir=%cd%"
 popd
 rem
 call ..\versions.bat
-set "NasmArch=nasm-%NasmVer%-win%CmscSys%.zip"
+set "NasmName=nasm-%NasmVer%-win%CmscSys%"
+set "NasmArch=%NasmName%.zip"
 if not exist "%NasmArch%" (
 	curl -qkL --retry 5 -o %NasmArch% https://www.nasm.us/pub/nasm/releasebuilds/%NasmVer%/win%CmscSys%/%NasmArch%
 )
@@ -32,7 +33,7 @@ if not exist "%NasmArch%" (
 	echo Failed to download %NasmArch%
 	exit /B 1
 )
-echo Nasm   : %NasmVer%-win%CmscSys%  >>compile.log
+echo Nasm   : %NasmName% >>compile.log
 pushd ..\dist
 rem Remove previous stuff
 rd /S /Q nasm 2>NUL

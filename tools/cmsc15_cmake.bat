@@ -36,7 +36,7 @@ if not exist "%CmakeArch%" (
 	echo Failed to download %CmakeArch%
 	exit /B 1
 )
-echo Cmake   : %CmakeName%  >>compile.log
+echo Cmake  : %CmakeName% >>compile.log
 pushd ..
 md dist 2>NUL
 pushd dist

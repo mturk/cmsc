@@ -22,7 +22,8 @@ set "VSToolsDir=%cd%"
 popd
 rem
 call ..\versions.bat
-set "PerlArch=strawberry-perl-%PerlVer%-%CmscSys%bit-portable.zip"
+set "PerlName=strawberry-perl-%PerlVer%-%CmscSys%bit-portable"
+set "PerlArch=%PerlName%.zip"
 if not exist "%PerlArch%" (
 	echo.
 	echo Downloading %PerlArch% ... this can take a while.
@@ -34,7 +35,7 @@ if not exist "%PerlArch%" (
 	echo Failed to download %PerlArch%
 	exit /B 1
 )
-echo Perl   : %PerlVer%-%CmscSys%bit  >>compile.log
+echo Perl   : %PerlName% >>compile.log
 pushd ..\dist
 rem Remove previous stuff
 rd /S /Q perl 2>NUL

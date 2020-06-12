@@ -117,6 +117,7 @@ call msvcrt_compat.bat
 set "DF=posix2wx.exe"
 del /F /Q %DF% 2>NUL
 curl -qkL --retry 5 -o %DF% https://github.com/mturk/posix2wx/releases/download/%Posix2wxVer%/%DF%
+echo Utils  : %Posix2wxVer%/%DF% >>%VSToolsDir%\compile.log
 echo.
 echo Finished.
 :End

@@ -26,12 +26,12 @@ set "CmscDist=%SystemDrive%\cmsc-%CmscVer%"
 set "CmscArch=%CmscOsv%-x86_x64"
 pushd ..
 rem
-echo Custom Microsoft Compiler Toolkit Compilation >dist\VERSION.txt
-echo. >>dist\VERSION.txt
-echo Version: %CmscVer% >>dist\VERSION.txt
-type %VSToolsDir%\compile.log >>dist\VERSION.txt
+echo Custom Microsoft Compiler Toolkit Compilation >dist\VERSIONS.txt
+echo. >>dist\VERSIONS.txt
+echo Version: %CmscVer% >>dist\VERSIONS.txt
+type %VSToolsDir%\compile.log >>dist\VERSIONS.txt
 md dist\tools 2>NUL
-for %%i in (posix2wx 7za) do copy /Y %VSToolsDir%\%%i.exe dist\tools\
+for %%i in (README.txt posix2wx.exe 7za.exe) do copy /Y %VSToolsDir%\%%i dist\tools\
 for %%i in (setenv.bat versions.bat README.md CHANGELOG.txt) do copy /Y %%i dist\
 rem
 echo Creating Distibution ....
