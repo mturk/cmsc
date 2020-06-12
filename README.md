@@ -3,27 +3,25 @@ Custom Microsoft Compiler Toolkit Compilation
 
 Based on the VC from DDK 7.1.0 (cl 15.00.30729.207)
 
-VS2008's cl is 15.00.21022.08, so this seems like the
-same compiler generation.
-
 ### Directory layout:
-<Top Directory>
-    |
-    +--msvc
-        +--bin
-        |   +--x64
-        |   |   +--1033
-        |   +--x86
-        |   |   +--1033
-        +--include
-        |   +--atl
-        |   +--atl30
-        |   +--crt
-        |   |   +--sys
-        |   +--mfc
-        +--lib
-            +--x64
-            +--x86
+
+    <Top Directory>
+        |
+        +--msvc
+            +--bin
+            |   +--x64
+            |   |   +--1033
+            |   +--x86
+            |   |   +--1033
+            +--include
+            |   +--atl
+            |   +--atl30
+            |   +--crt
+            |   |   +--sys
+            |   +--mfc
+            +--lib
+                +--x64
+                +--x86
 
 See `tools\README.txt` for dependencies and versions
 
@@ -37,10 +35,10 @@ Open command promt in project target and call
      x64 or amd64 for 64-bit Windows
      x86 or i386  for 32-bit Windows
 
-     If no atguments procided it defaults to x64
+     If no argument is provided defaults is x64
 
 This will set up required paths for binaries, include and
-lib files. Note that default value is x64.
+lib files.
 It will also set `EXTRA_LIBS` environment variable
 with the value `msvcrt_compat.lib msvcrt_compat.obj`
 

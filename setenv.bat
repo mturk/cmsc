@@ -18,9 +18,9 @@ pushd %~dp0
 set "CmscRootDir=%cd%"
 popd
 call %CmscRootDir%\tools\cmsc15_versions.bat
-set "CmscVcDir=%CmscRootDir%\msvc"
+set "CmsvcDir=%CmscRootDir%\msvc"
 rem
-if not exist "%CmscVcDir%\bin\build.exe" (
+if not exist "%CmsvcDir%\bin\build.exe" (
     echo.
     echo Cannot find build tools.
     echo Make sure the %CmscRootDir% points to
@@ -30,32 +30,31 @@ if not exist "%CmscVcDir%\bin\build.exe" (
 rem
 rem Default target is 64-bit Windows
 rem
-if /I ".%~1" == ".amd64" set "BUILD_CPU=x64"
-if /I ".%~1" == ".x86"   set "BUILD_CPU=x86"
-if /I ".%~1" == ".i386"  set "BUILD_CPU=x86"
+if /I ".%~1" == ".amd64" ( set "BUILD_CPU=x64" )
+if /I ".%~1" == ".x86"   ( set "BUILD_CPU=x86" )
+if /I ".%~1" == ".i386"  ( set "BUILD_CPU=x86" )
 rem
-if ".%BUILD_CPU%" == ".%BUILD_CPU%" (
-  echo "Cannot determine BUILD_CPU ... using x%CmscSys%"
-  set "BUILD_CPU=x%CmscSys%"
+if ".%BUILD_CPU%" == "." (
+  echo Using default architecture: x%CmscSys%
+  set "BUILD_CPU=x64"
 )
 rem
-echo.
-echo Seting build environment for %BUILD_CPU%
-set "CMSC_PATH=%CmscVcDir%\bin\%BUILD_CPU%;%CmscVcDir%\bin;%CmscRootDir%\tools;%CmscRootDir%\nasm;%CmscRootDir%\perl\perl\bin;%CmscRootDir%\cmake\bin"
+echo Seting build environment for win-%BUILD_CPU%
+set "CMSC_PATH=%CmsvcDir%\bin\%BUILD_CPU%;%CmsvcDir%\bin;%CmscRootDir%\tools;%CmscRootDir%\nasm;%CmscRootDir%\perl\perl\bin;%CmscRootDir%\cmake\bin"
 set "PATH=%CMSC_PATH%;%PATH%"
-set "LIB=%CmscVcDir%\lib\%BUILD_CPU%"
-set "INCLUDE=%CmscVcDir%\include\crt;%CmscVcDir%\include;%CmscVcDir%\include\mfc;%CmscVcDir%\include\atl"
+set "LIB=%CmsvcDir%\lib\%BUILD_CPU%"
+set "INCLUDE=%CmsvcDir%\include\crt;%CmsvcDir%\include;%CmsvcDir%\include\mfc;%CmsvcDir%\include\atl"
 set "EXTRA_LIBS=msvcrt_compat.lib msvcrt_compat.obj"
 set "TERM=dumb"
 rem
 rem Clean unused vars
 rem
 set CmscRootDir=
-set CmscVcDir=
+set CmsvcDir=
 set NasmVer=
 set PerlVer=
 set CmscVer=
 set CmscOsv=
 set CmscSys=
 set CmakeVer=
-set Posix2wxVer=
+set P2wxVer=

@@ -13,27 +13,28 @@ rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 rem See the License for the specific language governing permissions and
 rem limitations under the License.
 rem
-rem Directory Layout creator for Microsoft Compiler Toolkit
+rem Directory Layout creator for Custom Microsoft Compiler Toolkit
 rem
-rem Prerequisites...
 set "PATH=%~dp0;%PATH%"
 pushd %~dp0
 set "VSToolsDir=%cd%"
 popd
 call cmsc15_versions.bat
+rem Prerequisites...
 set "ProgramFiles64=%ProgramFiles%"
 set "WINDDK=c:\WinDDK\7600.16385.1"
 set "WPSDK6=%ProgramFiles64%\Microsoft Platform SDK for Windows Server 2003 R2"
 set "WINSDK=%ProgramFiles64%\Microsoft SDKs\Windows\v7.1"
 rem
-set MSCVCD=dist\msvc
-set XCOPYD=xcopy /I /Y /Q
-set FCOPYF=copy /Y
+set "MSCVCD=dist\msvc"
+set "XCOPYD=xcopy /I /Y /Q"
+set "FCOPYF=copy /Y"
 rem
 pushd ..
 rem Remove previous stuff
 rd /S /Q dist 2>NUL
-if /i "%~1" == "/clean" goto End
+del /F /Q cmsc-* 2>NUL
+if /i ".%~1" == ".clean" goto End
 md %MSCVCD%
 pushd %MSCVCD%
 rem Directories
@@ -58,7 +59,7 @@ if not exist "%WINSDK%\bin" (
 )
 rem
 echo Built  : %DATE% - %TIME% >%VSToolsDir%\compile.log
-echo Target : %CmscOsv%  >>%VSToolsDir%\compile.log
+echo Target : %CmscOsv%-%CmscSys%bit  >>%VSToolsDir%\compile.log
 echo WinDDK : %WINDDK:c:\WinDDK\=% >>%VSToolsDir%\compile.log
 echo WinSDK : %WINSDK:c:\Program Files\Microsoft SDKs\Windows\=% >>%VSToolsDir%\compile.log
 rem

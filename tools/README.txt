@@ -1,5 +1,5 @@
-Tools used in this distribution
-===============================
+Tools used for building this distribution
+=========================================
 
 curl.exe        7.70.0_2 https://curl.haxx.se/windows/dl-7.70.0_2/curl-7.70.0_2-win64-mingw.zip
 7za.exe         19.00    https://www.7-zip.org/a/7z1900-extra.7z
