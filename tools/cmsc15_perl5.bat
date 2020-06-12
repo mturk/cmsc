@@ -21,7 +21,7 @@ pushd %~dp0
 set "VSToolsDir=%cd%"
 popd
 rem
-call ..\versions.bat
+call ..\.pvers.bat
 set "PerlName=strawberry-perl-%PerlVer%-%CmscSys%bit-portable"
 set "PerlArch=%PerlName%.zip"
 if not exist "%PerlArch%" (

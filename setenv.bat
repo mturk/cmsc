@@ -17,7 +17,7 @@ rem
 pushd %~dp0
 set "CmscRootDir=%cd%"
 popd
-call %CmscRootDir%\versions.bat
+call %CmscRootDir%\.pvers.bat
 set "CmscVcDir=%CmscRootDir%\msvc"
 rem
 if not exist "%CmscVcDir%\bin\build.exe" (

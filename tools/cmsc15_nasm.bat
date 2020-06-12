@@ -21,7 +21,7 @@ pushd %~dp0
 set "VSToolsDir=%cd%"
 popd
 rem
-call ..\versions.bat
+call ..\.pvers.bat
 set "NasmName=nasm-%NasmVer%-win%CmscSys%"
 set "NasmArch=%NasmName%.zip"
 if not exist "%NasmArch%" (

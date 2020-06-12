@@ -20,7 +20,7 @@ set "PATH=%~dp0;%PATH%"
 pushd %~dp0
 set "VSToolsDir=%cd%"
 popd
-call ..\versions.bat
+call ..\.pvers.bat
 rem
 set "CmscDist=%SystemDrive%\cmsc-%CmscVer%"
 set "CmscArch=%CmscOsv%-x86_x64"
