@@ -20,7 +20,7 @@ set "PATH=%~dp0;%PATH%"
 pushd %~dp0
 set "VSToolsDir=%cd%"
 popd
-call ..\.pvers.bat
+call cmsc15_versions.bat
 set "ProgramFiles64=%ProgramFiles%"
 set "WINDDK=c:\WinDDK\7600.16385.1"
 set "WPSDK6=%ProgramFiles64%\Microsoft Platform SDK for Windows Server 2003 R2"

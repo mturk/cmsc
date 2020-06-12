@@ -21,7 +21,7 @@ pushd %~dp0
 set "VSToolsDir=%cd%"
 popd
 rem
-call ..\.pvers.bat
+call cmsc15_versions.bat
 rem
 set "CmakeName=cmake-%CmakeVer%-win%CmscSys%-x%CmscSys%"
 set "CmakeArch=%CmakeName%.zip"

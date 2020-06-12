@@ -17,7 +17,7 @@ rem
 pushd %~dp0
 set "CmscRootDir=%cd%"
 popd
-call %CmscRootDir%\.pvers.bat
+call %CmscRootDir%\tools\cmsc15_versions.bat
 set "CmscVcDir=%CmscRootDir%\msvc"
 rem
 if not exist "%CmscVcDir%\bin\build.exe" (
@@ -28,27 +28,16 @@ if not exist "%CmscVcDir%\bin\build.exe" (
     exit /B 1
 )
 rem
-rem Check arguments
-rem
-set "TargetParam=%~1"
-shift
-if "%TargetParam%" == "" (
-  echo "No platform parameter provided. Using %PROCESSOR_ARCHITECTURE%"
-  set "TargetParam=/%PROCESSOR_ARCHITECTURE%"
-)
-if /I "%TargetParam%" == "/x86"  goto TargetX86
-if /I "%TargetParam%" == "/i386" goto TargetX86
-rem
 rem Default target is 64-bit Windows
 rem
+if ".%~1" == "." (
+  echo "No platform parameter provided. Using %BUILD_CPU%"
+)
+rem
 set BUILD_CPU=x64
-goto SetupEnvars
-:TargetX86
-set BUILD_CPU=x86
+if /I ".%~1" == ".x86"  set "BUILD_CPU=x86"
+if /I ".%~1" == ".i386" set "BUILD_CPU=x86"
 rem
-rem Additional targets
-rem
-:SetupEnvars
 echo.
 echo Seting build environment for %BUILD_CPU%
 set "CMSC_PATH=%CmscVcDir%\bin\%BUILD_CPU%;%CmscVcDir%\bin;%CmscRootDir%\tools;%CmscRootDir%\nasm;%CmscRootDir%\perl\perl\bin;%CmscRootDir%\cmake\bin"
@@ -58,9 +47,10 @@ set "INCLUDE=%CmscVcDir%\include\crt;%CmscVcDir%\include;%CmscVcDir%\include\mfc
 set "EXTRA_LIBS=msvcrt_compat.lib msvcrt_compat.obj"
 set "TERM=dumb"
 rem
+rem Clean unused vars
+rem
 set CmscRootDir=
 set CmscVcDir=
-set TargetParam=
 set NasmVer=
 set PerlVer=
 set CmscVer=

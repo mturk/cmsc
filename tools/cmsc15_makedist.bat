@@ -20,7 +20,7 @@ set "PATH=%~dp0;%PATH%"
 pushd %~dp0
 set "VSToolsDir=%cd%"
 popd
-call ..\.pvers.bat
+call cmsc15_versions.bat
 rem
 set "CmscDist=%SystemDrive%\cmsc-%CmscVer%"
 set "CmscArch=%CmscOsv%-x86_x64"
@@ -31,8 +31,8 @@ echo. >>dist\VERSIONS.txt
 echo Version: %CmscVer% >>dist\VERSIONS.txt
 type %VSToolsDir%\compile.log >>dist\VERSIONS.txt
 md dist\tools 2>NUL
-for %%i in (README.txt posix2wx.exe 7za.exe) do copy /Y %VSToolsDir%\%%i dist\tools\
-for %%i in (setenv.bat versions.bat README.md CHANGELOG.txt) do copy /Y %%i dist\
+for %%i in (cmsc15_versions.bat README.txt posix2wx.exe 7za.exe) do copy /Y %VSToolsDir%\%%i dist\tools\
+for %%i in (setenv.bat README.md CHANGELOG.txt) do copy /Y %%i dist\
 rem
 echo Creating Distibution ....
 rem
