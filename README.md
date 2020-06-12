@@ -3,28 +3,6 @@ Custom Microsoft Compiler Toolkit Compilation
 
 Based on the VC from DDK 7.1.0 (cl 15.00.30729.207)
 
-### Directory layout:
-
-    <Top Directory>
-        |
-        +--msvc
-            +--bin
-            |   +--x64
-            |   |   +--1033
-            |   +--x86
-            |   |   +--1033
-            +--include
-            |   +--atl
-            |   +--atl30
-            |   +--crt
-            |   |   +--sys
-            |   +--mfc
-            +--lib
-                +--x64
-                +--x86
-
-See `tools\README.txt` for dependencies and versions
-
 ### Invoking
 
 Open command promt in project target and call
