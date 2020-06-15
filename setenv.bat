@@ -17,10 +17,8 @@ rem
 pushd %~dp0
 set "CmscRootDir=%cd%"
 popd
-call %CmscRootDir%\tools\cmsc15_versions.bat
-set "CmsvcDir=%CmscRootDir%\msvc"
 rem
-if not exist "%CmsvcDir%\bin\build.exe" (
+if not exist "%CmscRootDir%\msvc\bin\build.exe" (
     echo.
     echo Cannot find build tools.
     echo Make sure the %CmscRootDir% points to
@@ -40,21 +38,9 @@ if ".%BUILD_CPU%" == "." (
 )
 rem
 echo Seting build environment for win-%BUILD_CPU%
-set "CMSC_PATH=%CmsvcDir%\bin\%BUILD_CPU%;%CmsvcDir%\bin;%CmscRootDir%\tools;%CmscRootDir%\nasm;%CmscRootDir%\perl\perl\bin;%CmscRootDir%\cmake\bin"
+set "CMSC_PATH=%CmscRootDir%\msvc\bin\%BUILD_CPU%;%CmscRootDir%\msvc\bin;%CmscRootDir%\tools;%CmscRootDir%\nasm;%CmscRootDir%\perl\perl\bin;%CmscRootDir%\cmake\bin"
 set "PATH=%CMSC_PATH%;%PATH%"
-set "LIB=%CmsvcDir%\lib\%BUILD_CPU%"
-set "INCLUDE=%CmsvcDir%\include\crt;%CmsvcDir%\include;%CmsvcDir%\include\mfc;%CmsvcDir%\include\atl"
+set "LIB=%CmscRootDir%\msvc\lib\%BUILD_CPU%"
+set "INCLUDE=%CmscRootDir%\msvc\include\crt;%CmscRootDir%\msvc\include;%CmscRootDir%\msvc\include\mfc;%CmscRootDir%\msvc\include\atl"
 set "EXTRA_LIBS=msvcrt_compat.lib msvcrt_compat.obj"
-set "TERM=dumb"
-rem
-rem Clean unused vars
-rem
-set CmscRootDir=
-set CmsvcDir=
-set NasmVer=
-set PerlVer=
-set CmscVer=
-set CmscOsv=
-set CmscSys=
-set CmakeVer=
-set P2wxVer=
+set "WINVER=0x0601"
