@@ -21,39 +21,40 @@ popd
 rem
 set "THUNK=msvcrt_compat"
 set "INCLUDE=%VsBaseDir%\include\crt;%VsBaseDir%\include"
-set "CLCC=cl /nologo -c -EHs -EHc -GR- -GF -GS -Ox -Os -MD -D_WIN32_WINNT=%WINVER% -DWINVER=%WINVER% -DWIN32_LEAN_AND_MEAN=1 -DNDEBUG"
+set "CLCC=cl.exe /nologo -c -EHs -EHc -GR- -GF -GS -Ox -Os -MD -D_WIN32_WINNT=%WINVER% -DWINVER=%WINVER% -DWIN32_LEAN_AND_MEAN=1 -DNDEBUG"
 echo Compiling thunk code for x86
 rem
-set "PATH=%VSBaseDir%\bin\x86;%VSBaseDir%\bin;%PATH%"
-set "LIBD=%VsBaseDir%\lib\x86"
-lib /NOLOGO /NODEFAULTLIB /DEF:%THUNK%.def /MACHINE:X86 /NAME:msvcrt.dll /OUT:%LIBD%\%THUNK%.lib
-%CLCC% crt\fp10.c /Fo%LIBD%\fp10.obj
-%CLCC% crt\binmode.c /Fo%LIBD%\binmode.obj
-%CLCC% crt\commode.c /Fo%LIBD%\commode.obj
-%CLCC% crt\newmode.c /Fo%LIBD%\newmode.obj
-%CLCC% crt\noarg.c /Fo%LIBD%\noarg.obj
-%CLCC% crt\noenv.c /Fo%LIBD%\noenv.obj
-%CLCC% crt\setargv.c /Fo%LIBD%\setargv.obj
-%CLCC% crt\wsetargv.c /Fo%LIBD%\wsetargv.obj
+set "SAVED_PATH=%PATH%"
+set "PATH=%VSBaseDir%\bin\x86;%VSBaseDir%\bin;%SAVED_PATH%"
+set "OUTD=%VsBaseDir%\lib\x86"
+lib.exe /NOLOGO /NODEFAULTLIB /DEF:%THUNK%.def /MACHINE:X86 /NAME:msvcrt.dll /OUT:%OUTD%\%THUNK%.lib
+%CLCC% crt\fp10.c /Fo%OUTD%\fp10.obj
+%CLCC% crt\binmode.c /Fo%OUTD%\binmode.obj
+%CLCC% crt\commode.c /Fo%OUTD%\commode.obj
+%CLCC% crt\newmode.c /Fo%OUTD%\newmode.obj
+%CLCC% crt\noarg.c /Fo%OUTD%\noarg.obj
+%CLCC% crt\noenv.c /Fo%OUTD%\noenv.obj
+%CLCC% crt\setargv.c /Fo%OUTD%\setargv.obj
+%CLCC% crt\wsetargv.c /Fo%OUTD%\wsetargv.obj
 rem
-del /Q %LIBD%\%THUNK%.exp
-copy /Y %LIBD%\msvcrt_win2003.obj %LIBD%\%THUNK%.obj
+del /Q %OUTD%\%THUNK%.exp
+copy /Y %OUTD%\msvcrt_win2003.obj %OUTD%\%THUNK%.obj
 rem
 rem Setup x64 target
 rem
 echo Compiling thunk code for x64
 set "CLCC=%CLCC% -DWIN64 -D_WIN64"
-set "PATH=%VSBaseDir%\bin\x64;%VSBaseDir%\bin;%PATH%"
-set "LIBD=%VsBaseDir%\lib\x64"
-lib /NOLOGO /NODEFAULTLIB /DEF:%THUNK%.def /MACHINE:X64 /NAME:msvcrt.dll /OUT:%LIBD%\%THUNK%.lib
-%CLCC% crt\binmode.c /Fo%LIBD%\binmode.obj
-%CLCC% crt\commode.c /Fo%LIBD%\commode.obj
-%CLCC% crt\newmode.c /Fo%LIBD%\newmode.obj
-%CLCC% crt\noarg.c /Fo%LIBD%\noarg.obj
-%CLCC% crt\noenv.c /Fo%LIBD%\noenv.obj
-%CLCC% crt\setargv.c /Fo%LIBD%\setargv.obj
-%CLCC% crt\wsetargv.c /Fo%LIBD%\wsetargv.obj
+set "PATH=%VSBaseDir%\bin\x64;%VSBaseDir%\bin;%SAVED_PATH%"
+set "OUTD=%VsBaseDir%\lib\x64"
+lib.exe /NOLOGO /NODEFAULTLIB /DEF:%THUNK%.def /MACHINE:X64 /NAME:msvcrt.dll /OUT:%OUTD%\%THUNK%.lib
+%CLCC% crt\binmode.c /Fo%OUTD%\binmode.obj
+%CLCC% crt\commode.c /Fo%OUTD%\commode.obj
+%CLCC% crt\newmode.c /Fo%OUTD%\newmode.obj
+%CLCC% crt\noarg.c /Fo%OUTD%\noarg.obj
+%CLCC% crt\noenv.c /Fo%OUTD%\noenv.obj
+%CLCC% crt\setargv.c /Fo%OUTD%\setargv.obj
+%CLCC% crt\wsetargv.c /Fo%OUTD%\wsetargv.obj
 rem
-del /Q %LIBD%\%THUNK%.exp
-copy /Y %LIBD%\msvcrt_win2003.obj %LIBD%\%THUNK%.obj
+del /Q %OUTD%\%THUNK%.exp
+copy /Y %OUTD%\msvcrt_win2003.obj %OUTD%\%THUNK%.obj
 rem
