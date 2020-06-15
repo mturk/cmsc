@@ -25,13 +25,13 @@ call cmsc15_versions.bat
 set "NasmName=nasm-%NasmVer%-win%CmscSys%"
 set "NasmArch=%NasmName%.zip"
 if not exist "%NasmArch%" (
-	curl -qkL --retry 5 -o %NasmArch% https://www.nasm.us/pub/nasm/releasebuilds/%NasmVer%/win%CmscSys%/%NasmArch%
+    curl -qkL --retry 5 -o %NasmArch% https://www.nasm.us/pub/nasm/releasebuilds/%NasmVer%/win%CmscSys%/%NasmArch%
 )
 rem
 if not exist "%NasmArch%" (
-	echo.
-	echo Failed to download %NasmArch%
-	exit /B 1
+    echo.
+    echo Failed to download %NasmArch%
+    exit /B 1
 )
 echo Nasm   : %NasmName% >>compile.log
 pushd ..\dist
