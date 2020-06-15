@@ -28,14 +28,17 @@ set "CmakeArch=%CmakeName%.zip"
 if not exist "%CmakeArch%" (
     echo.
     echo Downloading %CmakeArch% ...
-    curl -qkL --retry 5 -o %CmakeArch% https://github.com/Kitware/CMake/releases/download/v%CmakeVer%/%CmakeArch%
+    curl %CurlOpts% -o %CmakeArch% https://github.com/Kitware/CMake/releases/download/v%CmakeVer%/%CmakeArch%
 )
 rem
-if not exist "%CmakeArch%" (
-    echo.
-    echo Failed to download %CmakeArch%
-    exit /B 1
-)
+7za t %CmakeArch% >NUL 2>&1 && ( goto Exp )
+echo.
+echo Failed to download %CmakeArch%
+del /F /Q %CmakeArch% 2>NUL
+exit /B 1
+rem
+:Exp
+rem
 echo Cmake  : %CmakeName% >>compile.log
 pushd ..
 md dist 2>NUL

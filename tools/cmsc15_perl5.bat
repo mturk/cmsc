@@ -27,14 +27,17 @@ set "PerlArch=%PerlName%.zip"
 if not exist "%PerlArch%" (
     echo.
     echo Downloading %PerlArch% ... this can take a while.
-    curl -qkL --retry 5 -o %PerlArch% http://strawberryperl.com/download/%PerlVer%/%PerlArch%
+    curl %CurlOpts% -o %PerlArch% http://strawberryperl.com/download/%PerlVer%/%PerlArch%
 )
 rem
-if not exist "%PerlArch%" (
-    echo.
-    echo Failed to download %PerlArch%
-    exit /B 1
-)
+7za t %PerlArch% >NUL 2>&1 && ( goto Exp )
+echo.
+echo Failed to download %PerlArch%
+del /F /Q %PerlArch% 2>NUL
+exit /B 1
+rem
+:Exp
+rem
 echo Perl   : %PerlName% >>compile.log
 pushd ..\dist
 rem Remove previous stuff
