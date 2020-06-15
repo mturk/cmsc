@@ -3,7 +3,9 @@ ChangeLog file for cmsc
 
 Changes in 15.0_29
 ------------------
-
+* Cleanup unused tools
+* Make setup.bat standalone
+* Update dependencies
 
 Changes in 15.0_28
 ------------------
