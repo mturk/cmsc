@@ -25,6 +25,7 @@ set "ProgramFiles64=%ProgramFiles%"
 set "WINDDK=c:\WinDDK\7600.16385.1"
 set "WPSDK6=%ProgramFiles64%\Microsoft Platform SDK for Windows Server 2003 R2"
 set "WINSDK=%ProgramFiles64%\Microsoft SDKs\Windows\v7.1"
+set "MSVS09=%ProgramFiles(x86)%\Microsoft Visual Studio 9.0\VC"
 rem
 set "MSCVCD=dist\msvc"
 set "XCOPYD=xcopy /I /Y /Q"
@@ -100,11 +101,11 @@ rem Copy Binaries
 %XCOPYD% /S "%WINDDK%\bin\x86\amd64" bin\x64\ >NUL
 %FCOPYF% "%WINDDK%\tools\Other\i386\msdis160.dll" bin\msdis160.dll >NUL
 for %%i in (mt guidgen rebase) do copy /Y "%WINSDK%\bin\%%i.exe" bin\ >NUL
-del bin\nmake.exe >NUL
 move /Y bin\ml.exe bin\x86\ml.exe >NUL
-%FCOPYF% bin\x64\ml64.exe bin\x64\ml.exe >NUL
-rem
-%XCOPYD% /S "%VSToolsDir%\bin" bin\ >NUL
+rem Copy missing lib.exe from VS2009
+%FCOPYF% "%MSVS09%\bin\pgodb90.dll" bin\pgodb90.dll >NUL
+%FCOPYF% "%MSVS09%\bin\lib.exe" bin\x86\lib.exe >NUL
+%FCOPYF% "%MSVS09%\bin\x86_amd64\lib.exe" bin\x64\lib.exe >NUL
 rem
 if not exist "%WPSDK6%\include\atl" (
     echo Cannot find "%WPSDK6%" directory >>%VSToolsDir%\compile.log
@@ -117,4 +118,6 @@ popd
 call msvcrt_compat.bat
 echo.
 echo Finished.
+echo You can now call cmsc15_perl5.bat
+echo.
 :End

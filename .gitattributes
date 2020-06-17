@@ -1,4 +1,4 @@
 *.sh eol=lf
-*.patch eol=lf
+*.patch eol=crlf
 *.txt eol=crlf
 *.bat eol=crlf
