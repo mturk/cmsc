@@ -52,11 +52,12 @@ files are set in EXTRA_LIBS envvar within setenv.bat.
 By default compile will use Windows 7 libraries
 from DDK. This can be define inside versions.bat file
 
-## Additional components
+## Perl
 
-
-# Perl
-
+Strawbery Perl is required component for `CMSC`.
+It allows important packages to be compiled like `OpenSSL` and
+others. It also contains a set of tools that can be used for
+downloading and signing files etc.
 
 ```
  c:> cmsc15_perl5.bat
@@ -65,7 +66,12 @@ from DDK. This can be define inside versions.bat file
 Will download [Strawbery Perl release](http://strawberryperl.com/releases.html)
 and uncompress in `<cmsc root>\perl`
 
-# Nasm
+
+## Additional components
+
+Following additional components can be added
+
+### Nasm
 
 
 ```
@@ -76,7 +82,7 @@ Will download [Netwide assembler](https://www.nasm.us/pub/nasm/releasebuilds)
 and uncompress in `<cmsc root>\nasm`
 
 
-# Cmake
+### Cmake
 
 
 ```
@@ -99,9 +105,10 @@ This will create `cmsc-<version>-win7-x86_x64.zip` archive
 as well as sha-512 digest.
 
 
-# All in one
+## All in one
 
-Typical distribution:
+Typical distribution build will look like
+
 ```
  c:\> git clone ...
  c:\> cd cmsc\tools
