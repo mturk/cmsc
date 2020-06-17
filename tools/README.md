@@ -19,15 +19,15 @@ downloadable from Microsoft MSDN site.
 
 * Windows Software Development Kit for Windows 7
   Make complete install inside default directory.
-  C:\Program Files\Microsoft SDKs\Windows\v7.1\
+  `C:\Program Files\Microsoft SDKs\Windows\v7.1\`
   It will also install a subset of Visual Studio 2008 (9.0) at
-  C:\Program Files\Microsoft Visual Studio 9.0
+  `C:\Program Files\Microsoft Visual Studio 9.0`
 
 * Windows Driver Kit version 7.1.0
   This is a DDK version for Windows 7 and Windows Server 2008r2
   There are two versions of those at MSDN, so make sure
   to download version 7.1.0 or later. It installs in:
-  c:\WinDDK\7600.16385.1
+  `c:\WinDDK\7600.16385.1`
 
 * [optional] Windows Server 2003 R2 Platform SDK
   Make complete install inside default directory
@@ -55,54 +55,54 @@ from DDK. This can be define inside versions.bat file
 ## Additional components
 
 
-Perl
-~~~~
+# Perl
+
 
 ```
  c:> cmsc15_perl5.bat
 ```
 
-Will download Strawbery Perl from
-http://strawberryperl.com/releases.html
-and uncompress in <cmsc root>\perl
+Will download [Strawbery Perl release](http://strawberryperl.com/releases.html)
+and uncompress in `<cmsc root>\perl`
 
-Nasm
-~~~~
+# Nasm
+
 
 ```
  c:> cmsc15_nasm.bat
 ```
-Will download Netwide assembler from
-https://www.nasm.us/pub/nasm/releasebuilds
-and uncompress in <cmsc root>\nasm
+
+Will download [Netwide assembler](https://www.nasm.us/pub/nasm/releasebuilds)
+and uncompress in `<cmsc root>\nasm`
 
 
-Cmake
-~~~~~
+# Cmake
+
 
 ```
  c:> cmsc15_cmake.bat
 ```
-Will download cmake from
-https://github.com/Kitware/CMake/releases
-and uncompress in <cmsc root>\cmake
+
+Will download [Kitware Cmake][https://github.com/Kitware/CMake/releases)
+and uncompress in `<cmsc root>\cmake`
 
 ## Creating distribution archive
 
 Open Command prompt and change directory to
-<cmsc root>\tools and then invoke
+`<cmsc root>\tools` and then invoke
+
 ```
  c:\> cmsc15_makedist.bat
 ```
-This will create cmsc-<version>-win7-x86_x64.zip archive
+
+This will create `cmsc-<version>-win7-x86_x64.zip` archive
 as well as sha-512 digest.
 
 
-All in one
-----------
+# All in one
 
 Typical distribution:
-
+```
  c:\> git clone ...
  c:\> cd cmsc\tools
  c:\> cmsc15_compile.bat
@@ -110,3 +110,4 @@ Typical distribution:
  c:\> cmsc15_perl5.bat
  c:\> cmsc15_nasm.bat
  c:\> cmsc15_makedist.bat
+```
