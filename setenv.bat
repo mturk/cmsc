@@ -30,6 +30,7 @@ rem
 rem Default target is 64-bit Windows
 rem
 if /I ".%~1" == ".amd64" ( set "BUILD_CPU=x64" )
+if /I ".%~1" == ".x64"   ( set "BUILD_CPU=x64" )
 if /I ".%~1" == ".x86"   ( set "BUILD_CPU=x86" )
 if /I ".%~1" == ".i386"  ( set "BUILD_CPU=x86" )
 rem
