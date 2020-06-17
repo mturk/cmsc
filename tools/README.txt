@@ -1,13 +1,14 @@
 Tools used for building this distribution
 =========================================
 
+```
 curl.exe        7.70.0_2 https://curl.haxx.se/windows/dl-7.70.0_2/curl-7.70.0_2-win64-mingw.zip
 7za.exe         19.00    https://www.7-zip.org/a/7z1900-extra.7z
 patch.exe       2.5.9    http://gnuwin32.sourceforge.net
 posix2wx.exe    2.0.1    https://github.com/mturk/posix2wx/releases/download/2.0.1/posix2wx.exe
+```
 
-Creating CMSC distribution
---------------------------
+## Creating CMSC distribution
 
 Prerequisites:
 
@@ -33,13 +34,14 @@ downloadable from Microsoft MSDN site.
   C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2
   Used for ATL
 
-Compiling distribution
-----------------------
+## Compiling distribution
 
 Open Command promt and change directory to
 <cmsc root>\tools and then invoke
 
+```
   c:> cmsc15_compile.bat
+```
 
 This will create required directories and copy files
 from prerequisites to a new layout.
@@ -50,14 +52,15 @@ files are set in EXTRA_LIBS envvar within setenv.bat.
 By default compile will use Windows 7 libraries
 from DDK. This can be define inside versions.bat file
 
-Additional components
----------------------
+## Additional components
+
 
 Perl
 ~~~~
 
-
+```
  c:> cmsc15_perl5.bat
+```
 
 Will download Strawbery Perl from
 http://strawberryperl.com/releases.html
@@ -66,9 +69,9 @@ and uncompress in <cmsc root>\perl
 Nasm
 ~~~~
 
-
+```
  c:> cmsc15_nasm.bat
-
+```
 Will download Netwide assembler from
 https://www.nasm.us/pub/nasm/releasebuilds
 and uncompress in <cmsc root>\nasm
@@ -77,34 +80,22 @@ and uncompress in <cmsc root>\nasm
 Cmake
 ~~~~~
 
-
+```
  c:> cmsc15_cmake.bat
-
+```
 Will download cmake from
 https://github.com/Kitware/CMake/releases
 and uncompress in <cmsc root>\cmake
 
-Creating distribution archive
------------------------------
+## Creating distribution archive
 
-Open Command promt and change directory to
+Open Command prompt and change directory to
 <cmsc root>\tools and then invoke
-
+```
  c:\> cmsc15_makedist.bat
-
+```
 This will create cmsc-<version>-win7-x86_x64.zip archive
 as well as sha-512 digest.
-
-
-Intalling Tollkit on target computer
-------------------------------------
-
-The safest way is to unzip the archive file directy
-in the root of system drive (eg, C:)
-You can create a directory inside drive root that contains no
-spaces and unzip the archive file in that directory.
-
-
 
 
 All in one
