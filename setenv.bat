@@ -25,6 +25,7 @@ if not exist "%CmscRootDir%\msvc\bin\build.exe" (
     echo correct cmsc installation
     exit /B 1
 )
+set "WINVER=0x0601"
 rem
 rem Default target is 64-bit Windows
 rem
@@ -33,14 +34,13 @@ if /I ".%~1" == ".x86"   ( set "BUILD_CPU=x86" )
 if /I ".%~1" == ".i386"  ( set "BUILD_CPU=x86" )
 rem
 if ".%BUILD_CPU%" == "." (
-  echo Using default architecture: x%CmscSys%
+  echo Using default architecture: x64
   set "BUILD_CPU=x64"
 )
 rem
-echo Seting build environment for win-%BUILD_CPU%
+echo Seting build environment for win-%BUILD_CPU%/%WINVER%
 set "CMSC_PATH=%CmscRootDir%\msvc\bin\%BUILD_CPU%;%CmscRootDir%\msvc\bin;%CmscRootDir%\tools;%CmscRootDir%\nasm;%CmscRootDir%\perl\perl\bin;%CmscRootDir%\cmake\bin"
 set "PATH=%CMSC_PATH%;%PATH%"
 set "LIB=%CmscRootDir%\msvc\lib\%BUILD_CPU%"
 set "INCLUDE=%CmscRootDir%\msvc\include\crt;%CmscRootDir%\msvc\include;%CmscRootDir%\msvc\include\mfc;%CmscRootDir%\msvc\include\atl"
 set "EXTRA_LIBS=msvcrt_compat.lib msvcrt_compat.obj"
-set "WINVER=0x0601"
