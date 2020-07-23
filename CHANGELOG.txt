@@ -1,6 +1,10 @@
 ChangeLog file for cmsc
 =======================
 
+Changes in 15.0_30
+------------------
+* Update dependencies
+
 Changes in 15.0_29
 ------------------
 * Cleanup unused tools

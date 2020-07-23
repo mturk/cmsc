@@ -2,10 +2,9 @@ Tools used for building this distribution
 =========================================
 
 ```
-curl.exe        7.70.0_2 https://curl.haxx.se/windows/dl-7.70.0_2/curl-7.70.0_2-win64-mingw.zip
+curl.exe        7.71.1   https://curl.haxx.se/windows/dl-7.71.1/curl-7.71.1-win64-mingw.zip
 7za.exe         19.00    https://www.7-zip.org/a/7z1900-extra.7z
 patch.exe       2.5.9    http://gnuwin32.sourceforge.net
-posix2wx.exe    2.0.1    https://github.com/mturk/posix2wx/releases/download/2.0.1/posix2wx.exe
 ```
 
 ## Creating CMSC distribution
