@@ -2,7 +2,7 @@ Tools used for building this distribution
 =========================================
 
 ```
-curl.exe        7.72.0_4  https://curl.haxx.se/windows/dl-7.72.0_4/curl-7.72.0_4-win64-mingw.zip
+curl.exe        7.73.0_1  https://curl.se/windows/dl-7.73.0_1/curl-7.73.0_1-win64-mingw.zip
 7za.exe         19.00     https://www.7-zip.org/a/7z1900-extra.7z
 patch.exe       2.5.9     http://gnuwin32.sourceforge.net
 ```

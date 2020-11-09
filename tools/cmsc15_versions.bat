@@ -14,12 +14,12 @@ rem limitations under the License.
 rem
 rem Setup environment for Microsoft Compiler Toolkit
 rem
-set "CmscVer=15.0_31"
+set "CmscVer=15.0_32"
 set "CmscSys=64"
 set "CmscOsv=win7"
-set "CmakeVer=3.18.2"
+set "CmakeVer=3.18.4"
 set "NasmVer=2.15.05"
 set "PerlVer=5.32.0.1"
-set "P2wxVer=2.0.3"
+set "P2wxVer=2.0.4"
 set "CurlOpts=-qkL --retry 5"
 set "WINVER=0x0601"
