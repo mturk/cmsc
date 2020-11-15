@@ -88,7 +88,7 @@ and uncompress in `<cmsc root>\nasm`
  c:> cmsc15_cmake.bat
 ```
 
-Will download [Kitware Cmake][https://github.com/Kitware/CMake/releases)
+Will download [Kitware Cmake release](https://github.com/Kitware/CMake/releases)
 and uncompress in `<cmsc root>\cmake`
 
 ## Creating distribution archive
