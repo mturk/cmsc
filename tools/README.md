@@ -1,8 +1,8 @@
-Tools used for building this distribution
-=========================================
+# Tools used for building this distribution
+
 
 ```
-curl.exe        7.73.0_2  https://curl.se/windows/dl-7.73.0_3/curl-7.73.0_3-win64-mingw.zip
+curl.exe        7.73.0_3  https://curl.se/windows/dl-7.73.0_3/curl-7.73.0_3-win64-mingw.zip
 7za.exe         19.00     https://www.7-zip.org/a/7z1900-extra.7z
 patch.exe       2.5.9     http://gnuwin32.sourceforge.net
 ```

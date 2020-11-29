@@ -1,0 +1,37 @@
+--- include/crt/time.h
++++ include/crt/time.h
+@@ -177,14 +177,6 @@
+ _CRTIMP __time64_t __cdecl _time64(__out_opt __time64_t * _Time);
+ #endif
+ 
+-_CRTIMP char * __cdecl ctime(const time_t *);
+-_CRTIMP double __cdecl difftime(time_t, time_t);
+-_CRTIMP struct tm * __cdecl gmtime(const time_t *);
+-_CRTIMP struct tm * __cdecl localtime(const time_t *);
+-_CRTIMP time_t __cdecl mktime(struct tm *);
+-_CRTIMP time_t __cdecl _mkgmtime(struct tm *);
+-_CRTIMP time_t __cdecl time(time_t *);
+-
+ /* The Win32 API GetLocalTime and SetLocalTime should be used instead. */
+ _CRT_OBSOLETE(GetLocalTime) unsigned __cdecl _getsystime(__out struct tm * _Tm);
+ _CRT_OBSOLETE(SetLocalTime) unsigned __cdecl _setsystime(__in struct tm * _Tm, unsigned _MilliSec);
+@@ -224,8 +216,6 @@
+ __DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_1(errno_t, _wctime64_s, __out_ecount_part(_Size,26) wchar_t, _Buffer, __in const __time64_t *, _Time)
+ #endif
+ 
+-_CRTIMP wchar_t * __cdecl _wctime(const time_t *);
+-
+ #if !defined(RC_INVOKED) && !defined(__midl)
+ #include <wtime.inl>
+ #endif
+--- include/crt/wchar.h
++++ include/crt/wchar.h
+@@ -1132,8 +1132,6 @@
+ __DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_1(errno_t, _wctime64_s, __out_ecount_part(_Size,26) wchar_t, _Buffer, __in const __time64_t *, _Time)
+ #endif
+ 
+-_CRTIMP wchar_t * __cdecl _wctime(const time_t *);
+-
+ #if !defined(RC_INVOKED) && !defined(__midl)
+ #include <wtime.inl>
+ #endif

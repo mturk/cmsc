@@ -93,6 +93,7 @@ rem Path crtdefs.h and delayimp.h
 patch -fp0 -i %VSToolsDir%\crt\crtdefs.patch
 patch -fp0 -i %VSToolsDir%\crt\delayimp.patch
 patch -fp0 -i %VSToolsDir%\crt\errno.patch
+patch -fp0 -i %VSToolsDir%\crt\wtime.patch
 %XCOPYD% /S "%VSToolsDir%\include" include\ >NUL
 rem Copy Binaries
 %XCOPYD% "%WINDDK%\bin\x86" bin\ >NUL
