@@ -40,7 +40,7 @@ if ".%BUILD_CPU%" == "." (
 )
 rem
 echo Seting build environment for win-%BUILD_CPU%/%WINVER%
-set "CMSC_PATH=%CmscRootDir%\msvc\bin\%BUILD_CPU%;%CmscRootDir%\msvc\bin;%CmscRootDir%\tools;%CmscRootDir%\nasm;%CmscRootDir%\perl\perl\bin;%CmscRootDir%\cmake\bin"
+set "CMSC_PATH=%CmscRootDir%\msvc\bin\%BUILD_CPU%;%CmscRootDir%\msvc\bin;%CmscRootDir%\tools;%CmscRootDir%\nasm;%CmscRootDir%\perl\perl\bin"
 set "PATH=%CMSC_PATH%;%PATH%"
 set "LIB=%CmscRootDir%\msvc\lib\%BUILD_CPU%"
 set "INCLUDE=%CmscRootDir%\msvc\include\crt;%CmscRootDir%\msvc\include;%CmscRootDir%\msvc\include\mfc;%CmscRootDir%\msvc\include\atl"
