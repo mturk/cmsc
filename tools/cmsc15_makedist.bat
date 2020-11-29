@@ -36,7 +36,7 @@ rem Download possix2wx.exe
 rem
 set "DF=posix2wx.exe"
 del /F /Q %DF% 2>NUL
-curl %CurlOpts% -o dist\tools\%DF% https://github.com/mturk/posix2wx/releases/download/%P2wxVer%/%DF%
+curl %CurlOpts% -o dist\tools\%DF% https://github.com/mturk/posix2wx/releases/download/v%P2wxVer%/%DF%
 echo Utils  : %DF% %P2wxVer% >>%dist\VERSIONS.txt
 echo.
 for %%i in (setenv.bat README.md CHANGELOG.txt LICENSE) do copy /Y %%i dist\
