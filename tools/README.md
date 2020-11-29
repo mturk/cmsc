@@ -2,7 +2,7 @@ Tools used for building this distribution
 =========================================
 
 ```
-curl.exe        7.73.0_1  https://curl.se/windows/dl-7.73.0_1/curl-7.73.0_1-win64-mingw.zip
+curl.exe        7.73.0_2  https://curl.se/windows/dl-7.73.0_3/curl-7.73.0_3-win64-mingw.zip
 7za.exe         19.00     https://www.7-zip.org/a/7z1900-extra.7z
 patch.exe       2.5.9     http://gnuwin32.sourceforge.net
 ```
@@ -81,16 +81,6 @@ Will download [Netwide assembler](https://www.nasm.us/pub/nasm/releasebuilds)
 and uncompress in `<cmsc root>\nasm`
 
 
-### Cmake
-
-
-```
- c:> cmsc15_cmake.bat
-```
-
-Will download [Kitware Cmake release](https://github.com/Kitware/CMake/releases)
-and uncompress in `<cmsc root>\cmake`
-
 ## Creating distribution archive
 
 Open Command prompt and change directory to
@@ -112,7 +102,6 @@ Typical distribution build will look like
  c:\> git clone ...
  c:\> cd cmsc\tools
  c:\> cmsc15_compile.bat
- c:\> cmsc15_cmake.bat
  c:\> cmsc15_perl5.bat
  c:\> cmsc15_nasm.bat
  c:\> cmsc15_makedist.bat

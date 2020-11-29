@@ -17,7 +17,6 @@ rem
 set "CmscVer=15.0_33_dev"
 set "CmscSys=64"
 set "CmscOsv=win7"
-set "CmakeVer=3.18.4"
 set "NasmVer=2.15.05"
 set "PerlVer=5.32.0.1"
 set "P2wxVer=2.0.4"
