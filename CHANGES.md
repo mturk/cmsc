@@ -5,6 +5,11 @@ For a full list of changes, see the [git commit log][log]
 
   [log]: https://github.com/mturk/cmsc/commits/
 
+
+## cmsc 15.0_34
+
+ * Update dependencies
+
 ## cmsc 15.0_33
 
  * Update dependencies
