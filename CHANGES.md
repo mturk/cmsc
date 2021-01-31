@@ -6,11 +6,10 @@ For a full list of changes, see the [git commit log][log]
   [log]: https://github.com/mturk/cmsc/commits/
 
 
-## cmsc 15.0_34
+## cmsc 15.0_35
 
  * Update dependencies
  * Add simple stdbool.h and stdint.h files
-   to crt/include
 
 ## cmsc 15.0_34
 
