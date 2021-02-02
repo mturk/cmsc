@@ -5,4 +5,5 @@ EXPORTS
     _getpid=msvcrt._getpid
     _environ=msvcrt._environ
     _wenviron=msvcrt._wenviron
-
+    __ftelli64=msvcrt.__ftelli64
+    _vsnprintf=msvcrt._vsnprintf

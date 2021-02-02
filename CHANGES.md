@@ -6,6 +6,10 @@ For a full list of changes, see the [git commit log][log]
   [log]: https://github.com/mturk/cmsc/commits/
 
 
+## cmsc 15.0_36
+
+ * Add missing vsnprintf and _ftelli64 function declarations
+
 ## cmsc 15.0_35
 
  * Update dependencies

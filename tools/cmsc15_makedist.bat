@@ -39,7 +39,7 @@ del /F /Q %DF% 2>NUL
 curl %CurlOpts% -o dist\tools\%DF% https://github.com/mturk/posix2wx/releases/download/v%P2wxVer%/%DF%
 echo Utils  : %DF% %P2wxVer% >>%dist\VERSIONS.txt
 echo.
-for %%i in (setenv.bat README.md CHANGELOG.txt LICENSE) do copy /Y %%i dist\
+for %%i in (setenv.bat README.md CHANGES.md LICENSE.txt) do copy /Y %%i dist\
 rem
 echo Creating Distibution ....
 rem
