@@ -6,7 +6,7 @@ For a full list of changes, see the [git commit log][log]
   [log]: https://github.com/mturk/cmsc/commits/
 
 
-## cmsc 15.0_36
+## cmsc 15.0_37
 
  * Update dependencies
  * Use cygwrun instead posix2wx
