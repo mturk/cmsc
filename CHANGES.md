@@ -8,6 +8,11 @@ For a full list of changes, see the [git commit log][log]
 
 ## cmsc 15.0_36
 
+ * Update dependencies
+ * Use cygwrun instead posix2wx
+
+## cmsc 15.0_36
+
  * Add missing snprintf and vsnprintf function declarations
  * Add CMSC_VERSION to setenv.bat
 
