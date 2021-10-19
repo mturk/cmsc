@@ -21,10 +21,9 @@ set "VSToolsDir=%cd%"
 popd
 call cmsc15_versions.bat
 rem Prerequisites...
-set "ProgramFiles64=%ProgramFiles%"
 set "WINDDK=c:\WinDDK\7600.16385.1"
-set "WPSDK6=%ProgramFiles64%\Microsoft Platform SDK for Windows Server 2003 R2"
-set "WINSDK=%ProgramFiles64%\Microsoft SDKs\Windows\v7.1"
+set "WPSDK6=%ProgramFiles%\Microsoft Platform SDK for Windows Server 2003 R2"
+set "WINSDK=%ProgramFiles%\Microsoft SDKs\Windows\v7.1"
 set "MSVS09=%ProgramFiles(x86)%\Microsoft Visual Studio 9.0\VC"
 rem
 set "MSCVCD=dist\msvc"
@@ -103,10 +102,12 @@ rem Copy Binaries
 %FCOPYF% "%WINDDK%\tools\Other\i386\msdis160.dll" bin\msdis160.dll >NUL
 for %%i in (mt guidgen rebase) do copy /Y "%WINSDK%\bin\%%i.exe" bin\ >NUL
 move /Y bin\ml.exe bin\x86\ml.exe >NUL
-rem Copy missing lib.exe from VS2009
-%FCOPYF% "%MSVS09%\bin\pgodb90.dll" bin\pgodb90.dll >NUL
-%FCOPYF% "%MSVS09%\bin\lib.exe" bin\x86\lib.exe >NUL
-%FCOPYF% "%MSVS09%\bin\x86_amd64\lib.exe" bin\x64\lib.exe >NUL
+rem Copy missing lib and dumpbin from VS2009
+rem %FCOPYF% "%MSVS09%\bin\pgodb90.dll" bin\pgodb90.dll >NUL
+for %%i in (lib dumpbin) do (
+    %FCOPYF% "%MSVS09%\bin\%%i.exe" bin\x86\%%i.exe >NUL
+    %FCOPYF% "%MSVS09%\bin\amd64\%%i.exe" bin\x64\%%i.exe >NUL
+)
 rem
 if not exist "%WPSDK6%\include\atl" (
     echo Cannot find "%WPSDK6%" directory >>%VSToolsDir%\compile.log
