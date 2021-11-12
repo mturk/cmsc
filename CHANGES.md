@@ -5,6 +5,10 @@ For a full list of changes, see the [git commit log][log]
 
   [log]: https://github.com/mturk/cmsc/commits/
 
+## cmsc 15.0_41
+
+ * Update cygwrun dependency
+
 ## cmsc 15.0_40
 
  * Use amd64/lib.exe
