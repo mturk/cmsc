@@ -93,7 +93,6 @@ patch -fp0 -i %VSToolsDir%\crt\crtdefs.patch
 patch -fp0 -i %VSToolsDir%\crt\delayimp.patch
 patch -fp0 -i %VSToolsDir%\crt\errno.patch
 patch -fp0 -i %VSToolsDir%\crt\wtime.patch
-patch -fp0 -i %VSToolsDir%\crt\stdio.patch
 %XCOPYD% /S "%VSToolsDir%\include" include\ >NUL
 rem Copy Binaries
 %XCOPYD% "%WINDDK%\bin\x86" bin\ >NUL

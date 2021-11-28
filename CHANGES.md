@@ -5,10 +5,13 @@ For a full list of changes, see the [git commit log][log]
 
   [log]: https://github.com/mturk/cmsc/commits/
 
-## cmsc 15.0_42
+## cmsc 15.0_43
 
  * Update cygwrun dependency
- * Add stdio.h patch for missing vsnprintf
+
+## cmsc 15.0_42
+
+ * Not released
 
 ## cmsc 15.0_41
 
