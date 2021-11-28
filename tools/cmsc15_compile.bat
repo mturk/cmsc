@@ -120,6 +120,4 @@ popd
 call msvcrt_compat.bat
 echo.
 echo Finished.
-echo You can now call cmsc15_perl5.bat
-echo.
 :End

@@ -35,10 +35,7 @@ if /I ".%~1" == ".x64"   ( set "BUILD_CPU=x64" )
 if /I ".%~1" == ".x86"   ( set "BUILD_CPU=x86" )
 if /I ".%~1" == ".i386"  ( set "BUILD_CPU=x86" )
 rem
-if ".%BUILD_CPU%" == "." (
-  echo Using default architecture: x64
-  set "BUILD_CPU=x64"
-)
+if ".%BUILD_CPU%" == "." ( set "BUILD_CPU=x64" )
 rem
 echo Seting build environment for win-%BUILD_CPU%/%WINVER%
 set "CMSC_PATH=%CmscRootDir%\msvc\bin\%BUILD_CPU%;%CmscRootDir%\msvc\bin;%CmscRootDir%\tools;%CmscRootDir%\nasm;%CmscRootDir%\perl\perl\bin"
@@ -46,3 +43,7 @@ set "PATH=%CMSC_PATH%;%PATH%"
 set "LIB=%CmscRootDir%\msvc\lib\%BUILD_CPU%"
 set "INCLUDE=%CmscRootDir%\msvc\include\crt;%CmscRootDir%\msvc\include;%CmscRootDir%\msvc\include\mfc;%CmscRootDir%\msvc\include\atl"
 set "EXTRA_LIBS=msvcrt_compat.lib msvcrt_compat.obj"
+set "CMSC_TCLSH=%CmscRootDir%\tclsh\bin\tclsh.exe"
+echo Cmsc %CMSC_VERSION%
+echo Environment initialized for: '%BUILD_CPU%'
+echo.

@@ -105,5 +105,6 @@ Typical distribution build will look like
  c:\> cmsc15_perl5.bat
  c:\> cmsc15_nasm.bat
  c:\> cmsc15_cygwrun.bat
+ c:\> cmsc15_tclsh.bat
  c:\> cmsc15_makedist.bat
 ```
