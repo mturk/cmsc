@@ -8,6 +8,7 @@ For a full list of changes, see the [git commit log][log]
 ## cmsc 15.0_43
 
  * Update cygwrun dependency
+ * Add option to compile minimal Tcl8.6 package
 
 ## cmsc 15.0_42
 
