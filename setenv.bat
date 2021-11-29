@@ -44,6 +44,5 @@ set "LIB=%CmscRootDir%\msvc\lib\%BUILD_CPU%"
 set "INCLUDE=%CmscRootDir%\msvc\include\crt;%CmscRootDir%\msvc\include;%CmscRootDir%\msvc\include\mfc;%CmscRootDir%\msvc\include\atl"
 set "EXTRA_LIBS=msvcrt_compat.lib msvcrt_compat.obj"
 set "CMSC_TCLSH=%CmscRootDir%\tclsh\bin\tclsh.exe"
-echo Cmsc %CMSC_VERSION%
-echo Environment initialized for: '%BUILD_CPU%'
+echo Cmsc %CMSC_VERSION% : Environment initialized for: '%BUILD_CPU%'
 echo.
