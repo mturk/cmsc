@@ -81,6 +81,19 @@ Will download [Netwide assembler](https://www.nasm.us/pub/nasm/releasebuilds)
 and uncompress in `<cmsc root>\nasm`
 
 
+### Tcl
+
+
+```
+ c:> cmsc15_tclsh.bat
+```
+
+The script will download and compile tcl source
+adding basic `tclsh.exe` binary to the distribution,
+so that packages like SQLite and others can be compiled
+which require Tcl toolkit at build time.
+
+
 ## Creating distribution archive
 
 Open Command prompt and change directory to
@@ -108,3 +121,12 @@ Typical distribution build will look like
  c:\> cmsc15_tclsh.bat
  c:\> cmsc15_makedist.bat
 ```
+
+Alternatively `cmsc15_allinone.bat` scrip can be used instead.
+
+```
+ c:\> git clone ...
+ c:\> cd cmsc\tools
+ c:\> cmsc15_allinone.bat
+```
+
