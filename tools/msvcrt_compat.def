@@ -7,3 +7,4 @@ EXPORTS
     _wenviron=msvcrt._wenviron
     snprintf=msvcrt.snprintf
     vsnprintf=msvcrt.vsnprintf
+    _ftelli64=msvcrt._ftelli64

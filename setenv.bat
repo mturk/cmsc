@@ -26,7 +26,7 @@ if not exist "%CmscRootDir%\msvc\bin\build.exe" (
     exit /B 1
 )
 set "WINVER=0x0601"
-set "CMSC_VERSION=15044"
+set "CMSC_VERSION=15045"
 rem
 rem Default target is 64-bit Windows
 rem

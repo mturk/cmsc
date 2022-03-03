@@ -42,7 +42,7 @@ rem Create distribution .zip
 rem
 7za a -bd cmsc-%CmscVer%-%CmscArch%.zip %CmscDist%
 set "PATH=%CmscDist%\perl\perl\bin;%PATH%"
-call shasum.bat -a 512 cmsc-%CmscVer%-%CmscArch%.zip > cmsc-%CmscVer%-%CmscArch%.sha512
+call shasum.bat -a 256 cmsc-%CmscVer%-%CmscArch%.zip > cmsc-%CmscVer%-%CmscArch%.sha256
 rem
 popd
 echo.
