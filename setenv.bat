@@ -26,7 +26,7 @@ if not exist "%CmscRootDir%\msvc\bin\build.exe" (
     exit /B 1
 )
 set "WINVER=0x0601"
-set "CMSC_VERSION=15045"
+set "CMSC_VERSION=15046"
 rem
 rem Default target is 64-bit Windows
 rem
@@ -43,6 +43,5 @@ set "PATH=%CMSC_PATH%;%PATH%"
 set "LIB=%CmscRootDir%\msvc\lib\%BUILD_CPU%"
 set "INCLUDE=%CmscRootDir%\msvc\include\crt;%CmscRootDir%\msvc\include;%CmscRootDir%\msvc\include\mfc;%CmscRootDir%\msvc\include\atl"
 set "EXTRA_LIBS=msvcrt_compat.lib msvcrt_compat.obj"
-set "CMSC_TCLSH=%CmscRootDir%\tclsh\bin\tclsh.exe"
 echo Cmsc %CMSC_VERSION% : Environment initialized for: '%BUILD_CPU%'
 echo.

@@ -2,7 +2,7 @@
 
 
 ```
-curl.exe        7.81.0    https://curl.se/windows/dl-7.81.0_1/curl-7.81.0_1-win64-mingw.zip
+curl.exe        7.82.0    https://curl.se/windows/dl-7.82.0/curl-7.82.0-win64-mingw.zip
 7za.exe         21.07     https://www.7-zip.org/a/7z2107-extra.7z
 patch.exe       2.5.9     http://gnuwin32.sourceforge.net
 ```
@@ -81,19 +81,6 @@ Will download [Netwide assembler](https://www.nasm.us/pub/nasm/releasebuilds)
 and uncompress in `<cmsc root>\nasm`
 
 
-### Tcl
-
-
-```
- c:> cmsc15_tclsh.bat
-```
-
-The script will download and compile tcl source
-adding basic `tclsh.exe` binary to the distribution,
-so that packages like SQLite and others can be compiled
-which require Tcl toolkit at build time.
-
-
 ## Creating distribution archive
 
 Open Command prompt and change directory to
@@ -118,7 +105,6 @@ Typical distribution build will look like
  c:\> cmsc15_perl5.bat
  c:\> cmsc15_nasm.bat
  c:\> cmsc15_cygwrun.bat
- c:\> cmsc15_tclsh.bat
  c:\> cmsc15_makedist.bat
 ```
 

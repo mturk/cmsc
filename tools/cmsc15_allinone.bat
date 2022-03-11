@@ -21,7 +21,6 @@ call cmsc15_compile.bat
 call cmsc15_perl5.bat
 call cmsc15_nasm.bat
 call cmsc15_cygwrun.bat
-call cmsc15_tclsh.bat
 call cmsc15_makedist.bat
 echo.
 echo Done
