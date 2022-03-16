@@ -9,6 +9,7 @@ For a full list of changes, see the [git commit log][log]
 ## cmsc 15.0_46
 
  * Drop tcl
+ * Update cygwrun dependency
 
 ## cmsc 15.0_45
 
