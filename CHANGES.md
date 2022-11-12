@@ -6,6 +6,10 @@ For a full list of changes, see the [git commit log][log]
   [log]: https://github.com/mturk/cmsc/commits/
 
 
+## cmsc 15.0_47
+
+ * Update cygwrun dependency
+
 ## cmsc 15.0_46
 
  * Drop tcl
