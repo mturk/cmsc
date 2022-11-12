@@ -2,8 +2,8 @@
 
 
 ```
-curl.exe        7.82.0    https://curl.se/windows/dl-7.82.0/curl-7.82.0-win64-mingw.zip
-7za.exe         21.07     https://www.7-zip.org/a/7z2107-extra.7z
+curl.exe        7.86.0    https://curl.se/windows/dl-7.86.0_1/curl-7.86.0_1-win64-mingw.zip
+7za.exe         22.01     https://www.7-zip.org/a/7z2201-extra.7z
 patch.exe       2.5.9     http://gnuwin32.sourceforge.net
 ```
 
