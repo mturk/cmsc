@@ -2,3 +2,4 @@
 *.patch eol=crlf
 *.txt eol=crlf
 *.bat eol=crlf
+*.def eol=crlf

@@ -6,6 +6,13 @@ For a full list of changes, see the [git commit log][log]
   [log]: https://github.com/mturk/cmsc/commits/
 
 
+## cmsc 15.0_48
+
+ * Rebase cygwrun to 1.2.2
+ * Rebase nasm to 2.16.01
+ * Rebase perl to 5.38.2.2
+ * No need for EXTRA_LIBS any more
+
 ## cmsc 15.0_47
 
  * Update cygwrun dependency

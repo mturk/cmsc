@@ -100,7 +100,12 @@ rem Copy Binaries
 %XCOPYD% /S "%WINDDK%\bin\x86\x86" bin\x86\ >NUL
 %XCOPYD% /S "%WINDDK%\bin\x86\amd64" bin\x64\ >NUL
 %FCOPYF% "%WINDDK%\tools\Other\i386\msdis160.dll" bin\msdis160.dll >NUL
-for %%i in (mt guidgen rebase) do copy /Y "%WINSDK%\bin\%%i.exe" bin\ >NUL
+rem
+for %%i in (mt guidgen rebase) do (
+    %FCOPYF% "%WINSDK%\bin\%%i.exe" bin\%%i.exe >NUL
+    %FCOPYF% "%WINSDK%\bin\x64\%%i.exe" bin\x64\%%i.exe >NUL
+)
+rem
 move /Y bin\ml.exe bin\x86\ml.exe >NUL
 rem Copy missing lib and dumpbin from VS2009
 rem %FCOPYF% "%MSVS09%\bin\pgodb90.dll" bin\pgodb90.dll >NUL

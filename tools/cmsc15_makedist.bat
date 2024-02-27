@@ -32,6 +32,7 @@ echo Version: %CmscVer% >>dist\VERSIONS.txt
 type %VSToolsDir%\compile.log >>dist\VERSIONS.txt
 rem
 for %%i in (setenv.bat README.md CHANGES.md LICENSE.txt) do copy /Y %%i dist\
+copy /Y tools\7za.exe dist\tools\
 rem
 echo Creating Distibution ....
 rem

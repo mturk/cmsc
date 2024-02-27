@@ -39,6 +39,9 @@ lib.exe /NOLOGO /NODEFAULTLIB /DEF:%THUNK%.def /MACHINE:X86 /NAME:msvcrt.dll /OU
 rem
 del /Q %OUTD%\%THUNK%.exp
 copy /Y %OUTD%\msvcrt_win2003.obj %OUTD%\%THUNK%.obj
+move /Y %OUTD%\msvcrt.lib %OUTD%\msvcrt_original.lib
+lib.exe /NOLOGO /OUT:%OUTD%\msvcrt.lib %OUTD%\msvcrt_original.lib %OUTD%\%THUNK%.lib %OUTD%\%THUNK%.obj >NUL
+
 rem
 rem Setup x64 target
 rem
@@ -55,6 +58,9 @@ lib.exe /NOLOGO /NODEFAULTLIB /DEF:%THUNK%.def /MACHINE:X64 /NAME:msvcrt.dll /OU
 %CLCC% crt\setargv.c /Fo%OUTD%\setargv.obj
 %CLCC% crt\wsetargv.c /Fo%OUTD%\wsetargv.obj
 rem
+rem Create new mvcrt.lib
 del /Q %OUTD%\%THUNK%.exp
 copy /Y %OUTD%\msvcrt_win2003.obj %OUTD%\%THUNK%.obj
+move /Y %OUTD%\msvcrt.lib %OUTD%\msvcrt_original.lib
+lib.exe /NOLOGO /OUT:%OUTD%\msvcrt.lib %OUTD%\msvcrt_original.lib %OUTD%\%THUNK%.lib %OUTD%\%THUNK%.obj >NUL
 rem

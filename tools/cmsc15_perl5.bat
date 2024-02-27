@@ -27,7 +27,7 @@ set "PerlArch=%PerlName%.zip"
 if not exist "%PerlArch%" (
     echo.
     echo Downloading %PerlArch% ... this can take a while.
-    curl %CurlOpts% -o %PerlArch% http://strawberryperl.com/download/%PerlVer%/%PerlArch%
+    curl %CurlOpts% -o %PerlArch% https://github.com/StrawberryPerl/Perl-Dist-Strawberry/releases/download/%PerlBld%/%PerlArch%
 )
 rem
 7za t %PerlArch% >NUL 2>&1 && ( goto Exp )

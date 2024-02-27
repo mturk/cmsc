@@ -26,7 +26,7 @@ if not exist "%CmscRootDir%\msvc\bin\build.exe" (
     exit /B 1
 )
 set "WINVER=0x0601"
-set "CMSC_VERSION=15047"
+set "CMSC_VERSION=15048"
 rem
 rem Default target is 64-bit Windows
 rem
@@ -38,10 +38,9 @@ rem
 if ".%BUILD_CPU%" == "." ( set "BUILD_CPU=x64" )
 rem
 echo Seting build environment for win-%BUILD_CPU%/%WINVER%
-set "CMSC_PATH=%CmscRootDir%\msvc\bin\%BUILD_CPU%;%CmscRootDir%\msvc\bin;%CmscRootDir%\tools;%CmscRootDir%\nasm;%CmscRootDir%\perl\perl\bin"
+set "CMSC_PATH=%CmscRootDir%\tools;%CmscRootDir%\msvc\bin\%BUILD_CPU%;%CmscRootDir%\msvc\bin;%CmscRootDir%\nasm;%CmscRootDir%\perl\perl\bin"
 set "PATH=%CMSC_PATH%;%PATH%"
 set "LIB=%CmscRootDir%\msvc\lib\%BUILD_CPU%"
 set "INCLUDE=%CmscRootDir%\msvc\include\crt;%CmscRootDir%\msvc\include;%CmscRootDir%\msvc\include\mfc;%CmscRootDir%\msvc\include\atl"
-set "EXTRA_LIBS=msvcrt_compat.lib msvcrt_compat.obj"
 echo Cmsc %CMSC_VERSION% : Environment initialized for: '%BUILD_CPU%'
 echo.
